@@ -1,0 +1,3477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>margins - Independent Bookshop in Portland</title>
+<meta name="description" content="Independent bookshop in Portland. Hand-picked shelves, staff who read everything. Reserve a copy online and pick it up tonight - three locations, open daily 09:00-22:00.">
+<meta name="theme-color" content="#0b0a09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,600&family=Geist:wght@600;700&family=Onest:wght@400&family=Space+Mono&family=Allura&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+  }
+}
+</script>
+<style>
+
+/* ============================== TOKENS ============================== */
+:root {
+  --font-geist: "Geist", system-ui, sans-serif;
+  --font-onest: "Onest", system-ui, sans-serif;
+  --font-sans: var(--font-onest);
+  --font-space-mono: "Space Mono", ui-monospace, monospace;
+  --font-allura: "Allura", cursive;
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+  --leading-display: 1.1;
+  --breakpoint-board: 90rem;
+
+  --raw-color-white: #ffffff;
+  --raw-color-neutral-100: #ededed;
+  --raw-color-neutral-900: #171717;
+  --raw-color-neutral-950: #0a0a0a;
+  --raw-duration-fast: 150ms;
+  --raw-duration-normal: 250ms;
+  --raw-duration-slow: 300ms;
+  --raw-color-espresso-950: #0b0a09;
+  --raw-color-amber-500: #c4472d;
+  --raw-color-espresso-900: #1a1715;
+  --raw-color-espresso-900-half: rgba(26, 23, 21, 0.5);
+  --raw-color-roast-900: #1c0f0c;
+  --raw-color-roast-500: #8a3527;
+  --raw-color-bone-50: #f0ede6;
+  --raw-color-bone-100: #e4dfd5;
+  --raw-gradient-hero-scrim: linear-gradient(to right, rgba(11, 10, 9, 0.75) 0%, rgba(11, 10, 9, 0.35) 35%, transparent 60%);
+  --raw-gradient-philosophy-scrim: linear-gradient(to bottom, rgba(11, 10, 9, 0.86) 0%, rgba(11, 10, 9, 0.6) 26%, rgba(11, 10, 9, 0.38) 46%, rgba(11, 10, 9, 0.62) 72%, rgba(11, 10, 9, 0.88) 100%);
+  --raw-gradient-opalesce-fallback: linear-gradient(120deg, #0b0a09 0%, #140c0b 35%, #2e1512 65%, #6a2c22 100%);
+  --raw-font-size-label: 0.875rem;
+  --raw-font-size-base: 1rem;
+  --raw-font-size-script: 5.625rem;
+  --raw-font-size-fine: 0.75rem;
+  --raw-font-size-headline: 4rem;
+  --raw-font-size-display: 6.25rem;
+  --raw-font-size-display-phone: 2.375rem;
+  --raw-font-size-display-hero-phone: 3.25rem;
+  --raw-font-size-display-tablet: 4rem;
+  --raw-font-size-headline-phone: 2rem;
+  --raw-font-size-headline-tablet: 3rem;
+  --raw-font-size-script-phone: 3.85rem;
+  --raw-font-size-script-tablet: 7rem;
+  --raw-font-size-display-hero-tablet: 6rem;
+  --raw-font-size-count-phone: 5rem;
+  --raw-font-size-count-tablet: 8rem;
+  --raw-font-size-count: 11rem;
+  --raw-font-size-lede-tablet: 1.125rem;
+  --raw-leading-flush: 0.8;
+  --raw-leading-headline: 0.9;
+  --raw-leading-copy: 1.2;
+  --raw-tracking-tight: -0.03em;
+  --raw-tracking-label: 0.1em;
+  --raw-tracking-slash: -0.23em;
+  --raw-tracking-slash-space: -0.115em;
+  --raw-size-hero-copy: 34rem;
+  --raw-size-hero-cta: 9.3125rem;
+  --raw-size-hours: 7.625rem;
+  --raw-size-hero-address: 9.9375rem;
+  --raw-size-hero-social: 5.3125rem;
+  --raw-size-hero-rule: 2.375rem;
+  --raw-size-dot: 0.3125rem;
+  --raw-size-logo-width: 6.4931rem;
+  --raw-size-logo-height: 1.375rem;
+  --raw-size-hero-media-width: 72.0625rem;
+  --raw-size-hero-media-height: 61rem;
+  --raw-size-hero-media-x: 24.0625rem;
+  --raw-size-hero-media-overhang: 6.125rem;
+  --raw-size-hero-media-nudge: max(0px, min(40px, calc((1280px - 100vw) * 0.15625)));
+  --raw-size-hero-media-y: 1.8125rem;
+  --raw-size-swirl-width: 139.6875rem;
+  --raw-size-swirl-height: 46.5625rem;
+  --raw-size-swirl-x: 8.25rem;
+  --raw-size-swirl-y: -1.5rem;
+  --raw-size-hero-copy-tablet: 42rem;
+  --raw-size-hero-script-x-phone: 9.75rem;
+  --raw-size-hero-script-y-phone: 5.25rem;
+  --raw-size-hero-script-x-tablet: 16.25rem;
+  --raw-size-hero-script-y-tablet: 7.8125rem;
+  --raw-size-hero-script-x: 17.375rem;
+  --raw-size-hero-script-y: 13.1875rem;
+  --raw-size-hero-copy-rise: 1.75rem;
+  --raw-size-underline: 0.1125rem;
+  --raw-size-cap-16: 0.6875rem;
+  --raw-size-cta-block: 1.1875rem;
+  --raw-size-cap-12: 0.5rem;
+  --raw-size-menu-intro: 32.4375rem;
+  --raw-size-menu-intro-y: 6.625rem;
+  --raw-size-menu-lede: 10.875rem;
+  --raw-size-menu-lede-x: 21.625rem;
+  --raw-size-menu-lede-y: 14.125rem;
+  --raw-size-menu-cta: 10.0625rem;
+  --raw-size-menu-cta-x: 77.4375rem;
+  --raw-size-menu-cta-y: 24.625rem;
+  --raw-size-menu-cards-y: 28.3125rem;
+  --raw-size-menu-card-height: 19.1875rem;
+  --raw-size-menu-receipt-width: 17.41125rem;
+  --raw-size-menu-receipt-height: 39.553125rem;
+  --raw-size-menu-receipt-x: 86.44375rem;
+  --raw-size-menu-receipt-y: 10.0725rem;
+  --raw-size-board-height: 50rem;
+  --raw-size-order-frame: 53.375rem;
+  --raw-size-menu-still-lift: 0.75rem;
+  --raw-size-menu-still-scale: 1;
+  --raw-size-menu-still-max: none;
+  --raw-size-footer-height: 24.0625rem;
+  --raw-size-footer-tagline: 6.5rem;
+  --raw-size-footer-tagline-y: 6.375rem;
+  --raw-size-footer-nav-x: 23.9375rem;
+  --raw-size-footer-contact-offset: 50rem;
+  --raw-size-footer-right-block: 16.0625rem;
+  --raw-size-order-headline: 25.0625rem;
+  --raw-size-order-headline-y: 7.875rem;
+  --raw-size-order-note: 10.1875rem;
+  --raw-size-order-aside: 20.6875rem;
+  --raw-size-order-aside-gap: 3.125rem;
+  --raw-size-order-cta: 10.0625rem;
+  --raw-size-footer-col: 7.625rem;
+  --raw-size-footer-rule-top: 12.8125rem;
+  --raw-size-footer-row-y: 15.3125rem;
+  --raw-size-footer-rule-bottom: 20.1875rem;
+  --raw-size-footer-legal-y: 21.6875rem;
+  --raw-size-footer-address: 10rem;
+  --raw-size-footer-address-b: 37.9375rem;
+  --raw-size-footer-address-c: 53.0625rem;
+  --raw-size-footer-divider-a: 35.9375rem;
+  --raw-size-footer-divider-b: 51.0625rem;
+  --raw-size-footer-dot: 0.25rem;
+  --raw-angle-menu-receipt: -31.2678deg;
+  --raw-size-locations-dial: 40.875rem;
+  --raw-size-locations-dial-y: 6.625rem;
+  --raw-size-locations-cup-width: 17.5rem;
+  --raw-size-locations-cup-height: 26.25rem;
+  --raw-size-locations-cup-y: 11.875rem;
+  --raw-size-locations-list: 11.1875rem;
+  --raw-size-locations-list-y: 37.375rem;
+  --raw-size-locations-hours-y: 45.125rem;
+  --raw-size-philosophy-headline: 49.25rem;
+  --raw-size-philosophy-headline-y: 6.625rem;
+  --raw-size-philosophy-cup-x: 14.625rem;
+  --raw-size-philosophy-cup-y: 19.5625rem;
+  --raw-size-philosophy-cup-width: 20.125rem;
+  --raw-size-philosophy-cup-height: 30.125rem;
+  --raw-size-philosophy-lede: 20.6875rem;
+  --raw-size-philosophy-lede-x: 38.3125rem;
+  --raw-size-philosophy-lede-y: 41.5625rem;
+  --raw-size-philosophy-claims: 10.75rem;
+  --raw-size-philosophy-claims-y: 44.0625rem;
+  --raw-size-philosophy-eyebrow-y: 46.4375rem;
+  --raw-size-arrow-width: 0.763356rem;
+  --raw-size-arrow-height: 0.828444rem;
+}
+/* Per-grid overrides of the still's crop box and the footer's vw placement. */
+@media (min-width: 1440px) { :root { --raw-size-menu-still-lift: 0rem; } }
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  :root {
+    --raw-size-menu-still-lift: 0.9rem; --raw-size-menu-still-scale: 0.92;
+    --raw-size-footer-nav-x: 26.5972vw; --raw-size-footer-address-b: 42.1528vw; --raw-size-footer-address-c: 58.9583vw;
+    --raw-size-footer-divider-a: 39.9306vw; --raw-size-footer-divider-b: 56.7361vw;
+  }
+}
+@media (max-width: 639.98px) { :root { --raw-size-menu-still-lift: 1.375rem; --raw-size-menu-still-max: 100%; --raw-size-menu-still-scale: 1.5; } }
+
+:root {
+  --background: var(--raw-color-espresso-950);
+  --foreground: var(--raw-color-white);
+  --accent: var(--raw-color-amber-500);
+  --ink-deep: var(--raw-color-roast-900);
+  --ink-rich: var(--raw-color-roast-500);
+  --surface-backdrop: var(--raw-color-espresso-900);
+  --surface-backdrop-soft: var(--raw-color-espresso-900-half);
+  --hero-scrim: var(--raw-gradient-hero-scrim);
+  --gradient-opalesce-fallback: var(--raw-gradient-opalesce-fallback);
+  --philosophy-scrim: var(--raw-gradient-philosophy-scrim);
+  --surface-inverse: var(--raw-color-bone-50);
+  --surface-inverse-backdrop: var(--raw-color-bone-100);
+  --foreground-inverse: var(--raw-color-espresso-950);
+  --duration-fast: var(--raw-duration-fast);
+  --duration-normal: var(--raw-duration-normal);
+  --duration-slow: var(--raw-duration-slow);
+  --font-size-label: var(--raw-font-size-label);
+  --font-size-base: var(--raw-font-size-base);
+  --font-size-script: var(--raw-font-size-script);
+  --font-size-fine: var(--raw-font-size-fine);
+  --font-size-headline: var(--raw-font-size-headline);
+  --font-size-display-phone: var(--raw-font-size-display-phone);
+  --font-size-display-hero-phone: var(--raw-font-size-display-hero-phone);
+  --font-size-display-tablet: var(--raw-font-size-display-tablet);
+  --font-size-headline-phone: var(--raw-font-size-headline-phone);
+  --font-size-headline-tablet: var(--raw-font-size-headline-tablet);
+  --font-size-script-phone: var(--raw-font-size-script-phone);
+  --font-size-script-tablet: var(--raw-font-size-script-tablet);
+  --font-size-display-hero-tablet: var(--raw-font-size-display-hero-tablet);
+  --font-size-count-phone: var(--raw-font-size-count-phone);
+  --font-size-count-tablet: var(--raw-font-size-count-tablet);
+  --font-size-count: var(--raw-font-size-count);
+  --font-size-lede-tablet: var(--raw-font-size-lede-tablet);
+  --font-size-display: var(--raw-font-size-display);
+  --line-height-flush: var(--raw-leading-flush);
+  --line-height-headline: var(--raw-leading-headline);
+  --line-height-copy: var(--raw-leading-copy);
+  --letter-spacing-tight: var(--raw-tracking-tight);
+  --letter-spacing-label: var(--raw-tracking-label);
+  --letter-spacing-slash: var(--raw-tracking-slash);
+  --letter-spacing-slash-space: var(--raw-tracking-slash-space);
+  --size-hero-copy: var(--raw-size-hero-copy);
+  --size-hero-cta: var(--raw-size-hero-cta);
+  --size-hours: var(--raw-size-hours);
+  --size-hero-address: var(--raw-size-hero-address);
+  --size-hero-social: var(--raw-size-hero-social);
+  --size-hero-rule: var(--raw-size-hero-rule);
+  --size-dot: var(--raw-size-dot);
+  --size-logo-width: var(--raw-size-logo-width);
+  --size-logo-height: var(--raw-size-logo-height);
+  --size-hero-media-width: var(--raw-size-hero-media-width);
+  --size-hero-media-height: var(--raw-size-hero-media-height);
+  --size-hero-media-x: var(--raw-size-hero-media-x);
+  --size-hero-media-overhang: var(--raw-size-hero-media-overhang);
+  --size-hero-media-nudge: var(--raw-size-hero-media-nudge);
+  --size-hero-media-y: var(--raw-size-hero-media-y);
+  --size-hero-media-drop: calc(var(--size-hero-media-y) + var(--size-board-drop));
+  --size-swirl-width: var(--raw-size-swirl-width);
+  --size-swirl-height: var(--raw-size-swirl-height);
+  --size-swirl-x: var(--raw-size-swirl-x);
+  --size-swirl-y: var(--raw-size-swirl-y);
+  --size-hero-copy-tablet: var(--raw-size-hero-copy-tablet);
+  --size-hero-script-x-phone: var(--raw-size-hero-script-x-phone);
+  --size-hero-script-y-phone: var(--raw-size-hero-script-y-phone);
+  --size-hero-script-x-tablet: var(--raw-size-hero-script-x-tablet);
+  --size-hero-script-y-tablet: var(--raw-size-hero-script-y-tablet);
+  --size-hero-script-x: var(--raw-size-hero-script-x);
+  --size-hero-script-y: var(--raw-size-hero-script-y);
+  --size-hero-copy-rise: var(--raw-size-hero-copy-rise);
+  --size-underline: var(--raw-size-underline);
+  --size-cap-16: var(--raw-size-cap-16);
+  --size-cta-block: var(--raw-size-cta-block);
+  --size-cap-12: var(--raw-size-cap-12);
+  --size-menu-intro: var(--raw-size-menu-intro);
+  --size-menu-intro-y: var(--raw-size-menu-intro-y);
+  --size-menu-lede: var(--raw-size-menu-lede);
+  --size-menu-lede-x: var(--raw-size-menu-lede-x);
+  --size-menu-lede-y: var(--raw-size-menu-lede-y);
+  --size-menu-cta: var(--raw-size-menu-cta);
+  --size-menu-cta-x: var(--raw-size-menu-cta-x);
+  --size-menu-cta-y: var(--raw-size-menu-cta-y);
+  --size-menu-cards-y: var(--raw-size-menu-cards-y);
+  --size-menu-card-height: var(--raw-size-menu-card-height);
+  --size-board-height: var(--raw-size-board-height);
+  --size-board-drop: max(0px, min(calc(100lvh - var(--size-board-height)), 6.5rem));
+  --size-footer-height: var(--raw-size-footer-height);
+  --size-footer-tagline: var(--raw-size-footer-tagline);
+  --size-footer-tagline-y: var(--raw-size-footer-tagline-y);
+  --size-footer-nav-x: var(--raw-size-footer-nav-x);
+  --size-footer-contact-offset: var(--raw-size-footer-contact-offset);
+  --size-footer-right-block: var(--raw-size-footer-right-block);
+  --size-footer-contact-x: calc(100% - var(--size-footer-right-block));
+  --size-menu-still-lift: var(--raw-size-menu-still-lift);
+  --size-menu-still-scale: var(--raw-size-menu-still-scale);
+  --size-menu-still-max: var(--raw-size-menu-still-max);
+  --size-order-frame: var(--raw-size-order-frame);
+  --size-order-headline: var(--raw-size-order-headline);
+  --size-order-headline-y: var(--raw-size-order-headline-y);
+  --size-order-note: var(--raw-size-order-note);
+  --size-order-aside: var(--raw-size-order-aside);
+  --size-order-aside-gap: var(--raw-size-order-aside-gap);
+  --size-order-cta: var(--raw-size-order-cta);
+  --size-footer-col: var(--raw-size-footer-col);
+  --size-footer-rule-top: var(--raw-size-footer-rule-top);
+  --size-footer-row-y: var(--raw-size-footer-row-y);
+  --size-footer-rule-bottom: var(--raw-size-footer-rule-bottom);
+  --size-footer-legal-y: var(--raw-size-footer-legal-y);
+  --size-footer-address: var(--raw-size-footer-address);
+  --size-footer-address-b: var(--raw-size-footer-address-b);
+  --size-footer-address-c: var(--raw-size-footer-address-c);
+  --size-footer-divider-a: var(--raw-size-footer-divider-a);
+  --size-footer-divider-b: var(--raw-size-footer-divider-b);
+  --size-footer-dot: var(--raw-size-footer-dot);
+  --size-menu-receipt-width: var(--raw-size-menu-receipt-width);
+  --size-menu-receipt-height: var(--raw-size-menu-receipt-height);
+  --size-menu-receipt-x: var(--raw-size-menu-receipt-x);
+  --size-menu-receipt-y: var(--raw-size-menu-receipt-y);
+  --angle-menu-receipt: var(--raw-angle-menu-receipt);
+  --size-locations-dial: var(--raw-size-locations-dial);
+  --size-locations-dial-y: var(--raw-size-locations-dial-y);
+  --size-locations-cup-width: var(--raw-size-locations-cup-width);
+  --size-locations-cup-height: var(--raw-size-locations-cup-height);
+  --size-locations-cup-y: var(--raw-size-locations-cup-y);
+  --size-locations-list: var(--raw-size-locations-list);
+  --size-locations-list-y: var(--raw-size-locations-list-y);
+  --size-locations-hours-y: var(--raw-size-locations-hours-y);
+  --size-philosophy-headline: var(--raw-size-philosophy-headline);
+  --size-philosophy-headline-y: var(--raw-size-philosophy-headline-y);
+  --size-philosophy-cup-x: var(--raw-size-philosophy-cup-x);
+  --size-philosophy-cup-y: var(--raw-size-philosophy-cup-y);
+  --size-philosophy-cup-width: var(--raw-size-philosophy-cup-width);
+  --size-philosophy-cup-height: var(--raw-size-philosophy-cup-height);
+  --size-philosophy-lede: var(--raw-size-philosophy-lede);
+  --size-philosophy-lede-x: var(--raw-size-philosophy-lede-x);
+  --size-philosophy-lede-y: var(--raw-size-philosophy-lede-y);
+  --size-philosophy-claims: var(--raw-size-philosophy-claims);
+  --size-philosophy-claims-y: var(--raw-size-philosophy-claims-y);
+  --size-philosophy-eyebrow-y: var(--raw-size-philosophy-eyebrow-y);
+  --size-arrow-width: var(--raw-size-arrow-width);
+  --size-arrow-height: var(--raw-size-arrow-height);
+}
+
+/* ============================== ROOT SIZE ============================== */
+html { font-size: 16px; }
+@media (max-width: 1439.98px) { html { font-size: calc(16px - (1440px - 100vw) / 128.57); } }
+@media (max-width: 1023.98px) { html { font-size: 16px; } }
+@media (max-width: 639.98px) { html { font-size: 4.444444vw; } }
+
+/* ============================== BASE ============================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+html { -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { background: var(--background); color: var(--foreground); min-height: 100lvh; width: 100%; overflow-x: hidden; font-family: var(--font-sans); line-height: 1.5; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img, svg, canvas, video { display: block; vertical-align: middle; }
+img { max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; background: none; cursor: pointer; }
+address { font-style: normal; }
+p, h1, h2 { font-size: inherit; font-weight: inherit; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
+/* Type atoms */
+.mono { font-family: var(--font-space-mono); }
+.disp { font-family: var(--font-geist); }
+.up { text-transform: uppercase; }
+.tr-slash { letter-spacing: var(--letter-spacing-slash); }
+.tr-slsp { letter-spacing: var(--letter-spacing-slash-space); }
+.eyebrow { font-family: var(--font-space-mono); font-size: var(--font-size-fine); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; }
+@media (min-width: 640px) { .eyebrow { font-size: var(--font-size-label); } }
+.mask { -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.swirlmask { -webkit-mask-image: var(--swirl-url); mask-image: var(--swirl-url); }
+.dot { display: block; width: var(--size-dot); height: var(--size-dot); flex-shrink: 0; border-radius: 9999px; background: var(--accent); }
+.block { display: block; }
+
+/* Text engine */
+[data-text] { visibility: hidden; }
+[data-text].te-ready { visibility: visible; }
+.te-vis { display: block; }
+.te-line { display: block; }
+.te-line.clip { overflow: hidden; }
+.te-line.tight { margin-block: -0.1em; }
+.te-in { display: block; will-change: transform; }
+.te-words { display: flex; flex-wrap: wrap; column-gap: 0.2em; justify-content: inherit; }
+.te-word { display: inline-block; will-change: transform; }
+
+/* DigitRoll */
+.dr { position: relative; display: inline-block; }
+.dr-ghost { color: transparent; }
+.dr-over { position: absolute; left: 0; right: 0; top: -0.35em; bottom: -0.35em; display: flex; }
+.dr-ch { flex: none; align-self: center; white-space: pre; }
+.dr-col { position: relative; display: flex; align-items: center; clip-path: inset(0); }
+.dr-col > .dr-ph { visibility: hidden; }
+.dr-stack { position: absolute; left: 0; right: 0; top: 0; height: 1000%; display: flex; flex-direction: column; }
+.dr-stack > span { display: flex; height: 10%; align-items: center; justify-content: center; }
+
+/* RuleDraw */
+.rule-x { transform-origin: left center; }
+.rule-y { transform-origin: center top; }
+
+/* UnderlineLink */
+.ul-a { display: inline-block; }
+.ul-rel { position: relative; display: inline-block; }
+.ul-clip { position: relative; display: block; clip-path: inset(0); }
+.ul-lab { display: block; }
+.ul-dup { position: absolute; inset: 0; display: block; transform: translateY(100%); }
+.ul-rule { position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: currentColor; transform-origin: left center; transform: scaleX(0); opacity: 0; }
+
+/* CtaLink */
+.cta { display: flex; height: var(--size-cta-block); flex-direction: column; justify-content: space-between; }
+@media (max-width: 639.98px) { .cta { width: max-content !important; } }
+.cta-row { display: flex; height: var(--size-cap-16); align-items: center; gap: 1rem; }
+.cta-lab { white-space: nowrap; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-label); line-height: var(--line-height-flush); text-transform: uppercase; }
+@media (min-width: 640px) { .cta-lab { font-size: var(--font-size-base); } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .cta-lab { font-size: var(--font-size-lede-tablet); } }
+.cta-arrows { position: relative; display: flex; width: 0.5rem; height: 0.5rem; flex: none; align-items: center; justify-content: center; }
+.cta-arrow { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.cta-arrow .rot { display: flex; transform: rotate(-45deg); align-items: center; justify-content: center; }
+.cta-arrow svg { width: var(--size-arrow-width); height: var(--size-arrow-height); }
+.cta-rules { position: relative; display: block; height: var(--size-underline); width: 100%; }
+.cta-rules > span { position: absolute; inset: 0; display: block; background: var(--foreground); }
+.cta.inv .cta-rules > span { background: var(--foreground-inverse); }
+.cta-base { transform-origin: right center; }
+.cta-over { transform-origin: left center; transform: scaleX(0); }
+
+/* ============================== HEADER ============================== */
+.hdr { position: fixed; left: 1.25rem; right: 1.25rem; top: 1rem; z-index: 50; display: flex; height: var(--size-logo-height); align-items: center; justify-content: space-between; font-family: var(--font-space-mono); font-size: var(--font-size-fine); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); color: var(--foreground); transition: color var(--duration-normal) var(--ease-entrance); opacity: 0; }
+.hdr.light { color: var(--foreground-inverse); }
+.hdr.menu-open { color: var(--foreground) !important; }
+.hdr.over-footer { visibility: hidden; pointer-events: none; }
+@media (min-width: 640px) { .hdr { left: 2.5rem; right: 2.5rem; top: 1.5rem; font-size: var(--font-size-base); } }
+.burger { position: relative; margin: -0.5rem; display: flex; width: 2.25rem; height: 2.25rem; align-items: center; justify-content: center; padding: 0.5rem; }
+.burger span { position: absolute; right: 0.5rem; height: 1px; background: currentColor; transition: all var(--duration-normal) var(--ease-entrance); }
+.burger .l1 { width: 1.5rem; transform: translateY(-0.25rem); }
+.burger .l2 { width: 1rem; transform: translateY(0.25rem); }
+.burger[aria-expanded="true"] .l1 { width: 1.5rem; transform: rotate(45deg); }
+.burger[aria-expanded="true"] .l2 { width: 1.5rem; transform: rotate(-45deg); }
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .burger { width: 2.75rem; height: 2.75rem; }
+  .burger span { height: 0.125rem; }
+  .burger .l1 { width: 2rem; transform: translateY(-0.375rem); }
+  .burger .l2 { width: 1.5rem; transform: translateY(0.375rem); }
+  .burger[aria-expanded="true"] .l1, .burger[aria-expanded="true"] .l2 { width: 2rem; }
+}
+@media (max-width: 1023.98px) { .burger { order: 9999; } }
+@media (min-width: 1024px) { .burger { display: none; } }
+.hdr-nav { display: none; }
+@media (min-width: 1024px) { .hdr-nav { display: block; } }
+.hdr-nav ul { display: flex; align-items: center; gap: 1.5rem; text-transform: uppercase; }
+@media (min-width: 1024px) { .hdr-nav ul { gap: 3rem; } }
+.hdr-logo { position: absolute; left: 50%; height: 100%; width: var(--size-logo-width); transform: translateX(-50%); }
+@media (max-width: 639.98px) { .hdr-logo { position: static; order: -9999; transform: none; } }
+.hdr-logo a { display: block; width: 100%; height: 100%; background-color: currentColor; transition: background-color var(--duration-normal) var(--ease-entrance); }
+.hdr-order { display: flex; align-items: center; gap: 0.375rem; white-space: nowrap; transition: opacity var(--duration-fast) var(--ease-entrance); }
+.hdr-order:hover { opacity: 0.6; }
+@media (max-width: 639.98px) { .hdr-order { display: none; } }
+@media (max-width: 1023.98px) { .hdr-order { order: -9999; } .hdr-order .dot { order: -9999; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hdr-order .dot { width: 0.5rem; height: 0.5rem; } }
+
+.panel { position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; background: var(--background); padding: 6rem 1.25rem 2.5rem; color: var(--foreground); }
+.panel[hidden] { display: none; }
+@media (min-width: 640px) { .panel { padding: 8rem 2.5rem 3.5rem; } }
+@media (min-width: 1024px) { .panel { display: none !important; } }
+.panel .eyebrow { color: rgb(255 255 255 / 0.45); }
+.panel nav { margin-top: 1.75rem; display: flex; flex-direction: column; border-top: 1px solid rgb(255 255 255 / 0.15); }
+@media (min-width: 640px) { .panel nav { margin-top: 2.25rem; } }
+.panel nav a { display: flex; align-items: baseline; gap: 1rem; border-bottom: 1px solid rgb(255 255 255 / 0.15); padding: 0.875rem 0; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-headline-phone); line-height: var(--line-height-headline); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; transition: opacity 150ms var(--ease-entrance); }
+.panel nav a:active, .panel-order:active { opacity: 0.6; }
+.panel nav a .n { font-family: var(--font-space-mono); font-weight: 400; font-size: var(--font-size-fine); line-height: var(--line-height-flush); letter-spacing: var(--letter-spacing-label); color: rgb(255 255 255 / 0.35); }
+@media (min-width: 640px) { .panel nav a { gap: 1.5rem; padding: 1.25rem 0; font-size: var(--font-size-headline-tablet); } .panel nav a .n { font-size: var(--font-size-label); } }
+.panel-order { margin-top: auto; display: flex; align-items: center; gap: 0.375rem; padding-top: 2.5rem; font-family: var(--font-space-mono); font-size: var(--font-size-fine); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; transition: opacity 150ms var(--ease-entrance); }
+@media (min-width: 640px) { .panel-order { font-size: var(--font-size-base); } }
+
+/* ============================== PRELOADER ============================== */
+.pre { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: var(--background); padding: 1.25rem; color: var(--foreground); clip-path: inset(0% 0 0 0); isolation: isolate; }
+@media (min-width: 640px) { .pre { padding: 2.5rem; } }
+.pre .eyebrow { color: rgb(255 255 255 / 0.45); }
+.pre-count { margin-top: 0.5rem; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-count-phone); line-height: var(--leading-display); letter-spacing: var(--letter-spacing-tight); font-variant-numeric: tabular-nums; }
+@media (min-width: 640px) { .pre-count { margin-top: 0.75rem; font-size: var(--font-size-count-tablet); } }
+@media (min-width: 1024px) { .pre-count { font-size: var(--font-size-count); } }
+.pre-mark { position: absolute; bottom: 1.25rem; left: 1.25rem; display: block; height: var(--size-logo-height); width: var(--size-logo-width); background: var(--foreground); }
+@media (max-width: 639.98px) { .pre-mark { height: 1.1rem; width: 5.1945rem; } }
+@media (min-width: 640px) { .pre-mark { bottom: 2.5rem; left: 2.5rem; } }
+.pre-cup { pointer-events: none; position: absolute; bottom: 1.25rem; right: 1.25rem; height: 34vh; max-height: 30rem; width: auto; }
+@media (min-width: 640px) { .pre-cup { bottom: 2.5rem; right: 2.5rem; height: 52vh; } }
+/* GPU warm-up: every kind of drawing below the fold, painted black on black. */
+.warm { position: absolute; inset: 0; z-index: -10; overflow: hidden; pointer-events: none; }
+.warm > * { position: absolute; }
+.warm .full { inset: 0; } .warm .third { left: 0; right: 0; top: 0; height: 33.333%; } .warm .third-b { left: 0; right: 0; bottom: 0; height: 33.333%; }
+.warm .opaque { background: var(--background); background-image: var(--philosophy-scrim); will-change: transform; }
+.warm .trans { background: rgb(11 10 9 / 0.5); opacity: 0.5; will-change: opacity; }
+.warm .scaled { background: rgb(11 10 9 / 0.5); transform: scale(0.95); will-change: transform; }
+.warm .roundwrap { left: 0; top: 40%; width: 4rem; height: 4rem; overflow: hidden; border-radius: 9999px; }
+.warm .roundwrap span { position: absolute; inset: 0; background: rgb(11 10 9 / 0.5); transform: rotate(1deg); }
+.warm .type { bottom: 0; left: 0; display: flex; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-display); line-height: var(--leading-display); color: var(--background); will-change: transform; }
+.warm .type .r { overflow: hidden; border-radius: 9999px; } .warm .type .s { transform: scale(0.95); display: inline-block; }
+.warm .raster { left: 0; top: 0; display: flex; gap: 0.25rem; padding: 0.25rem; will-change: transform; }
+.warm .raster > span { position: relative; display: block; width: 8px; height: 8px; }
+.warm .raster .sw > span { position: absolute; inset: 0; background: var(--background); }
+.warm .raster .s95 { transform: scale(0.95); }
+.warm .raster .scr { background-image: var(--philosophy-scrim); }
+.warm .raster .rd { overflow: hidden; border-radius: 9999px; } .warm .raster .rd > span { position: absolute; inset: 0; transform: scale(0.95); background: var(--background); }
+.warm .ms { right: 0; top: 0; display: flex; gap: 0.25rem; padding: 0.25rem; }
+.warm .ms .g { display: block; width: 8px; height: 8px; overflow: hidden; border-radius: 9999px; font-family: var(--font-space-mono); font-size: var(--font-size-fine); line-height: var(--line-height-flush); color: var(--background); }
+
+/* ============================== BANNER ============================== */
+.banner { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 200; display: flex; flex-direction: column; gap: 0.25rem; pointer-events: none; }
+.banner p { pointer-events: auto; background: #1a0f08; border: 1px solid var(--accent); color: #fff; padding: 0.625rem 0.875rem; font-family: var(--font-space-mono); font-size: 12px; line-height: 1.4; word-break: break-all; }
+
+/* ============================== OPALESCE ============================== */
+.opal { position: absolute; inset: 0; z-index: 0; background: var(--background); }
+.opal-fb { position: absolute; inset: 0; background-image: var(--gradient-opalesce-fallback); }
+.opal-cv { position: absolute; inset: 0; display: block; opacity: 0; transition: opacity 300ms linear; }
+.opal-cv canvas { pointer-events: none; display: block; width: 100%; height: 100%; }
+
+/* ============================== HERO ============================== */
+.hero { position: relative; height: 100lvh; width: 100%; overflow: hidden; background: var(--background); }
+.hero-scrim { pointer-events: none; position: absolute; inset: 0; z-index: 1; background-image: var(--hero-scrim); }
+.hero-in { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; padding: 6rem 1.25rem 1.25rem; }
+@media (min-width: 640px) { .hero-in { padding: 8rem 2.5rem 2.5rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hero-in { padding-top: 6rem; } }
+@media (min-width: 1024px) { .hero-in { display: block; padding: 0; } }
+
+.hero-copy { order: 1; display: flex; width: 100%; flex-shrink: 0; flex-direction: column; gap: 1rem; color: var(--foreground); }
+@media (min-width: 640px) { .hero-copy { margin-block: auto; width: var(--size-hero-copy-tablet); gap: 1.25rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hero-copy { gap: 0.6875rem; margin-bottom: auto; margin-top: 0; } }
+@media (min-width: 1024px) { .hero-copy { position: absolute; margin-block: 0; left: 2.5rem; top: calc(50% - var(--size-hero-copy-rise)); width: var(--size-hero-copy); transform: translateY(-50%); gap: 1.5rem; } }
+.hero-grid { display: grid; justify-items: start; }
+.hero-head { grid-column-start: 1; grid-row-start: 1; display: flex; flex-direction: column; gap: 0.75rem; text-transform: uppercase; }
+@media (max-width: 639.98px) { .hero-head { gap: 1.25rem; } }
+@media (min-width: 640px) { .hero-head { gap: 1rem; } }
+@media (min-width: 1024px) { .hero-head { gap: 1.25rem; } }
+.hero-h1 { text-align: left; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-display-phone); line-height: var(--leading-display); letter-spacing: var(--letter-spacing-tight); }
+@media (max-width: 639.98px) { .hero-h1 { font-size: var(--font-size-display-hero-phone); } }
+@media (min-width: 640px) { .hero-h1 { font-size: var(--font-size-display-tablet); } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hero-h1 { font-size: var(--font-size-display-hero-tablet); } }
+@media (min-width: 1024px) { .hero-h1 { font-size: var(--font-size-display); } }
+.hero-script { grid-column-start: 1; grid-row-start: 1; margin-left: var(--size-hero-script-x-phone); margin-top: var(--size-hero-script-y-phone); width: max-content; white-space: nowrap; font-family: var(--font-allura); font-size: var(--font-size-script-phone); line-height: var(--line-height-headline); letter-spacing: var(--letter-spacing-tight); clip-path: inset(-12% 100% -22% -4%); }
+@media (min-width: 640px) { .hero-script { margin-left: var(--size-hero-script-x-tablet); margin-top: var(--size-hero-script-y-tablet); font-size: var(--font-size-script-tablet); } }
+@media (min-width: 1024px) { .hero-script { margin-left: var(--size-hero-script-x); margin-top: var(--size-hero-script-y); font-size: var(--font-size-script); } }
+.hero-lede-col { display: flex; width: 100%; flex-direction: column; gap: 1.5rem; }
+@media (max-width: 639.98px) { .hero-lede-col { width: 17rem; gap: 2.25rem; } }
+@media (min-width: 640px) { .hero-lede-col { width: 20rem; gap: 2rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hero-lede-col { gap: 2.375rem; } }
+@media (min-width: 1024px) { .hero-lede-col { width: 16.5rem; gap: 2.5rem; } }
+.lede { width: 100%; justify-content: flex-start; text-align: left; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-base); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); }
+@media (min-width: 640px) and (max-width: 1023.98px) { .lede { font-size: var(--font-size-lede-tablet); } }
+
+.info { order: 3; position: relative; z-index: 10; display: flex; flex-shrink: 0; align-items: center; gap: 1rem; padding-top: 1rem; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground); }
+@media (max-width: 639.98px) { .info { margin-top: auto; } }
+@media (min-width: 640px) { .info { gap: 1.5rem; padding-top: 1.5rem; font-size: var(--font-size-base); } }
+@media (min-width: 1024px) { .info { position: absolute; padding-top: 0; bottom: 2.5rem; left: 2.5rem; margin-top: 0; gap: 2rem; } }
+.info-scrim { pointer-events: none; position: absolute; left: -2.5rem; right: -2.5rem; bottom: -2.5rem; top: -1.5rem; z-index: -10; display: none; background-image: linear-gradient(to top, rgb(11 10 9 / 0.95), rgb(11 10 9 / 0.78), transparent); }
+@media (min-width: 640px) and (max-width: 1023.98px) { .info-scrim { display: block; } }
+.info-hours { width: max-content; }
+.info-addr { width: max-content; }
+.info-social { display: none; width: max-content; flex-direction: column; }
+@media (min-width: 640px) { .info-social { display: flex; } }
+@media (min-width: 1024px) { .info-hours { width: var(--size-hours); } .info-addr { width: var(--size-hero-address); } .info-social { width: var(--size-hero-social); } }
+.info-rule { display: block; height: var(--size-hero-rule); width: 1px; flex-shrink: 0; background: rgb(255 255 255 / 0.35); }
+.info-rule.b { display: none; }
+@media (min-width: 640px) { .info-rule.b { display: block; } }
+
+.hero-fig { pointer-events: none; position: relative; order: 2; margin-inline: -1.25rem; min-height: 0; width: auto; flex: 1 1 0%; }
+@media (max-width: 639.98px) { .hero-fig { position: absolute; left: 0; right: 0; margin-inline: -5rem; bottom: 0; top: 40%; margin-bottom: -1.25rem; flex: none; } }
+@media (min-width: 640px) { .hero-fig { margin-inline: -2.5rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .hero-fig { position: absolute; bottom: 0; flex: none; } }
+@media (min-width: 640px) and (max-width: 767.98px) { .hero-fig { left: 0; right: 0; margin-inline: -8rem; top: 42%; margin-bottom: -7rem; width: auto; } }
+@media (min-width: 768px) and (max-width: 1023.98px) { .hero-fig { margin-inline: 0; left: -5rem; right: auto; width: max(64rem, calc(100% + 16rem)); top: 35.5%; margin-bottom: -5.25rem; } }
+@media (min-width: 1024px) { .hero-fig { position: absolute; left: calc(100% + var(--size-hero-media-overhang) + var(--size-hero-media-nudge) - var(--size-hero-media-width)); top: var(--size-hero-media-drop); margin-inline: 0; height: var(--size-hero-media-height); min-height: 100%; width: var(--size-hero-media-width); flex: none; } }
+@media (min-width: 1024px) and (max-width: 1439.98px) { .hero-fig { left: calc(100% - 2.5rem - 0.847 * var(--size-hero-media-width)); } }
+@media (min-width: 1440px) { .hero-fig { left: var(--size-hero-media-x); } }
+.hero-mount { position: relative; width: 100%; height: 100%; }
+.hero-handle { position: absolute; display: none; left: 27%; right: 15%; top: 5%; bottom: 23%; cursor: grab; touch-action: none; }
+.hero-handle:active { cursor: grabbing; }
+@media (min-width: 1024px) { .hero-handle { display: block; pointer-events: auto; } }
+
+.hcard { pointer-events: none; position: absolute; right: 2.5rem; top: 13%; display: none; width: max-content; opacity: 0; }
+@media (min-width: 1024px) { .hcard { display: block; } }
+.hcard-box { border: 1px solid rgb(255 255 255 / 0.2); background: rgb(11 10 9 / 0.7); padding: 1rem 1.25rem; color: var(--foreground); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.hcard-box[hidden] { display: none; }
+.hcard .eyebrow { font-size: var(--font-size-fine); color: rgb(255 255 255 / 0.45); }
+.hcard-row { margin-top: 0.75rem; display: flex; align-items: baseline; justify-content: space-between; gap: 2.5rem; }
+.hcard-name { font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-headline-phone); line-height: var(--line-height-headline); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; }
+.hcard-price { font-family: var(--font-space-mono); font-size: var(--font-size-base); line-height: var(--line-height-flush); font-variant-numeric: tabular-nums; }
+.hcard ul { margin-top: 0.75rem; display: flex; align-items: center; gap: 0.625rem; border-top: 1px solid rgb(255 255 255 / 0.15); padding-top: 0.75rem; font-family: var(--font-space-mono); font-size: var(--font-size-fine); line-height: var(--line-height-flush); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: rgb(255 255 255 / 0.55); }
+.hcard li { display: flex; align-items: center; gap: 0.625rem; }
+.hcard li i { display: block; width: 3px; height: 3px; border-radius: 9999px; background: rgb(255 255 255 / 0.3); }
+
+/* ============================== BOARD SECTIONS ============================== */
+.board-sec { position: relative; display: flex; flex-direction: column; width: 100%; overflow: hidden; }
+@media (min-width: 1024px) { .board-sec { min-height: 100lvh; height: 100lvh; } }
+@media (min-width: 1024px) and (max-width: 1279.98px) { .board-sec { height: var(--size-board-height); min-height: 0; } .board-sec.menu { height: calc(var(--size-board-height) + 2.5rem); } }
+.light-sec { background: var(--surface-inverse); color: var(--foreground-inverse); }
+
+/* Swirl fill */
+.swirl-frame { pointer-events: none; position: absolute; inset: 0; }
+.swirl-frame.fade { -webkit-mask-image: linear-gradient(to bottom, transparent, black 22%); mask-image: linear-gradient(to bottom, transparent, black 22%); }
+.swirl-box { position: absolute; display: block; left: var(--size-swirl-x); top: var(--size-swirl-y); height: var(--size-swirl-height); width: var(--size-swirl-width); }
+.swirl-box > span, .swirl-box > span > span { display: block; width: 100%; height: 100%; }
+.swirl-fill { display: block; width: 100%; height: 100%; background: var(--surface-inverse-backdrop); --fill: 0; }
+
+/* ============================== MENU ============================== */
+.menu-in { position: relative; z-index: 10; display: flex; flex: 1 1 0%; flex-direction: column; justify-content: center; gap: 2rem; padding: 5rem 1.25rem 3.5rem; }
+@media (max-width: 639.98px) { .menu-in { gap: 2.25rem; } }
+@media (min-width: 640px) { .menu-in { gap: 2.5rem; padding: 6rem 2.5rem 4rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .menu-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; column-gap: 2.5rem; row-gap: 1.25rem; } }
+@media (min-width: 1024px) { .menu-in { display: block; padding: 0; } }
+@media (min-width: 1440px) { .menu-in, .loc-in { top: var(--size-board-drop); } }
+.menu-intro { display: flex; width: 100%; flex-direction: column; gap: 1rem; text-transform: uppercase; color: var(--foreground-inverse); }
+@media (max-width: 639.98px) { .menu-intro { gap: 1.25rem; } }
+@media (min-width: 640px) { .menu-intro { gap: 1.25rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .menu-intro { display: contents; } .menu-intro > .eyebrow, .menu-h2 { grid-column: span 2 / span 2; } }
+@media (min-width: 1024px) { .menu-intro { position: absolute; left: 2.5rem; top: var(--size-menu-intro-y); width: var(--size-menu-intro); } }
+.h-display { text-align: left; font-family: var(--font-geist); font-weight: 700; font-size: var(--font-size-display-phone); line-height: var(--line-height-headline); letter-spacing: var(--letter-spacing-tight); }
+@media (min-width: 640px) { .h-display { font-size: var(--font-size-display-tablet); } }
+@media (min-width: 1024px) { .h-display { font-size: var(--font-size-display); } }
+@media (max-width: 639.98px) { .menu-h2 { max-width: 16rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .menu-h2 { max-width: 26rem; } }
+.menu-lede-w { width: 100%; }
+@media (max-width: 639.98px) { .menu-lede-w { max-width: 18.5rem; } }
+@media (min-width: 640px) { .menu-lede-w { max-width: 20rem; } }
+@media (min-width: 1024px) { .menu-lede-w { position: absolute; left: var(--size-menu-lede-x); top: var(--size-menu-lede-y); width: var(--size-menu-lede); } }
+.menu-receipt { pointer-events: none; position: absolute; left: var(--size-menu-receipt-x); top: var(--size-menu-receipt-y); display: none; height: var(--size-menu-receipt-height); width: var(--size-menu-receipt-width); opacity: 0; transform: translate(150px, 150px); }
+@media (min-width: 1024px) { .menu-receipt { display: block; } }
+.menu-receipt > span { display: block; width: 100%; height: 100%; rotate: var(--angle-menu-receipt); }
+.menu-receipt img { width: 100%; height: 100%; object-fit: cover; }
+.menu-cta-w { display: block; }
+@media (min-width: 640px) and (max-width: 1023.98px) { .menu-cta-w { justify-self: end; } }
+@media (min-width: 1024px) { .menu-cta-w { position: absolute; right: 2.5rem; top: var(--size-menu-cta-y); } }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+@media (max-width: 639.98px) { .cards { grid-template-columns: repeat(1, minmax(0, 1fr)); } }
+@media (min-width: 640px) { .cards { gap: 1rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .cards { grid-column: span 2 / span 2; margin-top: 2.75rem; } }
+@media (min-width: 1024px) { .cards { position: absolute; left: 2.5rem; right: 2.5rem; bottom: 2.5rem; top: auto; display: flex; gap: 0.75rem; } }
+@media (min-width: 1440px) { .cards { bottom: auto; top: var(--size-menu-cards-y); } }
+.cards > li, .lean-p, .lean-i { display: flex; flex: 1 1 0%; }
+.lean-p { perspective: 900px; }
+.lean-i { transform-style: preserve-3d; }
+.card { position: relative; display: flex; height: 16rem; flex: 1 1 0%; flex-direction: column; align-items: center; gap: 0.75rem; border: 1px solid var(--foreground-inverse); padding: 0.75rem; color: var(--foreground-inverse); opacity: 0; }
+@media (max-width: 639.98px) { .card { height: 22.5rem; } }
+@media (min-width: 640px) { .card { height: 18rem; gap: 1rem; padding: 1rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .card { height: 24rem; } }
+@media (min-width: 1024px) { .card { height: var(--size-menu-card-height); } }
+.card-range { pointer-events: none; position: absolute; inset: 0; }
+.card-idx { height: var(--size-cap-12); width: 100%; font-family: var(--font-space-mono); font-size: 0.75rem; line-height: var(--line-height-flush); text-transform: uppercase; color: rgb(11 10 9 / 0.35); transition: color 250ms var(--ease-entrance); }
+.card:hover .card-idx { color: var(--foreground-inverse); }
+.card-media { position: relative; min-height: 1px; width: 100%; flex: 1 1 0%; }
+.card-media.clip { overflow: clip; }
+.card-media > span, .card-media > span > span { display: block; width: 100%; height: 100%; }
+.card-still { position: absolute; left: 50%; transform: translateX(-50%); overflow: hidden; }
+.card-still img { position: absolute; max-width: none; }
+.card-foot { display: flex; min-height: var(--size-cap-16); width: 100%; align-items: flex-start; justify-content: space-between; gap: 0.5rem; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-flush); text-transform: uppercase; }
+@media (max-width: 639.98px) { .card-foot { align-items: baseline; } }
+@media (min-width: 1024px) { .card-foot { font-size: var(--font-size-base); } }
+
+/* ============================== LOCATIONS ============================== */
+.loc-range { pointer-events: none; position: absolute; inset: 0; }
+.loc-turn { pointer-events: none; position: absolute; left: 0; right: 0; top: -20%; height: 100%; }
+.loc-in { position: relative; z-index: 10; display: flex; flex: 1 1 0%; flex-direction: column; justify-content: center; gap: 2rem; padding: 5rem 1.25rem 3.5rem; }
+@media (min-width: 640px) { .loc-in { gap: 2.5rem; padding: 6rem 2.5rem 4rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .loc-in { padding-bottom: 2.5rem; } }
+@media (max-width: 1023.98px) { .loc-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+@media (max-width: 639.98px) { .loc-in { row-gap: 2.5rem; } }
+@media (min-width: 1024px) { .loc-in { display: block; padding: 0; } }
+.loc-dialw { position: relative; margin-inline: auto; aspect-ratio: 1 / 1; width: 100%; max-width: 20rem; }
+@media (min-width: 640px) { .loc-dialw { max-width: 26rem; } }
+@media (max-width: 1023.98px) { .loc-dialw { order: 3; grid-column: span 2 / span 2; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .loc-dialw { max-width: 34rem; } }
+@media (min-width: 1024px) { .loc-dialw { display: contents; } }
+.loc-dial { pointer-events: none; position: absolute; inset: 0; opacity: 0; }
+@media (min-width: 1024px) { .loc-dial { inset: auto; left: 50%; top: var(--size-locations-dial-y); width: var(--size-locations-dial); height: var(--size-locations-dial); transform: translateX(-50%); } }
+.loc-dial span, #cup-par, #cup-par > span, #cup-turn, #cup-turn > span { display: block; width: 100%; height: 100%; }
+.loc-dial img, .loc-cup img { width: 100%; height: 100%; object-fit: cover; }
+.loc-cup { pointer-events: none; position: absolute; left: 50%; top: 12.8%; height: 64.2%; width: 42.8%; transform: translateX(-50%); perspective: 900px; }
+@media (min-width: 1024px) { .loc-cup { top: var(--size-locations-cup-y); height: var(--size-locations-cup-height); width: var(--size-locations-cup-width); } }
+.loc-cup .lean { width: 100%; height: 100%; transform-style: preserve-3d; }
+.loc-eyebrow { order: -9999; display: flex; align-items: center; gap: 0.375rem; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); color: var(--foreground-inverse); clip-path: inset(0 100% 0 0); }
+@media (min-width: 640px) { .loc-eyebrow { font-size: var(--font-size-base); } }
+@media (max-width: 1023.98px) { .loc-eyebrow { order: 1; grid-column-start: 1; } }
+@media (min-width: 1024px) { .loc-eyebrow { position: absolute; left: 2.5rem; top: var(--size-locations-dial-y); } }
+.loc-list { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.25rem; font-family: var(--font-space-mono); font-size: var(--font-size-base); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground-inverse); }
+@media (min-width: 640px) { .loc-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1023.98px) { .loc-list { order: 4; grid-column: span 2 / span 2; } }
+@media (min-width: 1024px) { .loc-list { position: absolute; bottom: 2.4375rem; left: 2.5rem; top: auto; display: flex; flex-direction: column; width: var(--size-locations-list); gap: 1.5rem; } }
+@media (min-width: 1440px) { .loc-list { bottom: auto; top: var(--size-locations-list-y); } }
+.loc-hours { font-family: var(--font-space-mono); font-size: var(--font-size-base); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground-inverse); }
+@media (max-width: 1023.98px) { .loc-hours { order: 2; grid-column-start: 2; justify-self: end; text-align: right; } }
+@media (min-width: 1024px) { .loc-hours { position: absolute; bottom: 1.5rem; right: 2.5rem; top: auto; width: var(--size-hours); text-align: right; } }
+@media (min-width: 1440px) { .loc-hours { bottom: auto; top: var(--size-locations-hours-y); } }
+
+/* ============================== PHILOSOPHY ============================== */
+.phil { background: var(--background); }
+.phil-scrim { pointer-events: none; position: absolute; inset: 0; z-index: 1; background-image: var(--philosophy-scrim); }
+.phil-3d { pointer-events: none; position: absolute; inset: 0; z-index: 5; transform: translateZ(0); backface-visibility: hidden; }
+.phil-in { position: relative; z-index: 10; display: flex; flex: 1 1 0%; flex-direction: column; justify-content: center; gap: 2rem; padding: 5rem 1.25rem 3.5rem; }
+@media (max-width: 639.98px) { .phil-in { gap: 1.25rem; } }
+@media (min-width: 640px) { .phil-in { gap: 2.5rem; padding: 6rem 2.5rem 4rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .phil-in { display: grid; grid-template-columns: 21rem 1fr; align-content: center; align-items: end; column-gap: 1.25rem; } }
+@media (min-width: 1024px) { .phil-in { position: absolute; inset: 0; display: block; padding: 0; } }
+@media (min-width: 1440px) { .phil-in { bottom: 0; top: var(--size-board-drop); } }
+.phil-cup { pointer-events: none; order: 2; margin-inline: auto; aspect-ratio: 2 / 3; height: auto; width: 13rem; }
+@media (max-width: 639.98px) { .phil-cup { margin-top: 1.25rem; margin-bottom: -0.75rem; width: 16rem; } }
+@media (min-width: 640px) { .phil-cup { width: 16rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .phil-cup { grid-column: span 2 / span 2; width: 22rem; } }
+@media (min-width: 1024px) { .phil-cup { position: absolute; left: var(--size-philosophy-cup-x); top: var(--size-philosophy-cup-y); order: 0; height: var(--size-philosophy-cup-height); width: var(--size-philosophy-cup-width); } }
+@media (min-width: 1280px) and (max-width: 1439.98px) { .phil-cup { bottom: 0.3125rem; top: auto; height: calc(var(--size-philosophy-cup-height) * 1.09); width: calc(var(--size-philosophy-cup-width) * 1.09); } }
+.phil-cup > span { display: block; width: 100%; height: 100%; }
+.phil-headw { order: 1; width: 100%; }
+@media (min-width: 640px) and (max-width: 1023.98px) { .phil-headw { grid-column: span 2 / span 2; max-width: 38rem; } }
+@media (min-width: 1024px) { .phil-headw { position: absolute; left: 2.5rem; top: var(--size-philosophy-headline-y); width: var(--size-philosophy-headline); } }
+.h-headline { text-align: left; font-family: var(--font-geist); font-weight: 600; font-size: var(--font-size-headline-phone); line-height: var(--line-height-headline); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground); }
+@media (min-width: 640px) { .h-headline { font-size: var(--font-size-headline-tablet); } }
+@media (min-width: 1024px) { .h-headline { font-size: var(--font-size-headline); } }
+.phil-ledew { order: 3; width: 100%; }
+@media (min-width: 1024px) { .phil-ledew { position: absolute; bottom: 2.4375rem; left: var(--size-philosophy-lede-x); top: auto; width: var(--size-philosophy-lede); } }
+@media (min-width: 1024px) and (max-width: 1439.98px) { .phil-ledew { bottom: 2.5625rem; } }
+@media (min-width: 1440px) { .phil-ledew { bottom: auto; top: var(--size-philosophy-lede-y); } }
+.phil-claims { order: 4; display: flex; flex-direction: column; gap: 0.125rem; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground); }
+@media (max-width: 639.98px) { .phil-claims { display: none; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .phil-claims { justify-self: end; text-align: right; } }
+@media (min-width: 1024px) { .phil-claims { position: absolute; bottom: 2.5625rem; right: 2.5rem; top: auto; width: var(--size-philosophy-claims); text-align: right; } }
+@media (min-width: 1440px) { .phil-claims { bottom: auto; top: var(--size-philosophy-claims-y); } }
+.phil-eyebrow { order: 0; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: var(--foreground); }
+@media (min-width: 640px) and (max-width: 1023.98px) { .phil-eyebrow { grid-column: span 2 / span 2; } }
+@media (min-width: 1024px) { .phil-eyebrow { position: absolute; bottom: 1.875rem; left: 2.5rem; top: auto; } }
+@media (min-width: 1024px) and (max-width: 1439.98px) { .phil-eyebrow { bottom: 2.5625rem; } }
+@media (min-width: 1440px) { .phil-eyebrow { bottom: auto; top: var(--size-philosophy-eyebrow-y); } }
+
+/* ============================== ORDER ============================== */
+.order { position: relative; width: 100%; background: var(--background); height: 100vh; }
+.order-frame { position: sticky; top: 0; height: 100lvh; width: 100%; overflow: hidden; }
+.order-over { position: absolute; left: 0; right: 0; top: 0; height: 100lvh; }
+@media (min-width: 1024px) and (max-width: 1279.98px) { .order-frame, .order-over { height: var(--size-order-frame); } }
+.order-bg { position: absolute; left: 0; right: 0; top: 0; display: block; height: 130%; }
+.order-bg > span { display: block; width: 100%; height: 100%; }
+.order-bg img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 1024px) and (max-width: 1279.98px) { .order-bg img { height: 112%; object-position: top; } }
+.stage { position: absolute; left: 50%; top: 0; width: 1440px; height: 800px; transform-origin: top center; }
+.order-copy { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 4.5rem 1.25rem 1.25rem; color: var(--foreground); }
+@media (min-width: 640px) { .order-copy { padding: 6rem 2.5rem 2.5rem; } }
+@media (max-width: 1023.98px) { .order-copy { align-items: center; text-align: center; } }
+@media (min-width: 1024px) { .order-copy { display: block; padding: 0; } }
+.order-scrim-t { pointer-events: none; position: absolute; left: 0; right: 0; top: 0; height: 16rem; background-image: linear-gradient(to bottom, rgb(11 10 9 / 0.9), rgb(11 10 9 / 0.55), transparent); }
+.order-scrim-b { pointer-events: none; position: absolute; left: 0; right: 0; bottom: 0; height: 18rem; background-image: linear-gradient(to top, rgb(11 10 9 / 0.92), rgb(11 10 9 / 0.6), transparent); }
+@media (min-width: 1024px) { .order-scrim-t, .order-scrim-b { display: none; } }
+.order-grp { position: relative; display: flex; flex-direction: column; gap: 1rem; }
+@media (min-width: 640px) and (max-width: 1023.98px) { .order-grp { gap: 1.5rem; } }
+@media (min-width: 1024px) { .order-grp { display: contents; } }
+@media (max-width: 639.98px) { .order-headw { max-width: 17rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .order-headw { margin-inline: auto; max-width: 26rem; } }
+@media (min-width: 1024px) { .order-headw { position: absolute; left: 2.5rem; top: var(--size-order-headline-y); width: var(--size-order-headline); } }
+@media (max-width: 1023.98px) { .order-h2, .order-aside-t { justify-content: center; text-align: center; } }
+.order-note { width: var(--size-order-note); font-family: var(--font-space-mono); font-size: var(--font-size-base); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; clip-path: inset(0 100% 0 0); }
+@media (max-width: 1023.98px) { .order-note { display: none; } }
+@media (min-width: 1024px) { .order-note { position: absolute; bottom: 2.5rem; left: 2.5rem; margin-top: 0; } }
+.order-aside { position: relative; display: flex; width: 100%; flex-direction: column; align-items: flex-start; gap: 1rem; opacity: 0; }
+@media (max-width: 639.98px) { .order-aside { gap: 2.25rem; } }
+@media (min-width: 640px) { .order-aside { width: var(--size-order-aside); gap: 1.5rem; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .order-aside { width: 30rem; gap: 2.5rem; } }
+@media (max-width: 1023.98px) { .order-aside { align-items: center; } }
+@media (min-width: 1024px) { .order-aside { position: absolute; bottom: 2.5rem; right: 2.5rem; gap: var(--size-order-aside-gap); } }
+
+/* ============================== FOOTER ============================== */
+.foot { position: relative; display: flex; width: 100%; flex-direction: column; gap: 2rem; overflow: hidden; background: var(--background); padding: 3rem 1.25rem; font-family: var(--font-space-mono); font-size: var(--font-size-label); line-height: var(--line-height-copy); letter-spacing: var(--letter-spacing-tight); text-transform: uppercase; color: var(--foreground); }
+@media (max-width: 639.98px) { .foot { padding-bottom: 2rem; } }
+@media (min-width: 640px) { .foot { gap: 2.5rem; padding-inline: 2.5rem; font-size: var(--font-size-base); } }
+@media (min-width: 1024px) { .foot { display: block; height: var(--size-footer-height); padding: 0; } }
+.foot .fine { font-size: var(--font-size-fine); }
+.foot .dim { color: rgb(255 255 255 / 0.5); }
+.foot-swirl { pointer-events: none; position: absolute; left: var(--size-swirl-x); top: var(--size-swirl-y); display: block; height: var(--size-swirl-height); width: var(--size-swirl-width); background: var(--surface-backdrop-soft); opacity: 0; }
+.foot-logo { display: block; height: var(--size-logo-height); width: var(--size-logo-width); clip-path: inset(0 100% 0 0); }
+.foot-logo a { display: block; width: 100%; height: 100%; background: var(--foreground); }
+@media (min-width: 1024px) { .foot-logo { position: absolute; left: 2.5rem; top: 2.5rem; } }
+.foot-tag { margin-top: -1rem; width: var(--size-footer-tagline); }
+@media (max-width: 1023.98px) { .foot-tag { display: none; } }
+@media (min-width: 1024px) { .foot-tag { position: absolute; left: 2.5rem; top: var(--size-footer-tagline-y); margin-top: 0; } }
+.foot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 2rem; }
+@media (min-width: 640px) { .foot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2.5rem; } }
+@media (min-width: 1024px) { .foot-grid { display: contents; } }
+.foot-nav { display: contents; }
+@media (min-width: 1024px) { .foot-nav { position: absolute; left: var(--size-footer-nav-x); top: 2.5rem; display: flex; gap: 3rem; } }
+.foot-col { display: flex; flex-direction: column; gap: 0.75rem; }
+@media (min-width: 1024px) { .foot-col { min-width: var(--size-footer-col); } }
+.foot-col ul { display: flex; flex-direction: column; gap: 0.375rem; color: rgb(255 255 255 / 0.5); }
+.foot-col li a { overflow-wrap: anywhere; transition: color 150ms var(--ease-entrance); }
+.foot-col li a:hover, .foot-soc a:hover { color: var(--foreground); }
+@media (min-width: 1024px) { .foot-col li a { white-space: nowrap; } }
+.foot-hr { display: none; height: 1px; background: rgb(255 255 255 / 0.1); }
+@media (max-width: 639.98px) { .foot-hr { grid-column: span 2 / span 2; display: block; } }
+@media (min-width: 640px) and (max-width: 1023.98px) { .foot-hr { grid-column: span 3 / span 3; display: block; } }
+@media (max-width: 639.98px) { .foot-contact { grid-column: span 2 / span 2; } }
+@media (min-width: 1024px) { .foot-contact { position: absolute; left: var(--size-footer-contact-x); top: 2.5rem; } }
+.foot-rule { display: block; height: 1px; width: 100%; background: rgb(255 255 255 / 0.1); }
+@media (min-width: 1024px) { .foot-rule { position: absolute; left: 2.5rem; right: 2.5rem; width: auto; } .foot-rule.t { top: var(--size-footer-rule-top); } .foot-rule.b { top: var(--size-footer-rule-bottom); } }
+@media (min-width: 1024px) { .foot-locs { position: absolute; left: 2.5rem; top: var(--size-footer-row-y); } }
+.foot-locs .fl { display: flex; align-items: center; gap: 0.375rem; }
+.foot-locs .dot { width: var(--size-footer-dot); height: var(--size-footer-dot); }
+.foot-row { display: grid; column-gap: 1.5rem; row-gap: 1.5rem; }
+@media (min-width: 640px) { .foot-row { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; } }
+@media (min-width: 1024px) { .foot-row { display: contents; } }
+@media (min-width: 1024px) {
+  .foot-a1 { position: absolute; left: var(--size-footer-nav-x); top: var(--size-footer-row-y); width: var(--size-footer-address); }
+  .foot-a2 { white-space: nowrap; position: absolute; left: var(--size-footer-address-b); top: var(--size-footer-row-y); }
+  .foot-a3 { white-space: nowrap; position: absolute; left: var(--size-footer-address-c); top: var(--size-footer-row-y); }
+  .foot-hours { white-space: nowrap; position: absolute; left: var(--size-footer-contact-x); top: var(--size-footer-row-y); }
+}
+@media (max-width: 639.98px) { .foot-hours { margin-top: 1rem; border-top: 1px solid rgb(255 255 255 / 0.1); padding-top: 1.5rem; } }
+.foot-div { display: none; height: var(--size-hero-rule); width: 1px; background: rgb(255 255 255 / 0.35); }
+@media (min-width: 1024px) { .foot-div { position: absolute; top: var(--size-footer-row-y); display: block; } .foot-div.a { left: var(--size-footer-divider-a); } .foot-div.b { left: var(--size-footer-divider-b); } }
+.foot-legal { display: flex; flex-direction: column; gap: 0.75rem; }
+@media (min-width: 640px) { .foot-legal { flex-direction: row; align-items: baseline; justify-content: space-between; } }
+@media (min-width: 1024px) { .foot-legal { display: contents; } }
+.foot-copy { white-space: nowrap; }
+@media (max-width: 639.98px) { .foot-copy { order: 9999; margin-top: 0.75rem; border-top: 1px solid rgb(255 255 255 / 0.1); padding-top: 1.5rem; } }
+@media (min-width: 1024px) { .foot-copy { position: absolute; left: 2.5rem; top: var(--size-footer-legal-y); } }
+.foot-soc { display: block; white-space: nowrap; }
+@media (min-width: 1024px) { .foot-soc.s { position: absolute; left: var(--size-footer-nav-x); top: var(--size-footer-legal-y); } .foot-soc.p { position: absolute; left: var(--size-footer-contact-x); top: var(--size-footer-legal-y); } }
+.foot-soc a { color: rgb(255 255 255 / 0.5); transition: color 150ms var(--ease-entrance); }
+.foot-soc .sep { white-space: pre; color: rgb(255 255 255 / 0.5); }
+.rise { display: block; clip-path: inset(0 0 -4px 0); }
+.rise > .rise-in { display: block; transform: translateY(150%); }
+
+/* ============================== MARGINS: BRAND LAYER ============================== */
+:root { --font-display: "Newsreader", Georgia, serif; --swirl-url: none; }
+.hero-h1, .h-display, .h-headline, .hcard-name, .panel nav a { font-family: var(--font-display); }
+.hero-h1, .h-display { font-weight: 600; }
+.h-headline { font-weight: 500; }
+.wm { text-transform: none; display: flex; height: 100%; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 1.72rem; line-height: 1; letter-spacing: -0.04em; white-space: nowrap; color: inherit; background: none !important; }
+.wm sup { align-self: flex-start; margin-top: 0.2em; margin-left: 0.1em; font-family: var(--font-space-mono); font-size: 0.3em; letter-spacing: 0; }
+.pre-mark.wm { width: auto; justify-content: flex-start; color: var(--foreground); }
+@media (max-width: 639.98px) { .pre-mark.wm { width: auto; font-size: 1.4rem; } }
+.foot-logo a.wm { justify-content: flex-start; }
+.foot-logo { width: auto; }
+.hdr-logo a.wm { transition: color var(--duration-normal) var(--ease-entrance); }
+
+/* A short band under the fixed row, so a display line passing beneath the
+   header never collides with the nav. It carries the surface it is passing
+   over and only appears once the page has moved off the top. */
+.hdr-scrim { position: fixed; left: 0; right: 0; top: 0; z-index: 39; height: 5rem; pointer-events: none; opacity: 0; transition: opacity var(--duration-normal) var(--ease-entrance), background-image var(--duration-normal) var(--ease-entrance); background: linear-gradient(to bottom, var(--background) 0%, rgba(11, 10, 9, 0.72) 48%, rgba(11, 10, 9, 0) 100%); -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); }
+@media (min-width: 640px) { .hdr-scrim { height: 6.5rem; } }
+.hdr-scrim.light { background: linear-gradient(to bottom, var(--surface-inverse) 0%, rgba(240, 237, 230, 0.72) 48%, rgba(240, 237, 230, 0) 100%); }
+.hdr-scrim.on { opacity: 1; }
+
+/* Book covers, drawn: cloth, hinge, type. */
+.bk { position: relative; display: block; width: 100%; height: 100%; container-type: inline-size; transform-style: preserve-3d; background: var(--c); color: var(--ink); text-align: center; border-radius: 1px 3px 3px 1px; box-shadow: 0 1.4rem 1.4rem -1.1rem rgba(0, 0, 0, 0.5), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.12); }
+.bk::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0, rgba(255, 255, 255, 0.08) 2.5%, rgba(0, 0, 0, 0.14) 5%, transparent 11%), repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px 3px); }
+.bk-in { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 10cqi 8cqi 7cqi 11cqi; }
+.bk-k { font-family: var(--font-space-mono); font-size: 4.6cqi; line-height: 1.2; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75; }
+.bk-mid { display: flex; flex-direction: column; align-items: center; gap: 5cqi; }
+.bk-t { font-family: var(--font-display); font-weight: 600; font-size: 14cqi; line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; }
+.bk-rule { display: block; width: 20cqi; height: 1px; background: currentColor; opacity: 0.55; }
+.bk-a { font-family: var(--font-space-mono); font-size: 4.8cqi; line-height: 1.2; letter-spacing: 0.16em; }
+.bk-m { display: flex; width: 12cqi; height: 12cqi; align-items: center; justify-content: center; border: 1px solid currentColor; border-radius: 9999px; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 7cqi; line-height: 1; opacity: 0.8; }
+.bk-edge { position: absolute; top: 1.2%; bottom: 1.2%; right: 0; width: 1.5rem; transform-origin: right center; transform: rotateY(-90deg); background: repeating-linear-gradient(90deg, #efe8da 0 1px, #d6ccb8 1px 2px); }
+#cup-par, #cup-par > span, #cup-turn, #cup-turn > span { transform-style: preserve-3d; }
+.bk-loc .bk-in { transform: translateZ(1px); }
+.bk-loc .bk-t { font-size: 12cqi; }
+.card-still.bookish { overflow: visible; }
+
+/* An open spread, for the one book that lies flat. */
+.spread { position: relative; display: flex; width: 100%; height: 100%; container-type: inline-size; background: #f3eee3; border-radius: 2px; box-shadow: 0 1.3rem 1.3rem -1rem rgba(0, 0, 0, 0.45), 0 0.15rem 0.3rem rgba(0, 0, 0, 0.1); }
+.spread::after { content: ""; position: absolute; left: 44%; width: 12%; top: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.16) 50%, transparent); }
+.pg { position: relative; display: flex; flex: 1 1 0%; flex-direction: column; gap: 1.7cqi; padding: 6cqi 5cqi 4cqi; }
+.pg i { display: block; height: 0.8cqi; background: #8d8374; opacity: 0.55; }
+.pg-k { font-family: var(--font-space-mono); font-size: 2.3cqi; letter-spacing: 0.2em; color: #8d8374; }
+.pg-h { margin-bottom: 1.2cqi; font-family: var(--font-display); font-style: italic; font-size: 4.6cqi; line-height: 1; color: #2a2520; }
+.pg-n { margin-top: auto; align-self: center; font-family: var(--font-space-mono); font-size: 2.2cqi; color: #8d8374; }
+
+/* The reading-list slip behind VIEW ALL SHELVES. */
+.slip { display: flex; width: 100%; height: 100%; flex-direction: column; gap: 0.9rem; padding: 2.2rem 1.6rem; background: #faf8f2; color: #161412; font-family: var(--font-space-mono); font-size: 0.78rem; line-height: 1.3; text-transform: uppercase; box-shadow: 0 2rem 3rem -1.5rem rgba(0, 0, 0, 0.35); }
+.slip > span { display: block; }
+.slip-h { text-align: center; font-weight: 700; letter-spacing: 0.16em; font-size: 0.9rem; }
+.slip-s { text-align: center; letter-spacing: 0.12em; font-size: 0.62rem; color: #6b665e; }
+.slip-r { height: 1px; background-image: repeating-linear-gradient(90deg, #161412 0 5px, transparent 5px 10px); }
+.slip .slip-l { display: flex; gap: 0.6rem; letter-spacing: 0.04em; }
+.slip-l b { min-width: 1.4rem; font-weight: 400; color: #8a857c; }
+.slip-l i { margin-left: auto; font-style: normal; }
+.slip-note { margin-top: auto; text-align: center; font-family: var(--font-allura); font-size: 2rem; line-height: 1; text-transform: none; }
+.slip-code { height: 3rem; background: repeating-linear-gradient(90deg, #161412 0 2px, transparent 2px 4px, #161412 4px 5px, transparent 5px 8px, #161412 8px 11px, transparent 11px 12px); }
+
+/* Clock face */
+#dial-svg { display: block; width: 100%; height: 100%; }
+
+/* The reserve block's desk and printer, drawn instead of photographed. */
+.order-scene { position: relative; display: block; width: 100%; height: 100%; background: radial-gradient(ellipse 70% 60% at 50% 40%, #2a211b 0%, #16120f 55%, #0d0b0a 100%); }
+.order-scene::after { content: ""; position: absolute; inset: 0; opacity: 0.35; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.order-props { position: absolute; inset: 0; width: 100%; height: 100%; }
+.printer { position: absolute; left: 519px; top: 133px; z-index: 1; display: block; width: 400px; height: 71.287px; border-radius: 10px; background: linear-gradient(180deg, #4a4845 0%, #2a2927 38%, #181716 62%, #232220 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -2px 0 rgba(0, 0, 0, 0.4), 0 18px 30px -10px rgba(0, 0, 0, 0.6); }
+.printer-slot { position: absolute; left: 30px; right: 30px; top: 36px; height: 8px; border-radius: 4px; background: #050505; box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.08); }
+.printer-led { position: absolute; right: 16px; top: 14px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ============================== HEADER ============================== -->
+<header class="hdr" id="hdr" data-iv="up:-12 90/26 d=120 g">
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"><span class="l1"></span><span class="l2"></span></button>
+  <nav aria-label="Primary" class="hdr-nav" data-iv="clip 46/26 d=220 g">
+    <ul>
+      <li><a href="#shop" data-ul>Shop</a></li>
+      <li><a href="#menu" data-ul>Shelves</a></li>
+      <li><a href="#story" data-ul>Our Story</a></li>
+      <li><a href="#locations" data-ul>Locations</a></li>
+    </ul>
+  </nav>
+  <span class="hdr-logo" data-iv="clip 42/26 d=260 g"><a href="/" aria-label="margins" class="wm">margins<sup>&reg;</sup></a></span>
+  <a href="#order" class="hdr-order"><span data-iv="clip 46/26 d=480 g">RESERVE ONLINE</span><span class="dot pulse"></span></a>
+</header>
+
+<div class="hdr-scrim" id="hdr-scrim" aria-hidden="true"></div>
+
+<div id="site-menu" class="panel" hidden>
+  <p class="eyebrow"><span class="tr-slash">//</span><span class="tr-slsp"> </span>NAVIGATION</p>
+  <nav aria-label="Primary">
+    <a href="#shop"><span class="n">01</span>Shop</a>
+    <a href="#menu"><span class="n">02</span>Shelves</a>
+    <a href="#story"><span class="n">03</span>Our Story</a>
+    <a href="#locations"><span class="n">04</span>Locations</a>
+  </nav>
+  <a href="#order" class="panel-order">RESERVE ONLINE <span class="dot pulse"></span></a>
+</div>
+
+<!-- ============================== PRELOADER ============================== -->
+<div class="pre" id="pre" aria-hidden="true">
+  <div class="warm">
+    <div class="full opaque"></div><div class="third opaque"></div>
+    <div class="full trans"></div><div class="third-b trans"></div>
+    <div class="full scaled"></div><div class="third scaled"></div>
+    <div class="roundwrap"><span></span></div>
+    <div class="type"><span>g</span><span class="r">g</span><span class="s">g</span><span class="r"><span class="s">g</span></span></div>
+    <div class="raster" id="warm-raster"></div>
+    <div class="ms">
+      <svg width="8" height="8" viewBox="0 0 8 8"><path d="M0 4a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M2 4a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" fill="#0b0a09" fill-rule="evenodd"/></svg>
+      <span class="g">g</span>
+    </div>
+  </div>
+  <p class="eyebrow"><span class="tr-slash">//</span><span class="tr-slsp"> </span>NOW SHELVING</p>
+  <p class="pre-count" id="pre-count">000</p>
+  <span role="img" aria-label="margins" class="pre-mark wm">margins<sup>&reg;</sup></span>
+  <svg viewBox="0 0 120 160" class="pre-cup" fill="none" aria-hidden="true">
+    <defs>
+      <clipPath id="preloader-book"><path d="M30 28 H94 Q98 28 98 32 V150 Q98 154 94 154 H30 Q26 154 26 150 V32 Q26 28 30 28 Z"/></clipPath>
+      <linearGradient id="preloader-ink" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a3527"/><stop offset="1" stop-color="#1c0f0c"/>
+      </linearGradient>
+    </defs>
+    <g clip-path="url(#preloader-book)"><rect id="pre-ink" x="0" width="120" height="220" fill="url(#preloader-ink)" y="156"/></g>
+    <path d="M30 28 H94 Q98 28 98 32 V150 Q98 154 94 154 H30 Q26 154 26 150 V32 Q26 28 30 28 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M36 28 V154" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M98 36 H104 V146 H98" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M86 28 V14 L80 20 L74 14 V28" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<main>
+<!-- ============================== 1 HERO ============================== -->
+<section aria-label="Introduction" data-header-theme="dark" class="hero" id="hero">
+  <div class="opal" aria-hidden="true" data-opal="hero"><div class="opal-fb"></div><span class="opal-cv"><canvas></canvas></span></div>
+  <div aria-hidden="true" class="hero-scrim"></div>
+  <div class="hero-in">
+    <figure class="hero-fig" data-iv="zoom 45/24">
+      <div role="img" aria-label="A stack of three clothbound books beside a standing hardcover" class="hero-mount" id="hero-mount"></div>
+      <span aria-hidden="true" class="hero-handle" id="hero-handle"></span>
+    </figure>
+    <div class="hero-copy">
+      <div class="hero-grid">
+        <div class="hero-head">
+          <p class="eyebrow" data-iv="up:10 90/26 g"><span class="tr-slash">//</span><span class="tr-slsp"> </span>Independent Bookshop</p>
+          <h1 class="hero-h1" data-text="lines" data-clip data-tight data-g>A BOOK FOR YOUR</h1>
+        </div>
+        <p class="hero-script" data-iv="script 36/26 d=420 g">evening</p>
+      </div>
+      <div class="hero-lede-col">
+        <p class="lede" data-text="words" data-hero data-delay="260" data-g>HAND-PICKED SHELVES AND A STAFF THAT READS EVERYTHING, SO THE NEXT GOOD BOOK FINDS YOU.</p>
+        <span class="block" data-iv="up:12 90/26 d=520 g" data-cta="browse shelves|#menu|var(--size-hero-cta)"></span>
+      </div>
+    </div>
+    <aside aria-label="Visit us" class="info">
+      <span aria-hidden="true" class="info-scrim"></span>
+      <p class="info-hours" data-iv="up:16 90/26 d=620 g"><span class="block" data-roll="760" data-g>OPEN DAILY</span><span class="block" data-roll="760" data-g>09:00 - 22:00</span></p>
+      <span class="info-rule" data-rule="y 700 g"></span>
+      <address class="info-addr" data-iv="up:16 90/26 d=760 g"><span class="block">214 ALDER STREET</span><span class="block">PORTLAND, OR</span></address>
+      <span class="info-rule b" data-rule="y 840 g"></span>
+      <ul class="info-social" data-iv="up:16 90/26 d=900 g"><li><a href="https://instagram.com" data-ul="rule">INSTAGRAM</a></li><li><a href="https://tiktok.com" data-ul="rule">TIKTOK</a></li></ul>
+    </aside>
+    <div class="hcard" id="hcard">
+      <div class="hcard-box" data-piece="novel">
+        <p class="eyebrow"><span class="tr-slash">//</span><span class="tr-slsp"> </span>in your hands</p>
+        <div class="hcard-row"><p class="hcard-name">FIELD NOTES</p><p class="hcard-price">$32.00</p></div>
+        <ul><li>288 PP</li><li><i></i>CLOTHBOUND</li><li><i></i>FIRST EDITION</li></ul>
+      </div>
+      <div class="hcard-box" data-piece="stack" hidden>
+        <p class="eyebrow"><span class="tr-slash">//</span><span class="tr-slsp"> </span>on the stack</p>
+        <div class="hcard-row"><p class="hcard-name">STAFF PICKS</p><p class="hcard-price">$63.50</p></div>
+        <ul><li>3 BOOKS</li><li><i></i>HARDCOVER</li><li><i></i>GIFT WRAPPED</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 3 SHELVES ============================== -->
+<section aria-label="Shelves" id="menu" data-header-theme="light" class="board-sec light-sec menu">
+  <div class="swirl-frame" aria-hidden="true" data-swirl="ltr"></div>
+  <div class="menu-in">
+    <div class="menu-intro">
+      <p class="eyebrow" data-iv="clip 46/26"><span class="tr-slash">//</span><span class="tr-slsp"> </span>staff picks</p>
+      <h2 class="h-display menu-h2" data-text="lines" data-margin>SHELVES WE READ FIRST</h2>
+      <div class="menu-lede-w">
+        <p class="lede" data-text="words" data-delay="320" data-margin>Every title here was read by someone on staff. Honest notes, no filler.</p>
+      </div>
+    </div>
+    <span aria-hidden="true" class="menu-receipt" id="menu-receipt"><span>
+      <span class="slip">
+        <span class="slip-h">MARGINS BOOKSHOP</span>
+        <span class="slip-s">THIS WEEK'S READING LIST</span>
+        <span class="slip-r"></span>
+        <span class="slip-l"><b>01</b> THE SALT ROAD <i>24.00</i></span>
+        <span class="slip-l"><b>02</b> QUIET HOURS <i>18.50</i></span>
+        <span class="slip-l"><b>03</b> SMALL WEATHER <i>21.00</i></span>
+        <span class="slip-l"><b>04</b> FIELD NOTES, VOL. II <i>32.00</i></span>
+        <span class="slip-l"><b>05</b> THE LONG TABLE <i>27.00</i></span>
+        <span class="slip-l"><b>06</b> LETTERS TO A PORT <i>16.00</i></span>
+        <span class="slip-l"><b>07</b> NINE WINTERS <i>22.50</i></span>
+        <span class="slip-l"><b>08</b> A HOUSE OF PAPER <i>19.00</i></span>
+        <span class="slip-r"></span>
+        <span class="slip-l"><b></b> HELD AT THE COUNTER <i>48H</i></span>
+        <span class="slip-note">Read one. Tell us about it.</span>
+        <span class="slip-code"></span>
+      </span>
+    </span></span>
+    <span class="menu-cta-w" data-iv="up:12 90/26 d=420" data-cta="view all shelves|#menu|var(--size-menu-cta)|inv" id="menu-cta"></span>
+    <ul class="cards" id="cards"></ul>
+  </div>
+</section>
+
+<!-- ============================== 4 LOCATIONS ============================== -->
+<section aria-label="Our locations" id="locations" data-header-theme="light" class="board-sec light-sec">
+  <div class="swirl-frame fade" aria-hidden="true" data-swirl="rtl"></div>
+  <div aria-hidden="true" class="loc-range" id="loc-range"></div>
+  <div aria-hidden="true" class="loc-turn" id="loc-turn"></div>
+  <div class="loc-in">
+    <div class="loc-dialw">
+      <figure class="loc-dial" data-iv="fade 60/26">
+        <span id="dial-par"><span><svg id="dial-svg" role="img" aria-label="A clock face marking the hours" viewBox="0 0 654 654"></svg></span></span>
+      </figure>
+      <div aria-hidden="true" class="loc-cup">
+        <div class="lean" id="loc-lean">
+          <span id="cup-par"><span>
+            <span id="cup-turn"><span>
+              <span class="bk bk-loc" style="--c:#2f3d35; --ink:#efe6d2"><span class="bk-in">
+                <span class="bk-k">A WALKING GUIDE</span>
+                <span class="bk-mid"><span class="bk-t">Portland<br>on Foot</span><span class="bk-rule"></span><span class="bk-a">MARGINS PRESS</span></span>
+                <span class="bk-m">m</span></span>
+                <i class="bk-edge"></i>
+              </span>
+            </span></span>
+          </span></span>
+        </div>
+      </div>
+    </div>
+    <p class="loc-eyebrow" data-iv="clip 46/26"><span class="dot pulse"></span>OUR LOCATIONS</p>
+    <ul class="loc-list">
+      <li data-iv="clip 80/26 d=160"><address><span class="block">214 Alder Street</span><span class="block">Portland, OR</span></address></li>
+      <li data-iv="clip 80/26 d=270"><address><span class="block">88 Division Street</span><span class="block">Portland, OR</span></address></li>
+      <li data-iv="clip 80/26 d=380"><address><span class="block">610 Hawthorne Ave</span><span class="block">Portland, OR</span></address></li>
+    </ul>
+    <p class="loc-hours" data-iv="clip 46/26 d=280"><span class="block" data-roll="360">OPEN DAILY</span><span class="block" data-roll="360">09:00 - 22:00</span></p>
+  </div>
+</section>
+
+<!-- ============================== 5 PHILOSOPHY ============================== -->
+<section aria-label="Our philosophy" id="story" data-header-theme="dark" class="board-sec phil">
+  <div class="opal" aria-hidden="true" data-opal="phil"><div class="opal-fb"></div><span class="opal-cv"><canvas></canvas></span></div>
+  <div aria-hidden="true" class="phil-scrim"></div>
+  <div aria-hidden="true" class="phil-3d" id="phil-3d"></div>
+  <div class="phil-in">
+    <figure data-philosophy-cup class="phil-cup">
+      <span role="img" aria-label="A hardcover standing half open among drifting loose pages"></span>
+    </figure>
+    <div class="phil-headw">
+      <h2 class="h-headline" data-text="lines" data-margin>THE WORLD KEEPS SCROLLING. A GOOD BOOK LETS YOU STOP.</h2>
+    </div>
+    <div class="phil-ledew">
+      <p class="lede up" data-text="words" data-delay="220">Read a chapter in the armchair or take the whole thing home. Nobody hovers, nobody hurries you, and the kettle in the back is always on.</p>
+    </div>
+    <ul class="phil-claims">
+      <li data-iv="clip 80/26 d=340">Good books.</li><li data-iv="clip 80/26 d=430">NO ALGORITHM.</li><li data-iv="clip 80/26 d=520">NO RUSH.</li>
+    </ul>
+    <p class="phil-eyebrow" data-iv="up:10 90/26 d=420"><span class="tr-slash">//</span><span class="tr-slsp"> </span>OUR Philosophy</p>
+  </div>
+</section>
+
+<!-- ============================== 6 RESERVE ============================== -->
+<section aria-label="Reserve ahead" id="order" data-header-theme="dark" class="order">
+  <div class="order-frame">
+    <span class="order-bg"><span id="order-bg-par" class="order-scene">
+      <svg class="order-props" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="lamp" cx="50%" cy="45%" r="50%"><stop offset="0" stop-color="#e2a86c" stop-opacity=".2"/><stop offset=".6" stop-color="#e2a86c" stop-opacity=".06"/><stop offset="1" stop-color="#e2a86c" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1440" height="800" fill="url(#lamp)"/>
+        <g transform="translate(250 640) rotate(-4)" opacity=".85">
+          <rect x="0" y="120" width="330" height="46" rx="3" fill="#3a1b16"/><rect x="6" y="126" width="318" height="4" fill="#5a2c24"/>
+          <rect x="20" y="74" width="290" height="46" rx="3" fill="#26302a"/><rect x="26" y="80" width="278" height="3" fill="#3b4a41"/>
+          <rect x="4" y="34" width="306" height="40" rx="3" fill="#8e6c3a"/><rect x="10" y="40" width="294" height="3" fill="#a8844a"/>
+          <rect x="30" y="0" width="262" height="34" rx="3" fill="#1d2430"/>
+        </g>
+        <g transform="translate(1090 150) rotate(-12)" opacity=".9">
+          <rect width="190" height="250" rx="2" fill="#e9e1d0"/><rect x="190" width="190" height="250" rx="2" fill="#efe8da"/>
+          <rect x="182" width="16" height="250" fill="#000" opacity=".12"/>
+          <g fill="#8d8374"><rect x="24" y="40" width="140" height="4"/><rect x="24" y="56" width="130" height="4"/><rect x="24" y="72" width="142" height="4"/><rect x="24" y="88" width="120" height="4"/><rect x="24" y="104" width="138" height="4"/><rect x="24" y="120" width="92" height="4"/><rect x="214" y="40" width="140" height="4"/><rect x="214" y="56" width="136" height="4"/><rect x="214" y="72" width="128" height="4"/><rect x="214" y="88" width="140" height="4"/><rect x="214" y="104" width="110" height="4"/></g>
+        </g>
+      </svg>
+    </span></span>
+    <div class="order-over">
+      <div class="stage" id="stage">
+        <span class="printer" aria-hidden="true"><i class="printer-slot"></i><i class="printer-led pulse"></i></span>
+        <div style="position:absolute; left:553px; top:176px; width:328px; height:624px; overflow:hidden; z-index:2">
+          <div id="paper" style="--p:0; width:328px; transform: translate3d(0, calc(-100% + var(--p) * 100%), 0); filter: drop-shadow(0 calc(var(--p) * 26px) calc(var(--p) * 20px) rgba(0, 0, 0, 0.42)); will-change: transform">
+            <div style="width:328px; color:#111111">
+              <div style="background:#F2F0EA; padding:32px 22px 10px; display:flex; flex-direction:column; gap:10px; font-family:var(--font-space-mono); line-height:1.2">
+                <p style="font-size:11px; font-weight:700; letter-spacing:0.16em; text-align:center">MARGINS BOOKSHOP</p>
+                <div style="height:1px; background-image: repeating-linear-gradient(90deg, #111111 0 5px, transparent 5px 10px)"></div>
+                <svg role="img" aria-label="A printed sketch of a stack of books" viewBox="0 0 150 150" width="150" height="150" style="margin:0 auto; display:block" fill="none" stroke="#111" stroke-width="1.6" stroke-linejoin="round">
+                  <path d="M18 132 H132 V118 H18 Z"/><path d="M24 118 V132 M126 118 V132"/>
+                  <path d="M26 118 H124 V106 H26 Z"/><path d="M34 106 V118"/>
+                  <path d="M20 106 H128 V92 H20 Z"/><path d="M114 92 V106 M110 92 V106"/>
+                  <path d="M60 92 L66 34 L100 38 L94 92"/><path d="M66 34 L72 30 L106 34 L100 38"/><path d="M106 34 L100 92"/>
+                  <path d="M71 48 L93 50 M70 56 L86 57.5"/>
+                  <path d="M40 92 C40 80 50 76 56 80" stroke-dasharray="2 3"/>
+                  <path d="M8 138 H142" stroke-width="1"/>
+                </svg>
+                <div style="height:1px; background-image: repeating-linear-gradient(90deg, #111111 0 5px, transparent 5px 10px)"></div>
+                <div style="display:flex; justify-content:space-between; gap:12px; font-size:8px; letter-spacing:0.07em; line-height:1.85">
+                  <div><p>GOOD BOOKS.</p><p>HELD FOR YOUR EVENING.</p></div>
+                  <div style="text-align:right"><p>HOLD #00118</p><p>14/11/2026</p><p>18:30</p></div>
+                </div>
+                <div style="font-size:8px; letter-spacing:0.07em; line-height:1.85"><p>THANK YOU FOR READING WITH MARGINS.</p><p>YOUR COPY IS WAITING AT THE COUNTER.</p></div>
+                <div style="height:1px; background-image: repeating-linear-gradient(90deg, #111111 0 5px, transparent 5px 10px)"></div>
+                <div style="display:flex; gap:12px">
+                  <p style="font-size:16px; font-weight:700; line-height:1.25; flex:1"><span style="display:block">SKIP THE SEARCH.</span><span style="display:block">RESERVE AHEAD.</span></p>
+                  <div style="width:132px; padding-left:12px; border-left:1px solid rgba(17, 17, 17, 0.25); display:flex; flex-direction:column; gap:8px">
+                    <p style="font-size:7px; letter-spacing:0.07em; line-height:1.6; color:#5b5b58"><span style="display:block">HELD FOR 48 HOURS.</span><span style="display:block">WRAPPED ON REQUEST.</span></p>
+                    <span style="background:#111111; color:#F2F0EA; font-size:8px; font-weight:700; letter-spacing:0.09em; padding:6px 9px; display:flex; justify-content:space-between; align-items:center; gap:8px">RESERVE NOW<span aria-hidden="true">→</span></span>
+                  </div>
+                </div>
+                <div id="barcode" style="display:flex; align-items:flex-end; gap:1px; height:42px"></div>
+                <p style="font-size:7px; letter-spacing:0.16em; text-align:center">MARGINS.BOOKS</p>
+              </div>
+              <svg aria-hidden="true" width="328" height="9" viewBox="0 0 328 9" preserveAspectRatio="none" style="display:block"><path id="torn" fill="#F2F0EA"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order-copy">
+        <div aria-hidden="true" class="order-scrim-t"></div>
+        <div aria-hidden="true" class="order-scrim-b"></div>
+        <div class="order-grp">
+          <div class="order-headw">
+            <h2 class="h-headline order-h2" data-text="lines" data-margin>A COPY WITH YOUR NAME ON IT.</h2>
+          </div>
+          <p class="order-note" data-iv="clip 46/26 d=180">WE KEEP THE SHELF. YOU KEEP THE STORY.</p>
+        </div>
+        <span class="order-aside" data-iv="up:16 80/26 d=280">
+          <span class="lede up order-aside-t" data-text="words" data-delay="320">RESERVE ONLINE AND WE PULL THE COPY, WRAP IT IF YOU LIKE, AND HOLD IT AT THE COUNTER FOR TWO DAYS. NO SEARCHING THE STACKS, NO SOLD OUT SURPRISE.</span>
+          <span class="block" data-cta="reserve a copy|#order|var(--size-order-cta)"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================== 7 FOOTER ============================== -->
+<footer data-header-theme="dark" class="foot" id="footer">
+  <span aria-hidden="true" class="foot-swirl mask swirlmask" data-iv="swirl 40/26"></span>
+  <span class="foot-logo" data-iv="clip 42/26 d=180"><a href="/" aria-label="margins" class="wm">margins<sup>&reg;</sup></a></span>
+  <p class="foot-tag fine dim" data-rise="260">A COPY WITH YOUR NAME ON IT. HELD FOR YOUR EVENING.</p>
+  <div class="foot-grid">
+    <div class="foot-nav" id="foot-nav"></div>
+    <span aria-hidden="true" class="foot-hr"></span>
+    <div class="foot-col foot-contact">
+      <p data-rise="550">contact</p>
+      <ul><li data-rise="620"><a href="mailto:hello@margins-books.com" data-ul="rule">hello@margins-books.com</a></li><li data-rise="690"><a href="tel:+15035550142" data-ul="rule">(503) 555-0142</a></li></ul>
+    </div>
+  </div>
+  <span class="foot-rule t" data-rule="x 120"></span>
+  <p class="foot-locs fine dim" data-rise="300"><span class="fl"><span class="dot pulse"></span>OUR LOCATIONS</span></p>
+  <div class="foot-row">
+    <address class="foot-a1"><span class="block" data-rise="340">214 Alder Street</span><span class="block" data-rise="410">Portland, OR</span></address>
+    <span class="foot-div a" data-rule="y 300"></span>
+    <address class="foot-a2"><span class="block" data-rise="400">88 Division Street</span><span class="block" data-rise="470">Portland, OR</span></address>
+    <span class="foot-div b" data-rule="y 360"></span>
+    <address class="foot-a3"><span class="block" data-rise="460">610 Hawthorne Ave</span><span class="block" data-rise="530">Portland, OR</span></address>
+    <p class="foot-hours"><span class="block" data-rise="500"><span data-roll="560">OPEN DAILY</span></span><span class="block" data-rise="570"><span data-roll="630">09:00 - 22:00</span></span></p>
+  </div>
+  <span class="foot-rule b" data-rule="x 220"></span>
+  <div class="foot-legal">
+    <p class="foot-copy fine dim" data-rise="560">(c) 2026 MARGINS BOOKSHOP.</p>
+    <span class="foot-soc s fine" data-rise="600"><a href="https://instagram.com" data-ul="rule">INSTAGRAM</a><span class="sep"> &amp; </span><a href="https://tiktok.com" data-ul="rule">TIKTOK</a></span>
+    <span class="foot-soc p fine" data-rise="640"><a href="#privacy" data-ul="rule">PRIVACY POLICY</a><span class="sep"> / </span><a href="#terms" data-ul="rule">TERMS OF USE</a></span>
+  </div>
+</footer>
+
+<div class="banner" id="banner" aria-live="polite"></div>
+
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import Lenis from "lenis";
+
+const {
+  WebGLRenderer, SRGBColorSpace, NeutralToneMapping, Scene, PerspectiveCamera, Color, Mesh,
+  PlaneGeometry, MeshBasicMaterial, PMREMGenerator, DirectionalLight, Group, Box3, Vector3, Vector2,
+  Raycaster, Fog, Matrix4, InstancedMesh, Quaternion, BoxGeometry, MeshStandardMaterial, CanvasTexture, DoubleSide,
+} = THREE;
+
+/* =====================================================================
+   CONSTANTS
+   ===================================================================== */
+const MODEL_SRC = null;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const REDUCED = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+const noHover = () => window.innerWidth < 768;
+
+/* Visible failures */
+const banner = document.getElementById("banner");
+const reported = new Set();
+const showError = (url, what) => {
+  if (reported.has(url)) return;
+  reported.add(url);
+  const p = document.createElement("p");
+  p.textContent = `Failed to load ${what}: ${url}`;
+  banner.appendChild(p);
+};
+
+/* =====================================================================
+   ROOT FONT SIZE ABOVE THE BOARD
+   ===================================================================== */
+const FONT_BASE = 16, BASE_WIDTH = 1440, COEF = 0.6666;
+const interpolateFontSize = (w) => {
+  const widthReduction = ((BASE_WIDTH - w) / BASE_WIDTH) * 100;
+  return FONT_BASE - (FONT_BASE * widthReduction * COEF) / 100;
+};
+const applyGrid = () => {
+  const size = interpolateFontSize(window.innerWidth);
+  if (size > FONT_BASE) document.documentElement.style.setProperty("font-size", `${size}px`);
+  else document.documentElement.style.removeProperty("font-size");
+};
+applyGrid();
+window.addEventListener("resize", applyGrid);
+
+/* =====================================================================
+   LENIS + SHARED TICKER
+   ===================================================================== */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+const lenis = new Lenis({ smoothWheel: true });
+window.lenis = lenis;
+const html = document.documentElement;
+const stopScroll = () => {
+  lenis.stop();
+  html.style.position = "relative"; html.style.overflow = "hidden"; html.style.height = "100%";
+};
+const startScroll = () => {
+  lenis.start();
+  html.style.removeProperty("position"); html.style.removeProperty("overflow"); html.style.removeProperty("height");
+};
+
+const subs = new Set();
+const ticker = {
+  add(fn, gap = 0) { const s = { fn, gap, last: -Infinity }; subs.add(s); return () => subs.delete(s); },
+};
+const loop = (time) => {
+  lenis.raf(time);
+  for (const s of subs) {
+    if (time - s.last <= s.gap) continue;
+    s.last = time;
+    s.fn(time);
+  }
+  requestAnimationFrame(loop);
+};
+requestAnimationFrame(loop);
+
+/* Anchor links through Lenis */
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute("href");
+  const target = id.length > 1 && document.querySelector(id);
+  if (!target) return;
+  e.preventDefault();
+  closePanel(false);
+  lenis.scrollTo(target, { offset: 0 });
+});
+
+/* =====================================================================
+   PAGE-READY STORE
+   ===================================================================== */
+const store = {
+  revealing: REDUCED, ready: REDUCED, fns: new Set(),
+  set(patch) { Object.assign(this, patch); for (const f of this.fns) f(this); },
+  subscribe(f) { this.fns.add(f); return () => this.fns.delete(f); },
+};
+
+/* =====================================================================
+   SPRING ENGINE (react-spring's integrator)
+   ===================================================================== */
+const EASE = {
+  linear: (t) => t,
+  easeOutCubic: (t) => 1 - Math.pow(1 - t, 3),
+  easeOutQuart: (t) => 1 - Math.pow(1 - t, 4),
+  easeInOutSine: (t) => -(Math.cos(Math.PI * t) - 1) / 2,
+};
+const NUM = /-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
+const parseVal = (v) => typeof v === "number"
+  ? { tpl: null, n: [v] }
+  : { tpl: String(v).split(NUM), n: (String(v).match(NUM) || []).map(Number) };
+const fmt = (n) => Math.abs(n) < 1e-6 ? 0 : Math.round(n * 10000) / 10000;
+const buildVal = (tpl, n) => tpl ? tpl.reduce((s, part, i) => s + part + (i < n.length ? fmt(n[i]) : ""), "") : n[0];
+
+const active = new Set();
+class Spring {
+  constructor(initial, apply) {
+    this.k = {};
+    this.apply = apply;
+    for (const key in initial) {
+      const p = parseVal(initial[key]);
+      this.k[key] = { tpl: p.tpl, x: p.n.slice(), v: p.n.map(() => 0), to: p.n.slice(), from: p.n.slice(), prec: p.n.map(() => 0.01) };
+    }
+    this.apply(this.values());
+  }
+  values() {
+    const out = {};
+    for (const key in this.k) out[key] = buildVal(this.k[key].tpl, this.k[key].x);
+    return out;
+  }
+  start(to, { config = {}, delay = 0, immediate = false, onRest } = {}) {
+    clearTimeout(this.timer);
+    const go = () => {
+      for (const key in to) {
+        const p = parseVal(to[key]);
+        let rec = this.k[key];
+        if (!rec) rec = this.k[key] = { tpl: p.tpl, x: p.n.slice(), v: p.n.map(() => 0), to: p.n.slice(), from: p.n.slice(), prec: [] };
+        rec.tpl = p.tpl || rec.tpl;
+        rec.to = p.n;
+        rec.from = rec.x.slice();
+        rec.prec = p.n.map((t, i) => config.precision ?? (t === rec.x[i] ? 0.005 : Math.min(1, Math.abs(t - rec.x[i]) * 0.001)));
+        if (immediate) { rec.x = p.n.slice(); rec.v = p.n.map(() => 0); }
+      }
+      this.cfg = config;
+      this.t0 = performance.now();
+      this.last = this.t0;
+      this.onRest = onRest;
+      if (immediate) { active.delete(this); this.apply(this.values()); onRest?.(); }
+      else active.add(this);
+    };
+    if (delay > 0) this.timer = setTimeout(go, delay); else go();
+    return this;
+  }
+  step(now) {
+    const c = this.cfg;
+    let done = true;
+    if (c.duration != null) {
+      const t = c.duration <= 0 ? 1 : Math.min(1, Math.max(0, (now - this.t0) / c.duration));
+      const e = (c.easing || EASE.linear)(t);
+      for (const key in this.k) {
+        const r = this.k[key];
+        for (let i = 0; i < r.x.length; i++) r.x[i] = r.from[i] + (r.to[i] - r.from[i]) * e;
+      }
+      done = t >= 1;
+    } else {
+      const dt = Math.min(64, Math.max(0, now - this.last));
+      const steps = Math.ceil(dt);
+      const tension = c.tension ?? 170, friction = c.friction ?? 26;
+      for (const key in this.k) {
+        const r = this.k[key];
+        for (let i = 0; i < r.x.length; i++) {
+          let x = r.x[i], v = r.v[i] || 0; const to = r.to[i];
+          for (let s = 0; s < steps; s++) {
+            v += -tension * 1e-6 * (x - to) - friction * 1e-3 * v;
+            x += v;
+            if (c.clamp && ((r.from[i] < to && x > to) || (r.from[i] > to && x < to))) { x = to; v = 0; break; }
+          }
+          const prec = r.prec[i] ?? 0.01;
+          if (Math.abs(v) <= prec / 10 && Math.abs(to - x) <= prec) { x = to; v = 0; }
+          else done = false;
+          r.x[i] = x; r.v[i] = v;
+        }
+      }
+    }
+    this.last = now;
+    this.apply(this.values());
+    if (done) { active.delete(this); const f = this.onRest; this.onRest = null; f?.(); }
+  }
+  stop() { clearTimeout(this.timer); active.delete(this); }
+}
+ticker.add((t) => { for (const s of [...active]) s.step(performance.now()); }, 0);
+
+const cfg = (t, f, extra) => ({ tension: t, friction: f, ...extra });
+const dur = (ms, easing) => ({ duration: ms, easing: EASE[easing] || EASE.linear });
+
+/** Writes an animated value set onto an element. */
+const unit = (v, u) => (typeof v === "number" ? v + u : v);
+const styler = (el) => (vals) => {
+  const s = el.style;
+  let tf = "";
+  if ("x" in vals || "y" in vals) tf += `translate3d(${unit(vals.x ?? 0, "px")}, ${unit(vals.y ?? 0, "px")}, 0)`;
+  if ("scale" in vals) tf += ` scale(${vals.scale})`;
+  if ("rotate" in vals) tf += ` rotate(${unit(vals.rotate, "deg")})`;
+  if ("transform" in vals) tf += " " + vals.transform;
+  if (tf) s.transform = tf.trim();
+  if ("opacity" in vals) s.opacity = vals.opacity;
+  if ("clipPath" in vals) s.clipPath = vals.clipPath;
+  for (const k in vals) if (k.startsWith("--")) s.setProperty(k, vals[k]);
+};
+
+/* =====================================================================
+   PRIMITIVES
+   ===================================================================== */
+/** Inview mode="once". */
+const inview = (el, { from, to, config, delay = 0, gate = false, rootMargin, trigger, target, onStart }) => {
+  const sp = new Spring(from, styler(target || el));
+  let seen = false, done = false;
+  const fire = () => {
+    if (done || !seen || (gate && !store.ready)) return;
+    done = true;
+    onStart?.();
+    sp.start(to, { config, delay });
+  };
+  const io = new IntersectionObserver((es) => {
+    if (es.some((e) => e.isIntersecting)) { seen = true; io.disconnect(); fire(); }
+  }, rootMargin ? { rootMargin } : {});
+  io.observe(trigger || el);
+  if (gate) store.subscribe(fire);
+  return sp;
+};
+
+/** Hover primitive - off below 768. */
+const hover = (el, trigger, from, to, config, { delayIn = 0, immediateOut = false, focus = false } = {}) => {
+  const sp = new Spring(from, styler(el));
+  const enter = () => { if (noHover()) return; sp.start(to, { config, delay: delayIn }); };
+  const leave = () => { sp.start(from, { config, immediate: immediateOut }); };
+  trigger.addEventListener("mouseenter", enter);
+  trigger.addEventListener("mouseleave", leave);
+  if (focus) { trigger.addEventListener("focus", enter); trigger.addEventListener("blur", leave); }
+  return sp;
+};
+
+/** SpringTrigger mode="scrub", bound to scroll. */
+const scrubPos = (el, key) => {
+  const bb = el.getBoundingClientRect(), clientHeight = window.innerHeight;
+  const poses = {
+    top_top: bb.top, center_top: bb.top + bb.height / 2, bottom_top: bb.bottom,
+    top_bottom: bb.top - clientHeight, center_bottom: bb.top + bb.height / 2 - clientHeight, bottom_bottom: bb.bottom - clientHeight,
+    top_center: bb.top - clientHeight / 2, center_center: bb.top + bb.height / 2 - clientHeight / 2, bottom_center: bb.bottom - clientHeight / 2,
+  };
+  return poses[key.replace(" ", "_")];
+};
+const lerp = (a, b, t) => a + (b - a) * t;
+const scrub = (el, trigger, start, end, from, to) => {
+  const apply = styler(el);
+  const F = {}, T = {};
+  for (const k in from) { F[k] = parseVal(from[k]); T[k] = parseVal(to[k]); }
+  const write = (p) => {
+    const out = {};
+    for (const k in F) out[k] = buildVal(T[k].tpl || F[k].tpl, F[k].n.map((a, i) => lerp(a, T[k].n[i], p)));
+    apply(out);
+  };
+  let visible = true, last = -1;
+  const measure = () => {
+    const scrollStart = scrubPos(trigger, start), scrollEnd = scrubPos(trigger, end);
+    const length = Math.abs(scrollStart - scrollEnd) || 1;
+    const progress = Math.min(Math.max(0, 1 - (scrollStart + length) / length), 1);
+    const q = Math.round(progress * 1000) / 1000;
+    if (q !== last) { last = q; write(q); }
+  };
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible) measure(); }).observe(trigger);
+  measure();
+  ticker.add(() => { if (visible) measure(); }, 10);
+};
+
+/** DigitRoll. */
+const digitRoll = (el, delayIn = 0, gate = false) => {
+  const str = el.textContent;
+  el.textContent = "";
+  const wrap = document.createElement("span"); wrap.className = "dr";
+  const ghost = document.createElement("span"); ghost.className = "dr-ghost"; ghost.textContent = str;
+  const over = document.createElement("span"); over.className = "dr-over"; over.setAttribute("aria-hidden", "true");
+  const cols = [];
+  let order = 0;
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const col = document.createElement("span"); col.className = "dr-col";
+      col.innerHTML = `<span class="dr-ph">${ch}</span><span class="dr-stack">${"0123456789".split("").map((d) => `<span>${d}</span>`).join("")}</span>`;
+      over.appendChild(col);
+      cols.push({ stack: col.lastChild, n: +ch, order: order++ });
+    } else {
+      const s = document.createElement("span"); s.className = "dr-ch"; s.textContent = ch; over.appendChild(s);
+    }
+  }
+  wrap.append(ghost, over);
+  el.appendChild(wrap);
+  if (!cols.length) return;
+  const springs = cols.map((c) => ({ c, sp: new Spring({ transform: "translateY(0%)" }, styler(c.stack)) }));
+  let seen = false, done = false;
+  const fire = () => {
+    if (done || !seen || (gate && !store.ready)) return;
+    done = true;
+    for (const { c, sp } of springs) sp.start({ transform: `translateY(-${c.n * 10}%)` }, { config: cfg(90, 26), delay: delayIn + c.order * 70 });
+  };
+  const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { seen = true; io.disconnect(); fire(); } });
+  io.observe(el);
+  if (gate) store.subscribe(fire);
+};
+
+/** UnderlineLink. */
+const underlineLink = (a, rule) => {
+  const label = a.textContent;
+  a.textContent = "";
+  a.classList.add("ul-a");
+  const rel = document.createElement("span"); rel.className = "ul-rel";
+  const clip = document.createElement("span"); clip.className = "ul-clip";
+  const lab = document.createElement("span"); lab.className = "ul-lab"; lab.textContent = label;
+  const dup = document.createElement("span"); dup.className = "ul-dup"; dup.textContent = label; dup.setAttribute("aria-hidden", "true");
+  clip.append(lab, dup); rel.appendChild(clip);
+  hover(lab, a, { transform: "translateY(0%)" }, { transform: "translateY(-100%)" }, cfg(260, 30));
+  hover(dup, a, { transform: "translateY(100%)" }, { transform: "translateY(0%)" }, cfg(260, 30));
+  if (rule) {
+    const r = document.createElement("span"); r.className = "ul-rule"; r.setAttribute("aria-hidden", "true");
+    rel.appendChild(r);
+    hover(r, a, { transform: "scaleX(0)", opacity: 0 }, { transform: "scaleX(1)", opacity: 1 }, cfg(220, 28));
+  }
+  a.appendChild(rel);
+};
+
+/** CtaLink. */
+const ARROW = `<span class="rot"><svg viewBox="0 0 12.2137 13.2551" fill="none" aria-hidden="true" focusable="false"><path d="M11.9501 7.26396C12.3016 6.91249 12.3016 6.34264 11.9501 5.99117L6.22254 0.263604C5.87107 -0.0878682 5.30122 -0.0878682 4.94975 0.263604C4.59828 0.615076 4.59828 1.18492 4.94975 1.5364L10.0409 6.62756L4.94975 11.7187C4.59828 12.0702 4.59828 12.6401 4.94975 12.9915C5.30122 13.343 5.87107 13.343 6.22254 12.9915L11.9501 7.26396ZM0 6.62756V7.52756H11.3137V6.62756V5.72756H0V6.62756Z" fill="currentColor"/></svg></span>`;
+const ctaLink = (host) => {
+  const [label, href, width, inv] = host.dataset.cta.split("|");
+  const a = document.createElement("a");
+  a.href = href;
+  a.className = "cta" + (inv ? " inv" : "");
+  a.style.width = width;
+  if (inv) a.style.color = "var(--foreground-inverse)";
+  a.innerHTML = `<span class="cta-row"><span class="cta-lab">${label}</span><span class="cta-arrows"><span class="cta-arrow a">${ARROW}</span><span class="cta-arrow b">${ARROW}</span></span></span><span aria-hidden="true" class="cta-rules"><span class="cta-base"></span><span class="cta-over"></span></span>`;
+  host.appendChild(a);
+  hover(a.querySelector(".cta-arrow.a"), a, { transform: "translateX(0%)", opacity: 1 }, { transform: "translateX(190%)", opacity: 0 }, cfg(200, 28));
+  hover(a.querySelector(".cta-arrow.b"), a, { transform: "translateX(-190%)", opacity: 0 }, { transform: "translateX(0%)", opacity: 1 }, cfg(200, 28), { delayIn: 70 });
+  hover(a.querySelector(".cta-base"), a, { transform: "scaleX(1)" }, { transform: "scaleX(0)" }, cfg(260, 30), { immediateOut: true });
+  hover(a.querySelector(".cta-over"), a, { transform: "scaleX(0)" }, { transform: "scaleX(1)" }, cfg(170, 26), { immediateOut: true, delayIn: 140 });
+  return a;
+};
+
+/** PointerLean - scope self. */
+const pointerLean = (scope, layer, deg = 14) => {
+  const sp = new Spring({ transform: "rotateY(0deg) rotateX(0deg)" }, styler(layer));
+  scope.addEventListener("pointermove", (e) => {
+    if (noHover() || REDUCED) return;
+    const b = scope.getBoundingClientRect();
+    const dx = Math.max(-1, Math.min(1, ((e.clientX - b.left) / b.width) * 2 - 1));
+    const dy = Math.max(-1, Math.min(1, ((e.clientY - b.top) / b.height) * 2 - 1));
+    sp.start({ transform: `rotateY(${dx * deg}deg) rotateX(${-dy * deg}deg)` }, { config: cfg(90, 22) });
+  });
+  scope.addEventListener("pointerleave", () => sp.start({ transform: "rotateY(0deg) rotateX(0deg)" }, { config: cfg(90, 22) }));
+};
+
+/** PulseDot - 700ms per half, easeInOutSine, there and back. */
+const pulses = [...document.querySelectorAll(".pulse")];
+if (!REDUCED) ticker.add((t) => {
+  const phase = (t % 1400) / 700;
+  const k = phase <= 1 ? EASE.easeInOutSine(phase) : EASE.easeInOutSine(2 - phase);
+  const o = 1 - 0.85 * k;
+  for (const d of pulses) d.style.opacity = o;
+}, 0);
+
+/* =====================================================================
+   TEXT ENGINE
+   ===================================================================== */
+const textEngine = (el) => {
+  const mode = el.dataset.text;
+  const src = el.textContent.trim().replace(/\s+/g, " ");
+  const hero = el.hasAttribute("data-hero");
+  const gate = el.hasAttribute("data-g");
+  const delayIn = +(el.dataset.delay || 0);
+  const clip = el.hasAttribute("data-clip");
+  const tight = el.hasAttribute("data-tight");
+  el.textContent = "";
+  const sr = document.createElement("span"); sr.className = "sr-only"; sr.textContent = src;
+  const vis = document.createElement("span"); vis.setAttribute("aria-hidden", "true");
+  el.append(sr, vis);
+  const words = src.split(" ");
+  let played = false;
+  let units = [];
+
+  const build = () => {
+    for (const u of units) u.sp.stop();
+    if (mode === "words") {
+      vis.className = "te-words";
+      vis.innerHTML = words.map((w) => `<span class="te-word">${w}</span>`).join("");
+      const from = { y: hero ? 16 : 14, opacity: 0 };
+      units = [...vis.children].map((n) => ({ n, sp: new Spring(played ? { y: 0, opacity: 1 } : from, styler(n)) }));
+    } else {
+      vis.className = "te-vis";
+      vis.innerHTML = words.map((w) => `<span class="te-word">${w}</span>`).join(" ");
+      const lines = [];
+      let top = null;
+      for (const w of vis.children) {
+        const t = w.offsetTop;
+        if (top === null || Math.abs(t - top) > 2) { lines.push([]); top = t; }
+        lines[lines.length - 1].push(w.textContent);
+      }
+      vis.innerHTML = lines.map((l) => `<span class="te-line${clip ? " clip" : ""}${tight ? " tight" : ""}"><span class="te-in">${l.join(" ")}</span></span>`).join("");
+      units = [...vis.querySelectorAll(".te-in")].map((n) => ({ n, sp: new Spring(played ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }, styler(n)) }));
+    }
+    el.classList.add("te-ready");
+  };
+  const play = () => {
+    if (played) return;
+    played = true;
+    units.forEach(({ sp }, i) => {
+      if (mode === "words") sp.start({ y: 0, opacity: 1 }, { config: dur(hero ? 650 : 620, "easeOutQuart"), delay: delayIn + i * (hero ? 18 : 14) });
+      else sp.start({ y: "0%", opacity: 1 }, { config: dur(900, "easeOutCubic"), delay: delayIn + i * 90 });
+    });
+  };
+  build();
+  let width = el.offsetWidth;
+  new ResizeObserver(() => {
+    if (el.offsetWidth === width) return;
+    width = el.offsetWidth;
+    build();
+  }).observe(el);
+
+  let seen = false;
+  const fire = () => { if (seen && (!gate || store.ready)) play(); };
+  if (gate) { seen = true; store.subscribe(fire); fire(); }
+  else {
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { seen = true; io.disconnect(); fire(); } },
+      el.hasAttribute("data-margin") ? { rootMargin: "0px 0px -25% 0px" } : {});
+    io.observe(el);
+  }
+};
+
+/* =====================================================================
+   DECLARATIVE INVIEW PRESETS
+   ===================================================================== */
+const PRESETS = {
+  up: (n) => [{ opacity: 0, y: n }, { opacity: 1, y: 0 }],
+  fade: () => [{ opacity: 0 }, { opacity: 1 }],
+  clip: () => [{ clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)" }],
+  clipb: () => [{ clipPath: "inset(0% 100% -30% 0%)" }, { clipPath: "inset(0% 0% -30% 0%)" }],
+  script: () => [{ clipPath: "inset(-12% 100% -22% -4%)" }, { clipPath: "inset(-12% -8% -22% -4%)" }],
+  zoom: () => [{ opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1 }],
+  swirl: () => [{ opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1 }],
+  card: () => [{ opacity: 0, y: 28 }, { opacity: 1, y: 0 }],
+};
+const initInview = (el) => {
+  const tk = el.dataset.iv.trim().split(/\s+/);
+  const [name, arg] = tk[0].split(":");
+  const [t, f] = tk[1].split("/").map(Number);
+  let delay = 0, gate = false;
+  for (const x of tk.slice(2)) { if (x.startsWith("d=")) delay = +x.slice(2); if (x === "g") gate = true; }
+  const [from, to] = PRESETS[name](+arg);
+  inview(el, { from, to, config: cfg(t, f), delay, gate });
+};
+
+const initRise = (el) => {
+  const inner = document.createElement("span");
+  inner.className = "rise-in";
+  while (el.firstChild) inner.appendChild(el.firstChild);
+  el.appendChild(inner);
+  el.classList.add("rise");
+  inview(el, { target: inner, from: { transform: "translateY(150%)" }, to: { transform: "translateY(0%)" }, config: cfg(80, 26), delay: +el.dataset.rise });
+};
+
+const initRule = (el) => {
+  const [axis, d, g] = el.dataset.rule.split(" ");
+  el.classList.add(axis === "x" ? "rule-x" : "rule-y");
+  const fn = axis === "x" ? "scaleX" : "scaleY";
+  inview(el, { from: { transform: `${fn}(0)` }, to: { transform: `${fn}(1)` }, config: cfg(55, 22), delay: +d, gate: g === "g" });
+};
+
+/* =====================================================================
+   DYNAMIC CONTENT: MENU CARDS, FOOTER COLUMNS, WARM-UP SPECKS
+   ===================================================================== */
+/* The shelf: four books, drawn as covers rather than photographed. The third
+   stands taller than its card and is left unclipped, so it breaks the frame. */
+const CARDS = [
+  { name: "THE SALT ROAD", price: "$24.00", frame: [112, 168, 0, 0], clip: true, cover: { c: "#6b2a22", ink: "#f1e4d0", k: "A NOVEL", t: "The Salt<br>Road", a: "ANNA VEYRA" }, alt: "The Salt Road, an oxblood clothbound novel" },
+  { name: "QUIET HOURS", price: "$18.50", frame: [124, 186, 0, 0.5], clip: true, cover: { c: "#2f3d35", ink: "#e9e2cf", k: "ESSAYS", t: "Quiet<br>Hours", a: "T. OKAFOR" }, alt: "Quiet Hours, a green clothbound book of essays" },
+  { name: "SMALL WEATHER", price: "$21.00", frame: [158, 258, 0, 0], clip: false, cover: { c: "#c29a52", ink: "#231a10", k: "POEMS", t: "Small<br>Weather", a: "ESME LORING" }, alt: "Small Weather, an ochre book of poems" },
+  { name: "FIELD NOTES", price: "$32.00", frame: [260, 164, -6, 0], clip: true, spread: true, alt: "Field Notes, Vol. II, lying open at its first chapter" },
+];
+const lines = (n) => Array.from({ length: n }, (_, i) => `<i style="width:${i === n - 1 ? 52 : 86 + ((i * 37) % 13)}%"></i>`).join("");
+const coverHTML = (o, alt) => `<span class="bk" role="img" aria-label="${alt}" style="--c:${o.c}; --ink:${o.ink}"><span class="bk-in"><span class="bk-k">${o.k}</span><span class="bk-mid"><span class="bk-t">${o.t}</span><span class="bk-rule"></span><span class="bk-a">${o.a}</span></span><span class="bk-m">m</span></span></span>`;
+const spreadHTML = (alt) => `<span class="spread" role="img" aria-label="${alt}"><span class="pg"><span class="pg-k">CHAPTER ONE</span><span class="pg-h">The first rain</span>${lines(8)}<span class="pg-n">1</span></span><span class="pg">${lines(11)}<span class="pg-n">2</span></span></span>`;
+const cardsUl = document.getElementById("cards");
+CARDS.forEach((c, order) => {
+  const [fw, fh, fb, fx] = c.frame;
+  const li = document.createElement("li");
+  li.innerHTML = `<div class="lean-p"><div class="lean-i"><article class="card">
+    <div aria-hidden="true" class="card-range"></div>
+    <p class="card-idx"><span data-roll="${order * 90 + 160}">${String(order + 1).padStart(2, "0")}</span></p>
+    <div class="card-media${c.clip ? " clip" : ""}"><span class="still-par"><span>
+      <div class="card-still bookish" style="width: calc(${fw / 16}rem * var(--size-menu-still-scale)); max-width: var(--size-menu-still-max); aspect-ratio: ${fw} / ${fh}; bottom: calc(${fb / 16}rem + var(--size-menu-still-lift)); margin-left: ${fx / 16}rem">
+        ${c.spread ? spreadHTML(c.alt) : coverHTML(c.cover, c.alt)}
+      </div>
+    </span></span></div>
+    <div class="card-foot"><p data-iv="clipb 58/26 d=${order * 90 + 300}">${c.name}</p><p><span data-roll="${order * 90 + 240}">${c.price}</span></p></div>
+  </article></div></div>`;
+  cardsUl.appendChild(li);
+  const article = li.querySelector(".card");
+  inview(article, { from: { opacity: 0, y: 28 }, to: { opacity: 1, y: 0 }, config: cfg(80, 26), delay: order * 90 });
+  pointerLean(article, li.querySelector(".lean-i"));
+  scrub(li.querySelector(".still-par"), li.querySelector(".card-range"), "top bottom", "center center", { y: 11 }, { y: 0 });
+});
+
+/* The dial, drawn: sixty ticks and twelve numerals. */
+{
+  const svg = document.getElementById("dial-svg");
+  const c = 327;
+  let h = `<circle cx="${c}" cy="${c}" r="${c}" fill="#f7f5f0"/><circle cx="${c}" cy="${c}" r="${c - 1}" fill="none" stroke="#0b0a09" stroke-opacity=".07"/>`;
+  for (let i = 0; i < 60; i++) {
+    const a = (i / 60) * Math.PI * 2, big = i % 5 === 0;
+    const r1 = c - 22, r2 = big ? c - 56 : c - 36;
+    h += `<line x1="${(c + Math.sin(a) * r1).toFixed(2)}" y1="${(c - Math.cos(a) * r1).toFixed(2)}" x2="${(c + Math.sin(a) * r2).toFixed(2)}" y2="${(c - Math.cos(a) * r2).toFixed(2)}" stroke="#0b0a09" stroke-width="${big ? 3.2 : 1.6}"/>`;
+  }
+  for (let n = 1; n <= 12; n++) {
+    const a = (n / 12) * Math.PI * 2, r = c - 96;
+    h += `<text x="${(c + Math.sin(a) * r).toFixed(2)}" y="${(c - Math.cos(a) * r).toFixed(2)}" text-anchor="middle" dominant-baseline="central" font-family="Space Mono, monospace" font-size="40" fill="#0b0a09">${n}</text>`;
+  }
+  svg.innerHTML = h;
+}
+
+const FOOT_COLS = [
+  ["Shop", [["NEW ARRIVALS", "#new"], ["STAFF PICKS", "#menu"], ["GIFT CARDS", "#gift-cards"], ["BOOK CLUB", "#book-club"]]],
+  ["Shelves", [["FICTION", "#fiction"], ["NONFICTION", "#nonfiction"], ["POETRY", "#poetry"], ["KIDS", "#kids"]]],
+  ["about us", [["OUR STORY", "#story"], ["EVENTS & READINGS", "#events"], ["journal", "#journal"], ["CAREERS", "#careers"]]],
+];
+document.getElementById("foot-nav").innerHTML = FOOT_COLS.map(([head, links], i) =>
+  `<div class="foot-col"><p data-rise="${160 + i * 130}">${head}</p><ul>${links.map(([l, h], row) =>
+    `<li data-rise="${160 + i * 130 + (row + 1) * 70}"><a href="${h}" data-ul="rule">${l.replace("&", "&amp;")}</a></li>`).join("")}</ul></div>`).join("");
+
+/* =====================================================================
+   SWIRL FILL
+   ===================================================================== */
+const BLOBS = [
+  { x: 0, y: 78, delay: 0 },
+  { x: 30, y: 22, delay: 10 },
+  { x: 58, y: 88, delay: 22 },
+  { x: 92, y: 40, delay: 34 },
+];
+const REACH = 115;
+const FEATHER = 14;
+const FILL = { duration: 3400, easing: EASE.easeInOutSine };
+const FILL_DELAY = 100;
+const THRESHOLD = 0.12;
+const PARALLAX = 100;
+const blobMask = (direction) =>
+  BLOBS.map(({ x, y, delay }) => {
+    const cx = direction === "ltr" ? x : 100 - x;
+    const rate = REACH / (100 - delay);
+    const radius = `calc((var(--fill) - ${delay}) * ${rate}%)`;
+    return `radial-gradient(circle at ${cx}% ${y}%, #000 calc(${radius} - ${FEATHER}%), transparent ${radius})`;
+  }).join(", ");
+
+for (const frame of document.querySelectorAll("[data-swirl]")) {
+  const dir = frame.dataset.swirl;
+  const section = frame.closest("section");
+  frame.innerHTML = `<span class="swirl-box"><span class="swirl-par"><span class="mask swirlmask"><span class="swirl-fill"></span></span></span></span>`;
+  const box = frame.querySelector(".swirl-box");
+  const fill = frame.querySelector(".swirl-fill");
+  fill.style.webkitMaskImage = fill.style.maskImage = blobMask(dir);
+  scrub(frame.querySelector(".swirl-par"), box, "top bottom", "bottom top", { y: -PARALLAX }, { y: PARALLAX });
+  const sp = new Spring({ "--fill": REDUCED ? 100 : 0 }, styler(fill));
+  if (!REDUCED) {
+    let seen = false, done = false;
+    const fire = () => {
+      if (done || !seen || !store.ready) return;
+      done = true;
+      sp.start({ "--fill": 100 }, { config: FILL, delay: FILL_DELAY });
+    };
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { seen = true; io.disconnect(); fire(); } }, { threshold: THRESHOLD });
+    io.observe(section);
+    store.subscribe(fire);
+  }
+}
+
+/* Warm-up specks: the swirl's blob mask at --fill 50 and 95, plain and scaled. */
+{
+  const r = document.getElementById("warm-raster");
+  let h = "";
+  for (const f of [50, 95]) for (const s of ["", " s95"])
+    h += `<span class="sw mask swirlmask${s}"><span style="--fill:${f}; -webkit-mask-image:${blobMask("ltr")}; mask-image:${blobMask("ltr")}"></span></span>`;
+  h += `<span class="scr"></span><span class="rd"><span></span></span>`;
+  r.innerHTML = h;
+}
+
+/* =====================================================================
+   INIT DECLARATIVE PRIMITIVES
+   ===================================================================== */
+document.querySelectorAll("[data-cta]").forEach(ctaLink);
+document.querySelectorAll("a[data-ul]").forEach((a) => underlineLink(a, a.dataset.ul === "rule"));
+document.querySelectorAll("[data-rise]").forEach(initRise);
+document.querySelectorAll("[data-iv]").forEach(initInview);
+document.querySelectorAll("[data-rule]").forEach(initRule);
+document.querySelectorAll("[data-roll]").forEach((el) => digitRoll(el, +el.dataset.roll, el.hasAttribute("data-g")));
+
+/* Menu receipt behind VIEW FULL MENU */
+{
+  const a = document.querySelector("#menu-cta a");
+  hover(document.getElementById("menu-receipt"), a, { x: 150, y: 150, opacity: 0 }, { x: 0, y: 0, opacity: 1 }, cfg(120, 26), { focus: true });
+}
+
+/* Locations: dial & cup parallax, cup turn, cup lean */
+{
+  const range = document.getElementById("loc-range");
+  const turnRange = document.getElementById("loc-turn");
+  scrub(document.getElementById("dial-par"), range, "top bottom", "center center", { y: 26 }, { y: 0 });
+  scrub(document.getElementById("cup-par"), range, "top bottom", "center center", { y: 80 }, { y: 0 });
+  scrub(document.getElementById("cup-turn"), turnRange, "center center", "bottom top", { rotate: "0deg" }, { rotate: "38deg" });
+  const lean = document.getElementById("loc-lean");
+  const section = document.getElementById("locations");
+  const sp = new Spring({ transform: "rotateX(0deg) rotateY(0deg)" }, styler(lean));
+  section.addEventListener("pointermove", (e) => {
+    if (noHover() || REDUCED) return;
+    const b = section.getBoundingClientRect();
+    const dx = Math.max(-1, Math.min(1, ((e.clientX - b.left) / b.width) * 2 - 1));
+    const dy = Math.max(-1, Math.min(1, ((e.clientY - b.top) / b.height) * 2 - 1));
+    sp.start({ transform: `rotateX(${-dy * 14}deg) rotateY(${dx * 14}deg)` }, { config: cfg(90, 22) });
+  });
+  section.addEventListener("pointerleave", () => sp.start({ transform: "rotateX(0deg) rotateY(0deg)" }, { config: cfg(90, 22) }));
+}
+
+/* Text engine: split once the fonts are in, so the line breaks are the real ones. */
+document.fonts.ready.then(() => document.querySelectorAll("[data-text]").forEach(textEngine));
+
+/* Font failures are visible */
+const FONTS_URL = "https://fonts.googleapis.com/css2";
+const FACES = [["Newsreader", '600 16px "Newsreader"'], ["Geist", '700 16px "Geist"'], ["Space Mono", '16px "Space Mono"'], ["Allura", '16px "Allura"']];
+FACES.forEach(([, spec]) => document.fonts.load(spec).catch(() => {}));
+document.fonts.ready.then(() => setTimeout(() => {
+  for (const [fam] of FACES) {
+    const ok = [...document.fonts].some((f) => f.family.replace(/"/g, "") === fam && f.status === "loaded");
+    if (!ok) showError(`${FONTS_URL} (${fam})`, "font");
+  }
+}, 2500));
+
+/* The brand stroke, drawn here rather than shipped as an image: a cursive "m", run long. */
+const SWIRL = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2235 745" preserveAspectRatio="none"><path d="M40 650 C 230 640 380 240 560 170 C 760 95 820 470 760 600 C 900 330 1010 120 1180 130 C 1360 140 1300 520 1260 610 C 1400 330 1540 110 1720 120 C 1920 130 1880 520 1900 600 C 1960 700 2120 560 2200 380" fill="none" stroke="#fff" stroke-width="120" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+document.documentElement.style.setProperty("--swirl-url", `url("data:image/svg+xml,${encodeURIComponent(SWIRL)}")`);
+
+
+/* =====================================================================
+   HEADER
+   ===================================================================== */
+const hdr = document.getElementById("hdr");
+const burger = document.getElementById("burger");
+const panel = document.getElementById("site-menu");
+const PROBE_OFFSET = 35;
+const sections = [...document.querySelectorAll("[data-header-theme]")];
+const footer = document.getElementById("footer");
+const hdrScrim = document.getElementById("hdr-scrim");
+ticker.add(() => {
+  for (const s of sections) {
+    const b = s.getBoundingClientRect();
+    if (b.top <= PROBE_OFFSET && b.bottom > PROBE_OFFSET) {
+      const light = s.dataset.headerTheme === "light";
+      hdr.classList.toggle("light", light);
+      hdrScrim.classList.toggle("light", light);
+      break;
+    }
+  }
+  const over = footer.getBoundingClientRect().top <= PROBE_OFFSET && window.innerWidth < 640;
+  hdr.classList.toggle("over-footer", over);
+  // The band is dead weight at the very top of the hero and under the phone
+  // panel, which brings its own surface.
+  hdrScrim.classList.toggle("on", window.scrollY > 24 && !over && !panelOpen);
+}, 100);
+
+let panelOpen = false;
+function openPanel() {
+  panelOpen = true;
+  panel.hidden = false;
+  burger.setAttribute("aria-expanded", "true");
+  burger.setAttribute("aria-label", "Close menu");
+  hdr.classList.add("menu-open");
+  stopScroll();
+}
+function closePanel(focus = true) {
+  if (!panelOpen) return;
+  panelOpen = false;
+  panel.hidden = true;
+  burger.setAttribute("aria-expanded", "false");
+  burger.setAttribute("aria-label", "Open menu");
+  hdr.classList.remove("menu-open");
+  startScroll();
+  if (focus) burger.focus();
+}
+burger.addEventListener("click", () => (panelOpen ? closePanel() : openPanel()));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(); });
+
+/* =====================================================================
+   PRELOADER
+   ===================================================================== */
+const STEP = { mount: 0.1, fonts: 0.6, loaded: 1 };
+const MIN_VISIBLE = 620, MAX_WAIT = 4000, HOLD = 180;
+{
+  const pre = document.getElementById("pre");
+  if (REDUCED) {
+    pre.remove();
+    hdr.style.opacity = 1;
+  } else {
+    const t0 = performance.now();
+    stopScroll();
+    const count = document.getElementById("pre-count");
+    const ink = document.getElementById("pre-ink");
+    let level = 0, pour = 0;
+    const draw = () => {
+      count.textContent = String(Math.round(Math.max(0, level) * 100)).padStart(3, "0");
+      ink.setAttribute("y", 156 - level * (1 - pour) * (156 - 30));
+      pre.style.clipPath = `inset(${pour * 100}% 0 0 0)`;
+    };
+    const levelSp = new Spring({ v: 0 }, (v) => { level = v.v; draw(); });
+    const pourSp = new Spring({ v: 0 }, (v) => { pour = v.v; draw(); });
+    let finishing = false, gone = false;
+    const done = () => {
+      if (gone) return;
+      gone = true;
+      pre.remove();
+      store.set({ revealing: true, ready: true });
+      startScroll();
+    };
+    const finish = () => {
+      if (finishing) return;
+      finishing = true;
+      levelSp.start({ v: STEP.loaded }, {
+        config: cfg(120, 26),
+        onRest: () => {
+          const wait = Math.max(0, MIN_VISIBLE - (performance.now() - t0)) + HOLD;
+          setTimeout(() => {
+            store.set({ revealing: true });
+            pourSp.start({ v: 1 }, { config: cfg(90, 18), onRest: done });
+          }, wait);
+        },
+      });
+    };
+    levelSp.start({ v: STEP.mount }, { config: cfg(120, 26) });
+    document.fonts.ready.then(() => { if (!finishing) levelSp.start({ v: STEP.fonts }, { config: cfg(120, 26) }); });
+    if (document.readyState === "complete") finish();
+    else window.addEventListener("load", finish, { once: true });
+    setTimeout(finish, MAX_WAIT);
+    setTimeout(done, MAX_WAIT + 2000);
+  }
+}
+
+/* =====================================================================
+   OPALESCE
+   ===================================================================== */
+const CONFIG = {
+  bgColor: "#0b0a09", colorA: "#140c0b", colorB: "#2e1512", colorC: "#6a2c22", colorD: "#c79a78",
+  scale: 0.5, speed: 0.12, flow: 0.16, warp: 1.45, warpScale: 0.75, roughness: 0.45, lacunarity: 2,
+  thickness: 1.2, iridescence: 0.22, spread: 0.28, sheen: 0.05, contrast: 1.35, midpoint: 0.54,
+  glow: 0.08, sink: 0.35, grain: 0.045, grainAnim: 1, dither: 1.55, vignette: 0.26, cursor: 1,
+  pointerRadius: 0.3, pointerStrength: 1.2, parallax: 0.01, maxDpr: 1.5,
+};
+
+const VERT = `#version 300 es
+void main() {
+  vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2);
+  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+}`;
+
+const FRAG = `#version 300 es
+precision highp float;
+out vec4 fragColor;
+
+uniform vec2 iResolution;
+uniform float iTime;
+uniform vec2 iMouse;
+uniform vec2 iMouseVel;
+uniform vec2 iMouseWake;
+
+uniform vec3 uBgColor, uColorA, uColorB, uColorC, uColorD;
+uniform float uScale, uSpeed, uFlow, uWarp, uWarpScale;
+uniform float uRoughness, uLacunarity, uThickness, uIridescence, uSpread;
+uniform float uSheen, uContrast, uMidpoint, uGlow, uSink;
+uniform float uGrain, uDither, uVignette, uPointerRadius, uPointerStrength;
+uniform float uParallax;
+#define TRAIL_TAPS 6
+
+vec2 hash2(vec2 p) {
+  p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+  return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+}
+
+float snoise(vec2 p) {
+  const float K1 = 0.366025404, K2 = 0.211324865;
+  vec2 i = floor(p + (p.x + p.y) * K1);
+  vec2 a = p - i + (i.x + i.y) * K2;
+  float m = step(a.y, a.x);
+  vec2 o = vec2(m, 1.0 - m);
+  vec2 b = a - o + K2;
+  vec2 c = a - 1.0 + 2.0 * K2;
+  vec3 h = max(0.5 - vec3(dot(a, a), dot(b, b), dot(c, c)), 0.0);
+  vec3 n = h * h * h * h * vec3(dot(a, hash2(i)), dot(b, hash2(i + o)), dot(c, hash2(i + 1.0)));
+  return dot(n, vec3(70.0));
+}
+
+vec2 rot(vec2 p, float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c) * p; }
+
+float trail(vec2 uv, float radius) {
+  vec2 wob = vec2(snoise(uv * 1.7 + vec2(0.0, iTime * 0.05)),
+                  snoise(uv * 1.7 + vec2(4.3, -iTime * 0.04)));
+  uv += wob * radius * 0.22;
+  float a = 0.0, wsum = 0.0;
+  float r2 = max(1e-4, radius * radius);
+  for (int i = 0; i < TRAIL_TAPS; i++) {
+    float k = float(i) / float(TRAIL_TAPS - 1);
+    vec2 c = mix(iMouseWake, iMouse, k);
+    vec2 dd = uv - c;
+    float w = mix(0.28, 1.0, k);
+    a += w * exp(-dot(dd, dd) / r2);
+    wsum += w;
+  }
+  return a / wsum;
+}
+
+vec3 ramp4(float t) {
+  vec3 c = mix(uColorA, uColorB, smoothstep(0.00, 0.36, t));
+  c = mix(c, uColorC, smoothstep(0.32, 0.70, t));
+  c = mix(c, uColorD, smoothstep(0.66, 1.00, t));
+  return c;
+}
+
+float tone(float x) {
+  return 0.5 + 0.5 * tanh((x - uMidpoint) * uContrast * 2.2);
+}
+
+float triDither(vec2 fc) {
+  float a = fract(sin(dot(fc, vec2(12.9898, 78.233))) * 43758.5453);
+  float b = fract(sin(dot(fc + 17.0, vec2(12.9898, 78.233))) * 43758.5453);
+  return (a + b - 1.0) / 255.0;
+}
+
+#define OCT 3
+
+float fbm(vec2 p) {
+  float v = 0.0, amp = 0.5;
+  for (int i = 0; i < OCT; i++) { v += amp * snoise(p); p = p * uLacunarity + vec2(6.1, 2.7); amp *= uRoughness; }
+  return v;
+}
+
+uniform float uGrainAnim;
+float houseGrain(vec2 fc) {
+  uvec2 q = uvec2(fc) * uvec2(1597334677u, 3812015801u)
+          + uint(floor(iTime * 24.0 * uGrainAnim)) * 2654435769u;
+  uint n = q.x ^ q.y; n = n * 1664525u + 1013904223u; n ^= n >> 16u; n *= 2246822519u; n ^= n >> 13u;
+  float a = float(n & 0xffffu) / 65535.0;
+  n *= 3266489917u; n ^= n >> 16u;
+  float b = float(n & 0xffffu) / 65535.0;
+  return a + b - 1.0;
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / iResolution.y;
+  float t = iTime * uSpeed;
+
+  float tr = trail(uv, uPointerRadius);
+  vec2 p = (uv - iMouse * uParallax) * uScale;
+
+  vec2 q = vec2(fbm(p * uWarpScale + vec2(0.0, t * uFlow)),
+                fbm(p * uWarpScale + vec2(5.2, 1.3) - t * uFlow * 0.7));
+  float base = fbm(p + uWarp * q + vec2(t * 0.12, -t * 0.09)) * 0.5 + 0.5;
+
+  float thick = base * uThickness + tr * uPointerStrength;
+
+  vec3 film = 0.5 + 0.5 * cos(6.28318 * (thick * vec3(1.0, 1.0 - uSpread * 0.18, 1.0 - uSpread * 0.36)
+                                        + vec3(0.0, 0.08, 0.16)));
+
+  float f = tone(base);
+
+  vec3 col = ramp4(f);
+  col *= mix(vec3(1.0), film * 1.25, uIridescence);
+  col += uColorD * (uGlow * pow(f, 4.0) + uSheen * pow(film.g, 6.0) * 0.25);
+  col = mix(uBgColor, col, smoothstep(0.0, max(0.01, uSink), f) * 0.90 + 0.10);
+
+  col *= 1.0 - uVignette * dot(uv, uv);
+  { float hgL = clamp(dot(col, vec3(0.299, 0.587, 0.114)), 0.0, 1.0);
+    col += houseGrain(gl_FragCoord.xy) * uGrain * mix(1.0, 4.0 * hgL * (1.0 - hgL), 0.6); }
+  col += triDither(gl_FragCoord.xy) * uDither;
+
+  fragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}`;
+
+const hexToVec3 = (h) => {
+  const s = h.replace("#", "");
+  return [parseInt(s.slice(0, 2), 16) / 255, parseInt(s.slice(2, 4), 16) / 255, parseInt(s.slice(4, 6), 16) / 255];
+};
+
+const mountOpalesce = (wrapper) => {
+  const canvas = wrapper.querySelector("canvas");
+  const fadeLayer = wrapper.querySelector(".opal-cv");
+  const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false, powerPreference: "high-performance" });
+  if (!gl) return;
+
+  const reduceMotion = REDUCED;
+  let program = null, vertexShader = null, fragmentShader = null, vao = null, rafId = 0;
+  let locations = {};
+  const loc = (n) => {
+    if (!program) return null;
+    if (!(n in locations)) locations[n] = gl.getUniformLocation(program, n);
+    return locations[n];
+  };
+  const u1f = (n, v) => gl.uniform1f(loc(n), v);
+  const u2f = (n, x, y) => gl.uniform2f(loc(n), x, y);
+  const u3c = (n, hex) => { const c = hexToVec3(hex); gl.uniform3f(loc(n), c[0], c[1], c[2]); };
+
+  const compile = (type, src) => {
+    const sh = gl.createShader(type);
+    if (!sh) throw new Error("createShader failed");
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh) ?? "shader compile failed");
+    return sh;
+  };
+
+  let dpr = 1;
+  const resize = () => {
+    dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDpr);
+    const w = Math.max(1, Math.round(canvas.clientWidth * dpr));
+    const h = Math.max(1, Math.round(canvas.clientHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+    gl.useProgram(program);
+    u2f("iResolution", w, h);
+  };
+
+  const applyConfig = () => {
+    gl.useProgram(program);
+    u3c("uBgColor", CONFIG.bgColor); u3c("uColorA", CONFIG.colorA); u3c("uColorB", CONFIG.colorB);
+    u3c("uColorC", CONFIG.colorC); u3c("uColorD", CONFIG.colorD);
+    u1f("uScale", CONFIG.scale); u1f("uSpeed", CONFIG.speed); u1f("uFlow", CONFIG.flow);
+    u1f("uWarp", CONFIG.warp); u1f("uWarpScale", CONFIG.warpScale); u1f("uRoughness", CONFIG.roughness);
+    u1f("uLacunarity", CONFIG.lacunarity); u1f("uThickness", CONFIG.thickness); u1f("uIridescence", CONFIG.iridescence);
+    u1f("uSpread", CONFIG.spread); u1f("uSheen", CONFIG.sheen); u1f("uContrast", CONFIG.contrast);
+    u1f("uMidpoint", CONFIG.midpoint); u1f("uGlow", CONFIG.glow); u1f("uSink", CONFIG.sink);
+    u1f("uGrain", CONFIG.grain); u1f("uGrainAnim", CONFIG.grainAnim); u1f("uDither", CONFIG.dither);
+    u1f("uVignette", CONFIG.vignette); u1f("uPointerRadius", CONFIG.pointerRadius);
+    u1f("uPointerStrength", CONFIG.pointerStrength); u1f("uParallax", CONFIG.parallax);
+    resize();
+  };
+
+  const build = () => {
+    if (program) gl.deleteProgram(program);
+    if (vertexShader) gl.deleteShader(vertexShader);
+    if (fragmentShader) gl.deleteShader(fragmentShader);
+    if (vao) gl.deleteVertexArray(vao);
+    locations = {};
+    vertexShader = compile(gl.VERTEX_SHADER, VERT);
+    fragmentShader = compile(gl.FRAGMENT_SHADER, FRAG);
+    program = gl.createProgram();
+    if (!program) throw new Error("createProgram failed");
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program) ?? "link failed");
+    gl.useProgram(program);
+    vao = gl.createVertexArray();
+    gl.bindVertexArray(vao);
+  };
+
+  const draw = () => gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+  const mouse = { x: 0, y: 0, ax: 0, ay: 0, wx: 0, wy: 0, tx: 0, ty: 0 };
+  const aim = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const a = rect.width / rect.height;
+    mouse.tx = ((e.clientX - rect.left) / rect.width - 0.5) * a;
+    mouse.ty = 0.5 - (e.clientY - rect.top) / rect.height;
+  };
+
+  let visible = true;
+  const io = new IntersectionObserver((es) => { visible = es[0].isIntersecting; }, { threshold: 0 });
+  io.observe(canvas);
+
+  const t0 = performance.now();
+  let prevT = t0;
+  let clock = 0;
+
+  const frame = (now) => {
+    rafId = requestAnimationFrame(frame);
+    const raw = now - prevT;
+    prevT = now;
+    if (!visible || document.hidden) return;
+    const ms = raw > 50 ? 50 : raw < 4.167 ? 4.167 : raw;
+    const s = ms > 36.7 ? 2.2 : ms * 0.06;
+    clock += ms * 0.001;
+
+    const kLead = 0.105 * s, kBody = 0.043 * s, kWake = 0.017 * s;
+    mouse.ax += (mouse.tx - mouse.ax) * kLead;
+    mouse.ay += (mouse.ty - mouse.ay) * kLead;
+    mouse.x += (mouse.ax - mouse.x) * kBody;
+    mouse.y += (mouse.ay - mouse.y) * kBody;
+    mouse.wx += (mouse.x - mouse.wx) * kWake;
+    mouse.wy += (mouse.y - mouse.wy) * kWake;
+
+    u1f("iTime", clock);
+    if (mouse.rest === undefined) mouse.rest = { x: mouse.tx, y: mouse.ty };
+    if (!CONFIG.cursor) { mouse.tx = mouse.rest.x; mouse.ty = mouse.rest.y; }
+    u2f("iMouse", mouse.x, mouse.y);
+    u2f("iMouseVel", mouse.ax - mouse.x, mouse.ay - mouse.y);
+    u2f("iMouseWake", mouse.wx, mouse.wy);
+    draw();
+  };
+
+  let resizeQueued = false;
+  const ro = new ResizeObserver(() => {
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(() => {
+      resizeQueued = false;
+      resize();
+      if (reduceMotion) draw();
+    });
+  });
+  ro.observe(canvas);
+
+  canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); cancelAnimationFrame(rafId); });
+  canvas.addEventListener("webglcontextrestored", () => {
+    build(); applyConfig(); draw();
+    if (!reduceMotion) rafId = requestAnimationFrame(frame);
+  });
+
+  if (CONFIG.cursor) {
+    window.addEventListener("pointermove", aim, { passive: true });
+    window.addEventListener("pointerdown", aim, { passive: true });
+  }
+
+  try {
+    build();
+    applyConfig();
+    draw();
+  } catch (err) {
+    console.error("opalesce", err);
+    return;
+  }
+  // The first frame has landed; the canvas fades in once the page is open.
+  const reveal = () => { if (store.ready) fadeLayer.style.opacity = 1; };
+  store.subscribe(reveal);
+  reveal();
+  if (!reduceMotion) rafId = requestAnimationFrame(frame);
+};
+document.querySelectorAll("[data-opal]").forEach(mountOpalesce);
+
+/* =====================================================================
+   HERO MODEL
+   ===================================================================== */
+const savedHeroLayout = { position: [0.02, -0.07, 0], rotation: [0, 0, 0], scale: 0.84 };
+
+/* ---------------------------------------------------------------------
+   PROCEDURAL BOOKS
+   Every book is five boxes: two boards, a spine and a page block, with
+   its cover, spine and page edges painted on canvas. The front board
+   hangs off a hinge at the spine, so a book can stand half open.
+   --------------------------------------------------------------------- */
+const PAPER = "#efe8da";
+const fontsForCanvas = Promise.all([
+  document.fonts.load('600 64px "Newsreader"'),
+  document.fonts.load('italic 600 64px "Newsreader"'),
+  document.fonts.load('32px "Space Mono"'),
+]).catch(() => {});
+
+const canvasTex = (w, h, draw) => {
+  const c = document.createElement("canvas");
+  c.width = w;
+  c.height = h;
+  draw(c.getContext("2d"), w, h);
+  const t = new CanvasTexture(c);
+  t.colorSpace = SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+};
+const weave = (g, W, H) => {
+  for (let y = 0; y < H; y += 3) { g.fillStyle = "rgba(255,255,255,0.028)"; g.fillRect(0, y, W, 1); }
+  for (let x = 0; x < W; x += 3) { g.fillStyle = "rgba(0,0,0,0.035)"; g.fillRect(x, 0, 1, H); }
+};
+/* Page edges: the fore edge's stripes run up the book, the head's and tail's across it. */
+let EDGES = null;
+const edgeTextures = () => (EDGES ??= [true, false].map((across) =>
+  canvasTex(across ? 256 : 16, across ? 16 : 256, (g, W, H) => {
+    g.fillStyle = PAPER;
+    g.fillRect(0, 0, W, H);
+    const n = across ? W : H;
+    for (let i = 0; i < n; i += 2) {
+      g.fillStyle = `rgba(110,92,70,${0.04 + Math.random() * 0.14})`;
+      if (across) g.fillRect(i, 0, 1, H); else g.fillRect(0, i, W, 1);
+    }
+  })));
+
+const coverTex = (o) => canvasTex(512, Math.round((512 * o.h) / o.w), (g, W, H) => {
+  g.fillStyle = o.color; g.fillRect(0, 0, W, H); weave(g, W, H);
+  const hinge = g.createLinearGradient(0, 0, W * 0.12, 0);
+  hinge.addColorStop(0, "rgba(0,0,0,0.32)"); hinge.addColorStop(0.3, "rgba(255,255,255,0.07)");
+  hinge.addColorStop(0.55, "rgba(0,0,0,0.14)"); hinge.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = hinge; g.fillRect(0, 0, W * 0.12, H);
+  const cx = W * 0.54;
+  g.fillStyle = o.ink; g.strokeStyle = o.ink; g.textAlign = "center"; g.textBaseline = "alphabetic";
+  g.font = `400 ${W * 0.036}px "Space Mono"`; g.letterSpacing = `${W * 0.008}px`;
+  g.fillText(o.kicker, cx, H * 0.13);
+  g.letterSpacing = "0px"; g.font = `600 ${W * 0.13}px "Newsreader"`;
+  const rows = o.title.toUpperCase().split("\n");
+  const lh = W * 0.125;
+  const top = H * 0.44 - ((rows.length - 1) * lh) / 2;
+  rows.forEach((l, i) => g.fillText(l, cx, top + i * lh));
+  const ry = top + (rows.length - 1) * lh + W * 0.07;
+  g.globalAlpha = 0.55; g.fillRect(cx - W * 0.1, ry, W * 0.2, 2); g.globalAlpha = 1;
+  g.font = `400 ${W * 0.036}px "Space Mono"`; g.letterSpacing = `${W * 0.006}px`;
+  g.fillText(o.author, cx, ry + W * 0.085); g.letterSpacing = "0px";
+  g.globalAlpha = 0.8; g.lineWidth = 2;
+  g.beginPath(); g.arc(cx, H * 0.87, W * 0.05, 0, Math.PI * 2); g.stroke();
+  g.font = `italic 600 ${W * 0.065}px "Newsreader"`; g.textBaseline = "middle";
+  g.fillText("m", cx, H * 0.865); g.globalAlpha = 1;
+});
+
+const spineTex = (o) => canvasTex(128, Math.round((128 * o.h) / o.d), (g, W, H) => {
+  g.fillStyle = o.color; g.fillRect(0, 0, W, H); weave(g, W, H);
+  const shade = g.createLinearGradient(0, 0, W, 0);
+  shade.addColorStop(0, "rgba(0,0,0,0.28)"); shade.addColorStop(0.5, "rgba(255,255,255,0.07)"); shade.addColorStop(1, "rgba(0,0,0,0.28)");
+  g.fillStyle = shade; g.fillRect(0, 0, W, H);
+  g.fillStyle = o.ink; g.globalAlpha = 0.7;
+  g.fillRect(0, H * 0.05, W, 3); g.fillRect(0, H * 0.95 - 3, W, 3);
+  g.globalAlpha = 1;
+  g.save(); g.translate(W / 2, H / 2); g.rotate(Math.PI / 2);
+  g.textAlign = "center"; g.textBaseline = "middle";
+  g.font = `600 ${W * 0.3}px "Newsreader"`;
+  g.fillText(o.title.replace("\n", " ").toUpperCase(), -H * 0.1, 0);
+  g.font = `400 ${W * 0.18}px "Space Mono"`;
+  g.fillText(o.author, H * 0.3, 0);
+  g.restore();
+});
+
+const makeBook = (o) => {
+  const { w, h, d, open = 0 } = o;
+  const t = 0.028;
+  const [edgeAcross, edgeAlong] = edgeTextures();
+  const cloth = new MeshStandardMaterial({ color: new Color(o.color), roughness: 0.8 });
+  const paper = new MeshStandardMaterial({ color: new Color(PAPER), roughness: 0.92 });
+  const endpaper = new MeshStandardMaterial({ color: new Color(o.endpaper || "#e6dcc8"), roughness: 0.9 });
+  const cover = new MeshStandardMaterial({ map: coverTex(o), roughness: 0.76 });
+  const spineM = new MeshStandardMaterial({ map: spineTex(o), roughness: 0.76 });
+  const fore = new MeshStandardMaterial({ map: edgeAcross, roughness: 0.95 });
+  const head = new MeshStandardMaterial({ map: edgeAlong, roughness: 0.95 });
+  // BoxGeometry faces: +x, -x, +y, -y, +z, -z. Spine on -x, fore edge on +x, front on +z.
+  const book = new Group();
+  const pw = w - t - 0.04, ph = h - 0.06, pd = d - 2 * t;
+  const pages = new Mesh(new BoxGeometry(pw, ph, pd), [fore, paper, head, head, paper, paper]);
+  pages.position.x = -w / 2 + t + pw / 2;
+  const back = new Mesh(new BoxGeometry(w, h, t), [cloth, cloth, cloth, cloth, endpaper, cloth]);
+  back.position.z = -d / 2 + t / 2;
+  const spine = new Mesh(new BoxGeometry(t, h, d), [cloth, spineM, cloth, cloth, cloth, cloth]);
+  spine.position.x = -w / 2 + t / 2;
+  const front = new Mesh(new BoxGeometry(w, h, t), [cloth, cloth, cloth, cloth, cover, endpaper]);
+  front.position.x = w / 2;
+  const hinge = new Group();
+  hinge.position.set(-w / 2, 0, d / 2 - t / 2);
+  hinge.rotation.y = -open;
+  hinge.add(front);
+  book.add(pages, back, spine, hinge);
+  return book;
+};
+
+/* The hero: three books lying spine-out in a stack, and a hardcover standing
+   beside them, turned to show its spine. Two pieces, so each lifts and leans
+   on its own. */
+const buildHeroProduct = () => {
+  const root = new Group();
+  const stack = new Group();
+  const specs = [
+    { w: 1.62, h: 2.34, d: 0.4, color: "#6b2a22", ink: "#f1e4d0", kicker: "A NOVEL", title: "The Salt\nRoad", author: "ANNA VEYRA", rot: 0, dx: 0 },
+    { w: 1.48, h: 2.12, d: 0.3, color: "#2f3d35", ink: "#e9e2cf", kicker: "ESSAYS", title: "Quiet\nHours", author: "T. OKAFOR", rot: 0.07, dx: 0.07 },
+    { w: 1.38, h: 1.92, d: 0.26, color: "#c29a52", ink: "#231a10", kicker: "POEMS", title: "Small\nWeather", author: "ESME LORING", rot: -0.09, dx: -0.05 },
+  ];
+  let y = 0;
+  for (const s of specs) {
+    const holder = new Group();
+    holder.rotation.y = Math.PI / 2 + s.rot;
+    const book = makeBook(s);
+    book.rotation.x = -Math.PI / 2;
+    holder.add(book);
+    holder.position.set(s.dx, y + s.d / 2, 0);
+    y += s.d;
+    stack.add(holder);
+  }
+  stack.position.set(-0.4, 0, 0.35);
+  const novel = makeBook({ w: 1.5, h: 2.5, d: 0.36, color: "#1f2a3a", ink: "#e8dcc4", kicker: "A FIELD GUIDE", title: "Field Notes\nVol. II", author: "M. ALDER" });
+  novel.position.set(0.72, 1.25, -0.55);
+  novel.rotation.set(0, 0.5, -0.05);
+  root.add(stack, novel);
+  return root;
+};
+
+/* A loose printed page, bowed a little, for the philosophy block's air. */
+const pageTex = () => canvasTex(288, 400, (g, W, H) => {
+  g.fillStyle = PAPER; g.fillRect(0, 0, W, H);
+  g.fillStyle = "rgba(60,48,36,0.55)";
+  let y = 48;
+  g.fillRect(40, y, 120, 7);
+  y += 30;
+  while (y < H - 50) {
+    g.fillRect(40, y, y > H - 80 ? 90 : 190 + Math.random() * 18, 4);
+    y += Math.random() < 0.12 ? 24 : 14;
+  }
+  g.fillRect(W / 2 - 6, H - 28, 12, 4);
+});
+const pageGeometry = () => {
+  const geo = new PlaneGeometry(0.72, 1, 10, 1);
+  const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) pos.setZ(i, 0.07 * Math.sin((pos.getX(i) / 0.72 + 0.5) * Math.PI) - 0.035);
+  geo.computeVertexNormals();
+  return geo;
+};
+
+const FRAME = { left: 0.2697, right: 0.8439, top: 0.0502, bottom: 0.7695 };
+const ASSET = { width: 1153, height: 976 };
+const COVER_FROM = 1024;
+const PLACEMENT = [
+  { from: 1024, to: 1280, scale: 0.928, x: 0.01, y: 0 },
+  { from: 768, to: 1024, scale: 1.02, x: 0.0454, y: 0.05 },
+  { from: 0, to: 640, scale: 0.95, x: -0.045, y: 0.0163 },
+];
+const PRODUCT = { left: 0, right: 1, top: 0, bottom: 1 };
+const PRODUCT_DEPTH = 0.5;
+const FIT_NUDGE_Y = 0;
+const FRAME_MARGIN = 10;
+const LIFT = {
+  novel: { by: 0.06, turn: 0.2, roll: -0.05 },
+  stack: { by: 0.045, turn: -0.12, roll: 0.035 },
+  stiffness: 0.004,
+  damping: 0.88,
+  rest: 0.0005,
+};
+const SCROLL_DROP = 0.22;
+const SCROLL_EASE = 0.14;
+const BLEED = 0.22;
+const INTRO = { rise: 0.35, turn: 0.25, roll: -0.05, duration: 1400, delay: 0 };
+const LEAN = { novel: { by: 1.35, ease: 0.15 }, stack: { by: 0.8, ease: 0.06 } };
+const DEG = Math.PI / 180;
+const FIELD_OF_VIEW = 8;
+const POINTER = {
+  lean: { yaw: 0.2, pitch: 0.11 },
+  dragPerPixel: 0.009,
+  yawLimit: 0.6,
+  pitchLimit: 0.3,
+  friction: 0.94,
+  restSpin: 0.0004,
+  ease: 0.16,
+  restAngle: 0.0002,
+};
+const KEYS = [
+  { position: [-4.2, 3, 1.4], intensity: 4 },
+  { position: [3.9, 2.5, 1.3], intensity: 1 },
+  { position: [0.6, 3, -3.2], intensity: 0.6 },
+];
+const STUDIO = [
+  { size: [7, 7], position: [-2.6, 2.4, 2.6], emit: 11 },
+  { size: [5, 5], position: [3.4, 0.5, 2.2], emit: 2.4 },
+  { size: [6, 3], position: [0.6, 3, -3], emit: 3.2 },
+  { size: [6, 6], position: [0, -3, 1.6], emit: 0.5 },
+];
+const LIGHT_COLOUR = 0xfcfff9;
+const ENVIRONMENT = 0.045;
+const MIN_PIXEL_RATIO = 1.5;
+const NORMAL_STRENGTH = 1;
+const clampAbs = (value, limit) => Math.max(-limit, Math.min(limit, value));
+
+const mountHeroModel = ({ mount, surface, src, onPiece, onLoaded }) => {
+  const hero = mount.closest("section");
+  const canvas = document.createElement("canvas");
+  canvas.style.position = "absolute";
+  canvas.style.left = `${-BLEED * 100}%`;
+  canvas.style.top = `${-BLEED * 100}%`;
+  canvas.style.width = `${(1 + 2 * BLEED) * 100}%`;
+  canvas.style.height = `${(1 + 2 * BLEED) * 100}%`;
+  canvas.style.display = "block";
+  canvas.style.maxWidth = "none";
+  mount.appendChild(canvas);
+
+  let renderer;
+  try {
+    renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance", preserveDrawingBuffer: true });
+  } catch {
+    canvas.remove();
+    return;
+  }
+  renderer.setClearAlpha(0);
+  renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMapping = NeutralToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  const scene = new Scene();
+  const camera = new PerspectiveCamera(FIELD_OF_VIEW, 1, 0.1, 100);
+
+  const studio = new Scene();
+  studio.background = new Color(0x000000);
+  for (const { size, position, emit } of STUDIO) {
+    const panel = new Mesh(new PlaneGeometry(size[0], size[1]), new MeshBasicMaterial({ color: new Color(emit, emit, emit) }));
+    panel.position.set(position[0], position[1], position[2]);
+    panel.lookAt(0, 0, 0);
+    studio.add(panel);
+  }
+  const pmrem = new PMREMGenerator(renderer);
+  const environment = pmrem.fromScene(studio, 0.04);
+  scene.environment = environment.texture;
+  scene.environmentIntensity = ENVIRONMENT;
+  studio.traverse((node) => { node.geometry?.dispose(); node.material?.dispose(); });
+
+  for (const { position, intensity } of KEYS) {
+    const light = new DirectionalLight(LIGHT_COLOUR, intensity);
+    light.position.set(position[0], position[1], position[2]);
+    scene.add(light);
+  }
+
+  const stage = new Group();
+  const drift = new Group();
+  scene.add(drift);
+  drift.add(stage);
+  const intro = new Group();
+  stage.add(intro);
+  const pivot = new Group();
+  intro.add(pivot);
+
+  let model = null;
+  let pieces = [];
+  let hovered = null;
+  const layout = savedHeroLayout;
+  let plane = null;
+  let solid = null;
+
+  const drag = { yaw: 0, pitch: 0 };
+  const lean = { yaw: 0, pitch: 0 };
+  const shown = { yaw: 0, pitch: 0 };
+  let spin = 0;
+  let productHeight = 0;
+  let dirty = true;
+  let onScreen = true;
+  let reduced = REDUCED;
+
+  let introStart = null;
+  let introDone = reduced;
+  const startIntro = () => {
+    if (introStart !== null) return;
+    introStart = performance.now() + INTRO.delay;
+    dirty = true;
+  };
+  if (store.revealing) startIntro();
+  store.subscribe((state) => { if (state.revealing) startIntro(); });
+
+  const project = (box, width, height) => {
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    const corner = new Vector3();
+    pivot.updateMatrix();
+    for (let i = 0; i < 8; i++) {
+      corner.set(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z)
+        .applyMatrix4(pivot.matrix)
+        .project(camera);
+      x0 = Math.min(x0, ((corner.x + 1) / 2) * width);
+      x1 = Math.max(x1, ((corner.x + 1) / 2) * width);
+      y0 = Math.min(y0, ((1 - corner.y) / 2) * height);
+      y1 = Math.max(y1, ((1 - corner.y) / 2) * height);
+    }
+    return { x0, y0, x1, y1 };
+  };
+
+  let target = null;
+
+  const reframe = () => {
+    if (!target || !plane || !solid) return;
+    camera.clearViewOffset();
+    camera.updateProjectionMatrix();
+    const shot = project(plane, target.width, target.height);
+    const reach = project(solid, target.width, target.height);
+    const edges = target;
+    const hold = (want, low, high) => {
+      const floor = high - edges.right;
+      const ceiling = low - edges.left;
+      return floor > ceiling ? (floor + ceiling) / 2 : Math.min(Math.max(want, floor), ceiling);
+    };
+    camera.setViewOffset(
+      target.width, target.height,
+      hold((shot.x0 + shot.x1) / 2 - target.x, reach.x0, reach.x1),
+      (shot.y0 + shot.y1) / 2 - target.y,
+      target.width, target.height,
+    );
+    camera.updateProjectionMatrix();
+  };
+
+  const fit = () => {
+    const width = mount.clientWidth;
+    const height = mount.clientHeight;
+    if (!width || !height || !model || !plane) return;
+    const padX = width * BLEED;
+    const padY = height * BLEED;
+    const canvasWidth = width + 2 * padX;
+    const canvasHeight = height + 2 * padY;
+    const onPage = mount.getBoundingClientRect();
+    const canvasLeft = onPage.left - padX;
+
+    const cover = window.innerWidth >= COVER_FROM;
+    const lay = cover
+      ? Math.max(width / ASSET.width, height / ASSET.height)
+      : Math.min(width / ASSET.width, height / ASSET.height);
+    const laidW = ASSET.width * lay;
+    const laidH = ASSET.height * lay;
+    const offsetX = (width - laidW) / 2;
+    const offsetY = cover ? (height - laidH) / 2 : height - laidH;
+    const rect = {
+      left: (offsetX + FRAME.left * laidW) / width,
+      right: (offsetX + FRAME.right * laidW) / width,
+      top: (offsetY + FRAME.top * laidH) / height,
+      bottom: (offsetY + FRAME.bottom * laidH) / height,
+    };
+    const place = PLACEMENT.find((band) => window.innerWidth >= band.from && window.innerWidth < band.to);
+    if (place) {
+      const tall = rect.bottom - rect.top;
+      const half = (rect.right - rect.left) / 2;
+      const middle = (rect.left + rect.right) / 2 + place.x;
+      rect.top = rect.bottom - tall * place.scale + place.y;
+      rect.bottom += place.y;
+      rect.left = middle - half;
+      rect.right = middle + half;
+    }
+
+    camera.aspect = canvasWidth / canvasHeight;
+    const targetTop = padY + height * rect.top;
+    const targetHeight = height * (rect.bottom - rect.top);
+
+    const turned = pivot.rotation.clone();
+    pivot.rotation.set(0, 0, 0);
+
+    let distance = plane.getSize(new Vector3()).y / (rect.bottom - rect.top) / 2 / Math.tan((FIELD_OF_VIEW * Math.PI) / 360);
+    for (let pass = 0; pass < 4; pass++) {
+      camera.near = distance / 20;
+      camera.far = distance * 4;
+      camera.position.set(0, 0, distance);
+      camera.lookAt(0, 0, 0);
+      camera.clearViewOffset();
+      camera.updateProjectionMatrix();
+      camera.updateMatrixWorld();
+      const shot = project(plane, canvasWidth, canvasHeight);
+      distance *= (shot.y1 - shot.y0) / targetHeight;
+    }
+
+    target = {
+      x: padX + width * ((rect.left + rect.right) / 2),
+      y: targetTop + targetHeight * (0.5 + FIT_NUDGE_Y),
+      width: canvasWidth,
+      height: canvasHeight,
+      left: FRAME_MARGIN - canvasLeft,
+      right: window.innerWidth - canvasLeft - FRAME_MARGIN,
+    };
+
+    pivot.rotation.copy(turned);
+    reframe();
+    renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio, MIN_PIXEL_RATIO), 2));
+    renderer.setSize(canvasWidth, canvasHeight, false);
+    dirty = true;
+  };
+
+  const frame = () => {
+    if (!model || !onScreen || document.hidden) return;
+
+    if (hero && !reduced && productHeight) {
+      const box = hero.getBoundingClientRect();
+      const away = Math.min(1, Math.max(0, -box.top / box.height));
+      const gap = -away * SCROLL_DROP * productHeight - drift.position.y;
+      if (Math.abs(gap) > productHeight * 1e-4) {
+        drift.position.y += gap * SCROLL_EASE;
+        dirty = true;
+      }
+    }
+
+    if (!introDone && productHeight) {
+      const t = introStart === null ? 0 : Math.min(1, Math.max(0, (performance.now() - introStart) / INTRO.duration));
+      const left = Math.pow(1 - t, 3);
+      intro.position.y = -left * INTRO.rise * productHeight;
+      intro.rotation.set(0, left * INTRO.turn, left * INTRO.roll);
+      introDone = t >= 1;
+      dirty = true;
+    }
+
+    if (spin) {
+      drag.yaw = clampAbs(drag.yaw + spin, POINTER.yawLimit);
+      spin = Math.abs(spin) > POINTER.restSpin ? spin * POINTER.friction : 0;
+      dirty = true;
+    }
+
+    for (const piece of pieces) {
+      const liftGap = (hovered === piece ? 1 : 0) - piece.lift;
+      const yawGap = lean.yaw * piece.leanBy - piece.lean.yaw;
+      const pitchGap = lean.pitch * piece.leanBy - piece.lean.pitch;
+      if (
+        Math.abs(liftGap) < LIFT.rest &&
+        Math.abs(piece.speed) < LIFT.rest &&
+        Math.abs(yawGap) < POINTER.restAngle &&
+        Math.abs(pitchGap) < POINTER.restAngle
+      ) continue;
+      piece.speed = (piece.speed + liftGap * LIFT.stiffness) * LIFT.damping;
+      piece.lift += piece.speed;
+      piece.lean.yaw += yawGap * piece.leanEase;
+      piece.lean.pitch += pitchGap * piece.leanEase;
+      piece.node.position.y = piece.base + piece.lift * piece.by * productHeight;
+      piece.node.rotation.set(piece.lean.pitch, piece.lean.yaw + piece.lift * piece.turn, piece.lift * piece.roll);
+      dirty = true;
+    }
+
+    const yaw = clampAbs(drag.yaw, POINTER.yawLimit);
+    const pitch = clampAbs(drag.pitch, POINTER.pitchLimit);
+    const dYaw = yaw - shown.yaw;
+    const dPitch = pitch - shown.pitch;
+    if (Math.abs(dYaw) > POINTER.restAngle || Math.abs(dPitch) > POINTER.restAngle) {
+      shown.yaw += dYaw * POINTER.ease;
+      shown.pitch += dPitch * POINTER.ease;
+      dirty = true;
+    }
+
+    if (!dirty) return;
+    pivot.rotation.set(shown.pitch, shown.yaw, 0);
+    reframe();
+    renderer.render(scene, camera);
+    dirty = false;
+  };
+  ticker.add(frame, 0);
+
+  const measure = () => {
+    if (!model) return;
+    model.removeFromParent();
+    model.position.set(0, 0, 0);
+    model.rotation.set(0, 0, 0);
+    model.updateWorldMatrix(true, true);
+    const box = new Box3().setFromObject(model);
+    const span = box.getSize(new Vector3());
+    const centre = box.getCenter(new Vector3());
+
+    const sized = model.children.map((node) => ({ node, height: new Box3().setFromObject(node).getSize(new Vector3()).y }));
+    const tallest = Math.max(...sized.map((piece) => piece.height));
+    pieces = sized.map(({ node, height }) => {
+      const role = height === tallest ? "novel" : "stack";
+      return {
+        node, role, base: node.position.y, ...LIFT[role], lift: 0, speed: 0,
+        leanBy: LEAN[role].by, leanEase: LEAN[role].ease, lean: { yaw: 0, pitch: 0 },
+      };
+    });
+    hovered = null;
+
+    model.position.set(
+      -(box.min.x + span.x * ((PRODUCT.left + PRODUCT.right) / 2)),
+      -(box.max.y - span.y * ((PRODUCT.top + PRODUCT.bottom) / 2)),
+      -centre.z,
+    );
+    pivot.add(model);
+    pivot.updateWorldMatrix(true, true);
+
+    const world = new Box3().setFromObject(pivot);
+    const reach = world.getSize(new Vector3());
+    const back = world.min.z;
+    const front = world.min.z + reach.z * PRODUCT_DEPTH;
+    const left = world.min.x + reach.x * PRODUCT.left;
+    const right = world.min.x + reach.x * PRODUCT.right;
+    const bottom = world.max.y - reach.y * PRODUCT.bottom;
+    const top = world.max.y - reach.y * PRODUCT.top;
+
+    plane = new Box3(new Vector3(left, bottom, front), new Vector3(right, top, front));
+    productHeight = top - bottom;
+    solid = new Box3(new Vector3(left, bottom, back), new Vector3(right, top, world.max.z));
+    fit();
+  };
+
+  const applyStage = () => {
+    const [x, y, z] = layout.position;
+    const [rx, ry, rz] = layout.rotation;
+    stage.position.set(x * productHeight, y * productHeight, z * productHeight);
+    stage.rotation.set(rx * DEG, ry * DEG, rz * DEG);
+    stage.scale.setScalar(layout.scale);
+    dirty = true;
+  };
+
+  const raycaster = new Raycaster();
+  const ndc = new Vector2();
+  const pick = (event) => {
+    if (!model) return;
+    const box = canvas.getBoundingClientRect();
+    ndc.set(((event.clientX - box.left) / box.width) * 2 - 1, -((event.clientY - box.top) / box.height) * 2 + 1);
+    raycaster.setFromCamera(ndc, camera);
+    let node = raycaster.intersectObject(model, true)[0]?.object ?? null;
+    while (node && node.parent !== model) node = node.parent;
+    const next = pieces.find((piece) => piece.node === node) ?? null;
+    if (next !== hovered) {
+      hovered = next;
+      dirty = true;
+      onPiece?.(next?.role ?? null);
+    }
+  };
+
+  fontsForCanvas.then(() => {
+    model = buildHeroProduct();
+    const loaded = model;
+    // Every piece is re-hung from a plain holder at its own centre, so the
+    // hover lift and the cursor lean turn each piece about its own middle.
+    loaded.updateWorldMatrix(true, true);
+    for (const node of [...loaded.children]) {
+      const centre = new Box3().setFromObject(node).getCenter(new Vector3());
+      const holder = new Group();
+      holder.name = node.name;
+      holder.position.copy(centre);
+      loaded.add(holder);
+      node.position.sub(centre);
+      holder.add(node);
+    }
+    measure();
+    applyStage();
+    onLoaded?.();
+  }).catch((error) => {
+    console.error("hero model", error);
+    showError("procedural hero scene", "hero model");
+  });
+
+
+  new ResizeObserver(fit).observe(mount);
+  new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; }).observe(mount);
+  const onVisible = () => { dirty = true; };
+  document.addEventListener("visibilitychange", onVisible);
+  canvas.addEventListener("webglcontextrestored", onVisible);
+  window.matchMedia(REDUCED_MOTION_QUERY).addEventListener("change", (event) => {
+    reduced = event.matches;
+    if (reduced) { lean.yaw = 0; lean.pitch = 0; spin = 0; }
+  });
+
+  const handle = surface;
+  let dragging = false, lastX = 0, lastY = 0;
+  const onDown = (event) => {
+    dragging = true;
+    spin = 0;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    try { handle?.setPointerCapture(event.pointerId); } catch {}
+  };
+  const onDrag = (event) => {
+    if (!dragging) return;
+    const dx = event.clientX - lastX;
+    const dy = event.clientY - lastY;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    drag.yaw = clampAbs(drag.yaw + dx * POINTER.dragPerPixel, POINTER.yawLimit);
+    drag.pitch = clampAbs(drag.pitch + dy * POINTER.dragPerPixel, POINTER.pitchLimit);
+    spin = reduced ? 0 : dx * POINTER.dragPerPixel;
+    dirty = true;
+  };
+  const onUp = (event) => {
+    dragging = false;
+    try { handle?.releasePointerCapture(event.pointerId); } catch {}
+  };
+  handle?.addEventListener("mouseenter", (e) => pick(e));
+  handle?.addEventListener("mouseleave", () => { hovered = null; dirty = true; onPiece?.(null); });
+  handle?.addEventListener("pointerdown", onDown);
+  handle?.addEventListener("pointermove", (event) => { onDrag(event); if (!dragging) pick(event); });
+  handle?.addEventListener("pointerup", onUp);
+  handle?.addEventListener("pointercancel", onUp);
+
+  const section = mount.closest("section");
+  section?.addEventListener("pointermove", (event) => {
+    if (dragging || reduced) return;
+    const box = section.getBoundingClientRect();
+    const nx = (event.clientX - (box.left + box.width / 2)) / (box.width / 2);
+    const ny = (event.clientY - (box.top + box.height / 2)) / (box.height / 2);
+    lean.yaw = clampAbs(nx, 1) * POINTER.lean.yaw;
+    lean.pitch = -clampAbs(ny, 1) * POINTER.lean.pitch;
+    dirty = true;
+  });
+  section?.addEventListener("pointerleave", () => { lean.yaw = 0; lean.pitch = 0; dirty = true; });
+};
+
+/* The product card: the last piece the pointer was on, shown while the handle is hovered. */
+{
+  const card = document.getElementById("hcard");
+  const handle = document.getElementById("hero-handle");
+  const boxes = [...card.querySelectorAll("[data-piece]")];
+  let loaded = false;
+  const sp = new Spring({ opacity: 0, y: 18 }, styler(card));
+  handle.addEventListener("mouseenter", () => { if (!noHover() && loaded) sp.start({ opacity: 1, y: 0 }, { config: cfg(210, 26) }); });
+  handle.addEventListener("mouseleave", () => sp.start({ opacity: 0, y: 18 }, { config: cfg(210, 26) }));
+  mountHeroModel({
+    mount: document.getElementById("hero-mount"),
+    surface: handle,
+    src: MODEL_SRC,
+    onLoaded: () => { loaded = true; },
+    onPiece: (role) => { if (role) for (const b of boxes) b.hidden = b.dataset.piece !== role; },
+  });
+}
+
+/* =====================================================================
+   BEAN FIELD
+   ===================================================================== */
+const FIELD = {
+  step: 1 / 120, maxSteps: 8, wander: 0.16, wanderRate: { min: 0.12, max: 0.34 }, drag: 0.42, spinDrag: 0.3,
+  spinWander: 0.22, wall: 4.5, bleed: 0.6, restitution: 0.62, friction: 0.35, pointerReach: 0.16,
+  pointerPush: 26, pointerWake: 1.8, pointerSpin: 3.2, maxSpeed: 7, maxSpin: 6, radius: 0.36,
+  vortexCore: 3, vortexInward: 0.22, vortexSpin: 0.35,
+};
+const _d = new Vector3(), _n = new Vector3(), _t = new Vector3(), _p = new Vector3(), _w = new Vector3();
+const _a = new Vector3(), _ri = new Vector3(), _rj = new Vector3(), _rel = new Vector3(), _seg = new Vector3();
+const _q = new Quaternion();
+const halfHeight = (view, z) => (view.distance - z) * view.tanHalf;
+const randomUnit = (target, random) => {
+  const z = random() * 2 - 1;
+  const angle = random() * Math.PI * 2;
+  const r = Math.sqrt(1 - z * z);
+  return target.set(r * Math.cos(angle), r * Math.sin(angle), z);
+};
+const randomRotation = (target, random) => {
+  const u1 = random(), u2 = random() * Math.PI * 2, u3 = random() * Math.PI * 2;
+  const a = Math.sqrt(1 - u1), b = Math.sqrt(u1);
+  return target.set(a * Math.sin(u2), a * Math.cos(u2), b * Math.sin(u3), b * Math.cos(u3));
+};
+const closestOnSegment = (obstacle, p, target) => {
+  _seg.subVectors(obstacle.b, obstacle.a);
+  const length = _seg.lengthSq();
+  const s = length > 0 ? Math.min(1, Math.max(0, _t.subVectors(p, obstacle.a).dot(_seg) / length)) : 0;
+  return target.copy(obstacle.a).addScaledVector(_seg, s);
+};
+const createField = (count, sizes, world, random = Math.random) => {
+  const beans = [];
+  const { view, obstacle } = world;
+  for (let i = 0; i < count; i++) {
+    const scale = sizes.min * Math.pow(sizes.max / sizes.min, random());
+    const size = sizes.base * scale;
+    const radius = size * FIELD.radius;
+    const mass = scale * scale * scale;
+    const position = new Vector3();
+    for (let attempt = 0; attempt < 40; attempt++) {
+      const z = lerp(view.far, view.near, random());
+      const half = halfHeight(view, z) * 0.9;
+      position.set((random() * 2 - 1) * half * view.aspect, (random() * 2 - 1) * half, z);
+      const clearOfBeans = beans.every((other) => other.position.distanceTo(position) > other.radius + radius);
+      const clearOfCup = !obstacle || closestOnSegment(obstacle, position, _p).distanceTo(position) > obstacle.radius + radius;
+      if (clearOfBeans && clearOfCup) break;
+    }
+    beans.push({
+      position,
+      velocity: randomUnit(new Vector3(), random).multiplyScalar(lerp(0.08, 0.25, random())),
+      rotation: randomRotation(new Quaternion(), random),
+      spin: randomUnit(new Vector3(), random).multiplyScalar(lerp(0.15, 0.5, random())),
+      size, radius, mass,
+      inertia: 0.4 * mass * radius * radius,
+      phase: [random() * 7, random() * 7, random() * 7],
+      rate: [
+        lerp(FIELD.wanderRate.min, FIELD.wanderRate.max, random()),
+        lerp(FIELD.wanderRate.min, FIELD.wanderRate.max, random()),
+        lerp(FIELD.wanderRate.min, FIELD.wanderRate.max, random()),
+      ],
+    });
+  }
+  return { beans, debt: 0, time: 0 };
+};
+const moveBean = (bean, h, time, world) => {
+  const { position: p, velocity: v, spin: w, phase, rate } = bean;
+  const { view, pointer } = world;
+  const inverseMass = 1 / bean.mass;
+  _a.set(Math.sin(time * rate[0] + phase[0]), Math.sin(time * rate[1] + phase[1]), 0.6 * Math.sin(time * rate[2] + phase[2])).multiplyScalar(FIELD.wander);
+  const halfH = halfHeight(view, p.z);
+  const inset = bean.radius * (1 - FIELD.bleed);
+  const limitX = halfH * view.aspect - inset;
+  const limitY = halfH - inset;
+  if (Math.abs(p.x) > limitX) _a.x -= Math.sign(p.x) * (Math.abs(p.x) - limitX) * FIELD.wall;
+  if (Math.abs(p.y) > limitY) _a.y -= Math.sign(p.y) * (Math.abs(p.y) - limitY) * FIELD.wall;
+  if (p.z > view.near) _a.z -= (p.z - view.near) * FIELD.wall;
+  if (p.z < view.far) _a.z += (view.far - p.z) * FIELD.wall;
+  if (pointer.active) {
+    const reach = FIELD.pointerReach * 2 * view.distance * view.tanHalf;
+    _d.subVectors(p, pointer.origin);
+    const along = _d.dot(pointer.direction);
+    _d.addScaledVector(pointer.direction, -along);
+    const distance = _d.length();
+    if (along > 0 && distance < reach) {
+      const falloff = 1 - distance / reach;
+      if (distance > 1e-5) {
+        _n.copy(_d).divideScalar(distance);
+        _a.addScaledVector(_n, FIELD.pointerPush * falloff * falloff * inverseMass);
+        _w.crossVectors(_n, pointer.velocity).multiplyScalar(-FIELD.pointerSpin * falloff * inverseMass * h);
+        w.add(_w);
+      }
+      _a.addScaledVector(pointer.velocity, FIELD.pointerWake * falloff * inverseMass);
+    }
+  }
+  const { vortex } = world;
+  if (vortex.strength) {
+    const dx = p.x - vortex.centre.x;
+    const dy = p.y - vortex.centre.y;
+    const r = Math.hypot(dx, dy);
+    if (r > 1e-4) {
+      const swirl = vortex.strength * Math.min(1, r / FIELD.vortexCore);
+      _a.x += (-dy / r) * swirl - (dx / r) * Math.abs(swirl) * FIELD.vortexInward;
+      _a.y += (dx / r) * swirl - (dy / r) * Math.abs(swirl) * FIELD.vortexInward;
+      w.z += swirl * FIELD.vortexSpin * h;
+    }
+  }
+  v.addScaledVector(_a, h).multiplyScalar(Math.exp(-FIELD.drag * h));
+  if (v.lengthSq() > FIELD.maxSpeed * FIELD.maxSpeed) v.setLength(FIELD.maxSpeed);
+  p.addScaledVector(v, h);
+  w.x += Math.sin(time * rate[1] * 0.7 + phase[2]) * FIELD.spinWander * h;
+  w.y += Math.sin(time * rate[2] * 0.7 + phase[0]) * FIELD.spinWander * h;
+  w.z += Math.sin(time * rate[0] * 0.7 + phase[1]) * FIELD.spinWander * h;
+  w.multiplyScalar(Math.exp(-FIELD.spinDrag * h));
+  if (w.lengthSq() > FIELD.maxSpin * FIELD.maxSpin) w.setLength(FIELD.maxSpin);
+  const angle = w.length() * h;
+  if (angle > 1e-9) {
+    _q.setFromAxisAngle(_w.copy(w).normalize(), angle);
+    bean.rotation.premultiply(_q).normalize();
+  }
+};
+const collide = (i, j) => {
+  _d.subVectors(j.position, i.position);
+  const reach = i.radius + j.radius;
+  const distanceSq = _d.lengthSq();
+  if (distanceSq >= reach * reach || distanceSq < 1e-12) return;
+  const distance = Math.sqrt(distanceSq);
+  _n.copy(_d).divideScalar(distance);
+  const im = 1 / i.mass, jm = 1 / j.mass;
+  const correction = (reach - distance) / (im + jm);
+  i.position.addScaledVector(_n, -correction * im);
+  j.position.addScaledVector(_n, correction * jm);
+  _ri.copy(_n).multiplyScalar(i.radius);
+  _rj.copy(_n).multiplyScalar(-j.radius);
+  _rel.copy(j.velocity).add(_t.crossVectors(j.spin, _rj)).sub(i.velocity).sub(_p.crossVectors(i.spin, _ri));
+  const closing = _rel.dot(_n);
+  if (closing >= 0) return;
+  const normal = (-(1 + FIELD.restitution) * closing) / (im + jm);
+  _t.copy(_rel).addScaledVector(_n, -closing);
+  const sliding = _t.length();
+  let tangent = 0;
+  if (sliding > 1e-6) {
+    _t.divideScalar(sliding);
+    tangent = Math.min(FIELD.friction * normal, sliding / (im + jm + (i.radius * i.radius) / i.inertia + (j.radius * j.radius) / j.inertia));
+  }
+  _p.copy(_n).multiplyScalar(normal).addScaledVector(_t, -tangent);
+  i.velocity.addScaledVector(_p, -im);
+  j.velocity.addScaledVector(_p, jm);
+  i.spin.add(_w.crossVectors(_ri, _p).multiplyScalar(-1 / i.inertia));
+  j.spin.add(_w.crossVectors(_rj, _p).multiplyScalar(1 / j.inertia));
+};
+const bounceOff = (bean, obstacle) => {
+  closestOnSegment(obstacle, bean.position, _p);
+  _d.subVectors(bean.position, _p);
+  const reach = bean.radius + obstacle.radius;
+  const distanceSq = _d.lengthSq();
+  if (distanceSq >= reach * reach || distanceSq < 1e-12) return;
+  const distance = Math.sqrt(distanceSq);
+  _n.copy(_d).divideScalar(distance);
+  bean.position.copy(_p).addScaledVector(_n, reach);
+  const closing = bean.velocity.dot(_n);
+  if (closing >= 0) return;
+  _t.copy(bean.velocity).addScaledVector(_n, -closing);
+  bean.spin.addScaledVector(_w.crossVectors(_n, _t), FIELD.friction / bean.radius);
+  _t.multiplyScalar(-FIELD.friction);
+  bean.velocity.addScaledVector(_n, -(1 + FIELD.restitution) * closing).add(_t);
+};
+const stepField = (field, dt, world) => {
+  field.debt = Math.min(field.debt + dt, FIELD.step * FIELD.maxSteps);
+  const { beans } = field;
+  while (field.debt >= FIELD.step) {
+    for (const bean of beans) moveBean(bean, FIELD.step, field.time, world);
+    for (let i = 0; i < beans.length; i++) for (let j = i + 1; j < beans.length; j++) collide(beans[i], beans[j]);
+    if (world.obstacle) for (const bean of beans) bounceOff(bean, world.obstacle);
+    field.debt -= FIELD.step;
+    field.time += FIELD.step;
+  }
+};
+
+/* =====================================================================
+   PHILOSOPHY SCENE
+   ===================================================================== */
+const VIEW = { fov: 30, distance: 20 };
+const DEPTH = { near: -3, far: -12 };
+const BEANS = { desktop: 34, mobile: 16, length: 0.085, scale: { min: 0.55, max: 1.45 } };
+const CUP = {
+  yaw: 0.42, tilt: 0.16, scale: 0.9, drop: 0.2, capsule: 0.3,
+  lean: { yaw: 0.26, pitch: 0.1 }, follow: 4, spin: Math.PI * 0.7, spinFollow: 6, rise: 1.1, riseRate: 2.4,
+};
+const LIGHT = {
+  exposure: 1.15, environment: 0.55,
+  key: { colour: 0xfff1e0, intensity: 2.4, position: [-5, 6, 7] },
+  rim: { colour: 0xffd9b0, intensity: 1.6, position: [5, 3, -6] },
+};
+const FOG = { colour: 0x0b0a09, start: 4, end: 24 };
+const VORTEX = { strength: 2.4, fullSpeed: 1600, follow: 3 };
+const POINTER_SETTLE = 8;
+const POINTER_MAX_SPEED = 24;
+const MOBILE_FRAME = 1000 / 30;
+const CUP_ANCHOR = "data-philosophy-cup";
+
+const materialsOf = (mesh) => (Array.isArray(mesh.material) ? mesh.material : [mesh.material]);
+const meshesOf = (root) => { const found = []; root.traverse((node) => { if (node.isMesh) found.push(node); }); return found; };
+
+const mountPhilosophy = (mount, src) => {
+  const section = mount.closest("section");
+  const mark = section.querySelector(`[${CUP_ANCHOR}]`);
+  const mobile = window.innerWidth < 768 || window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  const reduced = REDUCED;
+
+  const canvas = document.createElement("canvas");
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+  canvas.style.display = "block";
+  mount.appendChild(canvas);
+
+  let renderer;
+  try {
+    renderer = new WebGLRenderer({ canvas, alpha: true, antialias: !mobile, stencil: false, powerPreference: mobile ? "default" : "high-performance" });
+  } catch {
+    canvas.remove();
+    return;
+  }
+  renderer.setClearAlpha(0);
+  renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMapping = NeutralToneMapping;
+  renderer.toneMappingExposure = LIGHT.exposure;
+
+  const scene = new Scene();
+  scene.fog = new Fog(FOG.colour, VIEW.distance + FOG.start, VIEW.distance + FOG.end);
+  const camera = new PerspectiveCamera(VIEW.fov, 1, 1, 60);
+  camera.position.set(0, 0, VIEW.distance);
+  camera.lookAt(0, 0, 0);
+
+  const pmrem = new PMREMGenerator(renderer);
+  const room = new RoomEnvironment();
+  const environment = pmrem.fromScene(room, 0.04);
+  room.dispose();
+  scene.environment = environment.texture;
+  scene.environmentIntensity = LIGHT.environment;
+
+  for (const { colour, intensity, position } of [LIGHT.key, LIGHT.rim]) {
+    const light = new DirectionalLight(colour, intensity);
+    light.position.set(position[0], position[1], position[2]);
+    scene.add(light);
+  }
+
+  const cup = new Group();
+  cup.visible = false;
+  scene.add(cup);
+  const spin = new Group();
+  cup.add(spin);
+  let turned = 0;
+
+  const tanHalf = Math.tan((VIEW.fov * Math.PI) / 360);
+  const view = { distance: VIEW.distance, tanHalf, aspect: 1, near: DEPTH.near, far: DEPTH.far };
+  const world = {
+    view,
+    pointer: { active: false, origin: new Vector3(), direction: new Vector3(), velocity: new Vector3() },
+    obstacle: null,
+    vortex: { centre: new Vector3(0, 0, (DEPTH.near + DEPTH.far) / 2), strength: 0 },
+  };
+  const capsule = { a: new Vector3(), b: new Vector3(), radius: 0 };
+  let lastScroll = null;
+  const place = { x: 0, bottom: 0, height: 0, shown: false };
+  const aim = { x: 0, y: 0 };
+  const lean = { yaw: 0, pitch: 0 };
+  let rise = reduced ? 0 : 1;
+
+  let field = null;
+  let beans = null;
+  let cupReady = false;
+  let ready = false;
+  let dirty = true;
+  let onScreen = false;
+  let last = 0;
+  let lastDraw = 0;
+
+  const poseCup = () => {
+    cup.visible = cupReady && place.shown;
+    cup.scale.setScalar(place.height || 1);
+    cup.position.set(place.x, place.bottom + place.height / 2 - rise * place.height * CUP.rise, 0);
+    cup.rotation.set(lean.pitch, lean.yaw, -CUP.tilt);
+    cup.updateMatrixWorld();
+    if (!cup.visible) { world.obstacle = null; return; }
+    capsule.radius = place.height * CUP.capsule;
+    capsule.a.set(0, -0.5 + CUP.capsule, 0).applyMatrix4(cup.matrixWorld);
+    capsule.b.set(0, 0.5 - CUP.capsule, 0).applyMatrix4(cup.matrixWorld);
+    world.obstacle = capsule;
+  };
+
+  let fittedWidth = 0;
+  const fit = () => {
+    const width = mount.clientWidth;
+    const height = mount.clientHeight;
+    if (!width || !height) return;
+    if (mobile && fittedWidth === width && ready) return;
+    fittedWidth = width;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    view.aspect = camera.aspect;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobile ? 1 : 1.5));
+    renderer.setSize(width, height, false);
+    if (mark) {
+      const box = mount.getBoundingClientRect();
+      const cell = mark.getBoundingClientRect();
+      place.shown = cell.height > 0;
+      if (place.shown) {
+        const unitPx = (2 * VIEW.distance * tanHalf) / height;
+        place.height = cell.height * unitPx * CUP.scale;
+        place.x = (cell.left + cell.width / 2 - box.left - width / 2) * unitPx;
+        place.bottom = (box.top + height / 2 - cell.bottom) * unitPx - place.height * CUP.drop;
+      }
+    }
+    poseCup();
+    dirty = true;
+  };
+
+  const matrix = new Matrix4();
+  const scaleV = new Vector3();
+  const writeBeans = () => {
+    if (!field || !beans) return;
+    field.beans.forEach((bean, i) => {
+      matrix.compose(bean.position, bean.rotation, scaleV.setScalar(bean.size));
+      beans.setMatrixAt(i, matrix);
+    });
+    beans.instanceMatrix.needsUpdate = true;
+  };
+
+  const ray = new Vector3();
+  const frame = (time) => {
+    if (!ready || !onScreen || document.hidden) { last = 0; lastScroll = null; return; }
+    if (mobile && time - lastDraw < MOBILE_FRAME) return;
+    const dt = last ? Math.min(0.05, (time - last) / 1000) : 0;
+    last = time;
+    lastDraw = time;
+
+    if (!reduced && dt > 0) {
+      const { pointer } = world;
+      if (pointer.active) {
+        ray.set(aim.x, aim.y, 0.5).unproject(camera).sub(camera.position).normalize();
+        pointer.origin.copy(camera.position);
+        pointer.direction.copy(ray);
+      }
+      pointer.velocity.multiplyScalar(Math.exp(-POINTER_SETTLE * dt));
+
+      const follow = 1 - Math.exp(-CUP.follow * dt);
+      const aimed = pointer.active ? 1 : 0;
+      lean.yaw += (aim.x * aimed * CUP.lean.yaw - lean.yaw) * follow;
+      lean.pitch += (-aim.y * aimed * CUP.lean.pitch - lean.pitch) * follow;
+      rise *= Math.exp(-CUP.riseRate * dt);
+
+      const box = section.getBoundingClientRect();
+      const travel = Math.min(1, Math.max(0, (window.innerHeight - box.top) / (window.innerHeight + box.height)));
+      turned += ((travel - 0.5) * CUP.spin - turned) * (1 - Math.exp(-CUP.spinFollow * dt));
+      spin.rotation.y = turned;
+      poseCup();
+
+      const scrollNow = window.scrollY;
+      const scrollSpeed = lastScroll === null ? 0 : (scrollNow - lastScroll) / dt;
+      lastScroll = scrollNow;
+      const swirl = Math.max(-1, Math.min(1, scrollSpeed / VORTEX.fullSpeed)) * VORTEX.strength;
+      world.vortex.strength += (swirl - world.vortex.strength) * (1 - Math.exp(-VORTEX.follow * dt));
+
+      if (field) stepField(field, dt, world);
+      dirty = true;
+    }
+
+    if (!dirty) return;
+    writeBeans();
+    renderer.render(scene, camera);
+    dirty = false;
+  };
+  ticker.add(frame, 0);
+
+  fontsForCanvas.then(() => {
+    const cupScene = new Group();
+    cupScene.add(makeBook({ w: 1.5, h: 2.3, d: 0.34, color: "#6b2a22", ink: "#f1e4d0", kicker: "A NOVEL", title: "The Salt\nRoad", author: "ANNA VEYRA", open: 0.7 }));
+    cupScene.rotation.set(0, CUP.yaw, 0);
+    cupScene.updateWorldMatrix(true, true);
+    const box = new Box3().setFromObject(cupScene);
+    const size = box.getSize(new Vector3());
+    cupScene.position.sub(box.getCenter(new Vector3()));
+    const unitG = new Group();
+    unitG.scale.setScalar(1 / (size.y || 1));
+    unitG.add(cupScene);
+    spin.add(unitG);
+    cupReady = true;
+
+    // The loose pages: one instanced mesh, unit tall, bowed about its middle.
+    const pageMat = new MeshStandardMaterial({ map: pageTex(), side: DoubleSide, roughness: 0.9 });
+    beans = new InstancedMesh(pageGeometry(), pageMat, mobile ? BEANS.mobile : BEANS.desktop);
+    beans.frustumCulled = false;
+    scene.add(beans);
+
+    fit();
+    field = createField(beans.count, { base: BEANS.length * 2 * VIEW.distance * tanHalf, ...BEANS.scale }, world);
+    writeBeans();
+    for (const mesh of meshesOf(scene)) for (const material of materialsOf(mesh)) for (const value of Object.values(material)) {
+      if (value?.isTexture) renderer.initTexture(value);
+    }
+    renderer.compileAsync(scene, camera).then(() => {
+      const entering = rise;
+      rise = 0;
+      poseCup();
+      renderer.render(scene, camera);
+      rise = entering;
+      poseCup();
+      ready = true;
+      dirty = true;
+    });
+  }).catch((error) => {
+    console.error("philosophy scene", error);
+    showError("procedural philosophy scene", "philosophy model");
+  });
+
+
+  let queued = 0;
+  new ResizeObserver(() => { cancelAnimationFrame(queued); queued = requestAnimationFrame(fit); }).observe(mount);
+  new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; dirty = true; }, { rootMargin: "10% 0px" }).observe(mount);
+  const onVisible = () => { dirty = true; };
+  document.addEventListener("visibilitychange", onVisible);
+  canvas.addEventListener("webglcontextrestored", onVisible);
+
+  let lastMove = { x: 0, y: 0, t: 0 };
+  const scratch = new Vector3();
+  const onMove = (event) => {
+    const box = mount.getBoundingClientRect();
+    aim.x = ((event.clientX - box.left) / box.width) * 2 - 1;
+    aim.y = -(((event.clientY - box.top) / box.height) * 2 - 1);
+    const elapsed = (event.timeStamp - lastMove.t) / 1000;
+    if (world.pointer.active && elapsed > 0 && elapsed < 0.1) {
+      const unitPx = (2 * VIEW.distance * tanHalf) / box.height;
+      scratch.set(((event.clientX - lastMove.x) / elapsed) * unitPx, -((event.clientY - lastMove.y) / elapsed) * unitPx, 0);
+      world.pointer.velocity.lerp(scratch, 0.5).clampLength(0, POINTER_MAX_SPEED);
+    }
+    lastMove = { x: event.clientX, y: event.clientY, t: event.timeStamp };
+    world.pointer.active = true;
+  };
+  const onLeave = () => { world.pointer.active = false; aim.x = 0; aim.y = 0; };
+  section.addEventListener("pointermove", onMove, { passive: true });
+  section.addEventListener("pointerdown", onMove, { passive: true });
+  section.addEventListener("pointerleave", onLeave, { passive: true });
+  section.addEventListener("pointercancel", onLeave, { passive: true });
+};
+mountPhilosophy(document.getElementById("phil-3d"), MODEL_SRC);
+
+/* =====================================================================
+   ORDER - THE THERMAL PRINTER
+   ===================================================================== */
+{
+  const SCENE = { width: 1440, height: 800 };
+  const TRACK_VH = 100;
+  const STEPS = 46;
+  const BARCODE_FED = 0.88;
+  const BG_PARALLAX = 0.3;
+  const START_VH = -0.85, END_VH = 0;
+  const EASE_POWER = 1.6;
+  const PRINTER_ART = { width: 404, height: 72 };
+  const PRINTER = { left: 519, top: 133, width: 400, get height() { return (this.width * PRINTER_ART.height) / PRINTER_ART.width; } };
+  const BOARD_WIDTH = 1440, TIGHT_WIDTH = 1280;
+  const GROW = 0.085;
+  const HEADLINE_TOP = 126;
+  const NARROW_GROW = 1.096;
+  const NARROW_NUDGE_X = 20;
+  const NARROW = {
+    maxWidth: 1024, top: PRINTER.top, paperBottom: 748,
+    get height() { return this.paperBottom - this.top; },
+    bandTop: 0.217, bandBottom: 0.22, phoneWidth: 640, phoneBandTop: 0.223, phoneBandBottom: 0.277,
+  };
+  const RECEIPT = { width: 328, paddingX: 22, barcode: { height: 42, gap: 1, thin: 1, thick: 2.5, seed: 20250521 } };
+  const SETTLE = { floor: 0.42, ceiling: 0.94, span: 0.55, seed: 90210 };
+  const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
+  const section = document.getElementById("order");
+  const stage = document.getElementById("stage");
+  const paper = document.getElementById("paper");
+  if (REDUCED) section.style.height = "100lvh";
+  else section.style.height = `${TRACK_VH}vh`;
+
+  /* Photograph: lags up to 30% and lands flush as the block reaches the top. */
+  scrub(document.getElementById("order-bg-par"), section, "top bottom", "top top", { y: REDUCED ? "0%" : "-23.0769%" }, { y: "0%" });
+
+  /* Torn edge */
+  const tornEdgePath = (width) => {
+    let d = `M 0 0 L ${width} 0`;
+    for (let x = width; x > 0; x -= 8) d += ` L ${Math.max(0, x - 4)} 9 L ${Math.max(0, x - 8)} 0`;
+    return d + " Z";
+  };
+  document.getElementById("torn").setAttribute("d", tornEdgePath(328));
+
+  /* Barcode */
+  const barcodeBars = () => {
+    const span = RECEIPT.width - RECEIPT.paddingX * 2;
+    let s = RECEIPT.barcode.seed >>> 0;
+    const next = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+    const bars = [];
+    let left = span, key = 0;
+    while (left > 0) {
+      const width = next() < 0.55 ? RECEIPT.barcode.thin : RECEIPT.barcode.thick;
+      const on = next() > 0.22;
+      if (left <= width + RECEIPT.barcode.gap) { bars.push({ key: key++, width: left, on: true }); break; }
+      bars.push({ key: key++, width, on });
+      left -= width + RECEIPT.barcode.gap;
+    }
+    return bars;
+  };
+  const startHeights = (count) => {
+    let s = SETTLE.seed >>> 0;
+    return Array.from({ length: count }, () => {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      const r = s / 4294967296;
+      return SETTLE.floor + r * (SETTLE.ceiling - SETTLE.floor);
+    });
+  };
+  const scaleAt = (v, i, count, from) => {
+    const t0 = (i / count) * (1 - SETTLE.span);
+    const local = clamp((v - t0) / SETTLE.span, 0, 1);
+    const eased = 1 - Math.pow(1 - local, 3);
+    return from + (1 - from) * eased;
+  };
+  const bars = barcodeBars();
+  const heights = startHeights(bars.length);
+  const code = document.getElementById("barcode");
+  const barEls = bars.map((b) => {
+    const el = document.createElement("span");
+    el.style.cssText = `display:block; flex:none; width:${b.width}px; height:100%; background:${b.on ? "#111111" : "transparent"}; transform-origin:bottom center`;
+    code.appendChild(el);
+    return el;
+  });
+  const drawBars = (sweep) => barEls.forEach((el, i) => { el.style.transform = `scaleY(${scaleAt(sweep, i, bars.length, heights[i])})`; });
+  const sweepSp = new Spring({ v: REDUCED ? 1 : 0 }, (v) => drawBars(v.v));
+  let fed = false;
+
+  /* Feed */
+  let progress = -1;
+  const write = (p) => {
+    if (p === progress) return;
+    progress = p;
+    paper.style.setProperty("--p", String(p));
+    const now = p >= BARCODE_FED;
+    if (now !== fed) {
+      fed = now;
+      sweepSp.start({ v: fed ? 1 : 0 }, { config: cfg(70, 34) });
+    }
+  };
+  const measure = () => {
+    const scrolled = -section.getBoundingClientRect().top;
+    const from = START_VH * window.innerHeight;
+    const to = END_VH * window.innerHeight;
+    let p = clamp((scrolled - from) / (to - from), 0, 1);
+    p = 1 - Math.pow(1 - p, EASE_POWER);
+    write(Math.round(p * STEPS) / STEPS);
+  };
+  if (REDUCED) { paper.style.setProperty("--p", "1"); fed = true; }
+  else { measure(); ticker.add(measure, 0); }
+
+  /* Scale / shift */
+  const place = (scale, shift, nudgeX) => {
+    stage.style.transform = `translateX(-50%) translate(${nudgeX}px, ${shift}px) scale(${scale})`;
+  };
+  const fit = () => {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    if (vw >= NARROW.maxWidth) {
+      const root = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const base = root / FONT_BASE;
+      if (vw >= BOARD_WIDTH) return place(base, 0, 0);
+      if (vw >= TIGHT_WIDTH) {
+        const t = clamp((BOARD_WIDTH - vw) / (BOARD_WIDTH - TIGHT_WIDTH), 0, 1);
+        const grown = base * (1 + GROW * t);
+        return place(grown, PRINTER.top * (base - grown), 0);
+      }
+      const grown = base * NARROW_GROW;
+      return place(grown, HEADLINE_TOP * base - PRINTER.top * grown, NARROW_NUDGE_X * base);
+    }
+    const phone = vw < NARROW.phoneWidth;
+    const bandTop = phone ? NARROW.phoneBandTop : NARROW.bandTop;
+    const bandBottom = phone ? NARROW.phoneBandBottom : NARROW.bandBottom;
+    const band = vh * (1 - bandTop - bandBottom);
+    const next = Math.min(band / NARROW.height, (vw * 0.94) / PRINTER.width);
+    const machineTop = vh * bandTop + (band - NARROW.height * next) / 2;
+    place(next, machineTop - NARROW.top * next, 0);
+  };
+  fit();
+  window.addEventListener("resize", () => requestAnimationFrame(fit));
+}
+</script>
+</body>
+</html>
